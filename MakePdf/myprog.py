@@ -1,0 +1,17 @@
+from fpdf import FPDF
+
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Arial", size = 10)
+pdf.cell(180, 5, txt = "Customer Name", ln = 1, align = 'R')
+pdf.cell(180, 5, txt = "This Building", ln = 2, align = 'R')
+pdf.cell(180, 5, txt = "Long Road", ln = 3, align = 'R')
+pdf.cell(180, 5, txt = "Townington", ln = 4, align = 'R')
+pdf.cell(180, 5, txt = "Countyshire", ln = 5, align = 'R')
+pdf.cell(180, 5, txt = "AA1 4TG", ln = 6, align = 'R')
+pdf.cell(180, 5, txt = "Horton Corporation", ln = 7, align = 'L')
+pdf.cell(180, 5, txt = "The Horton Complex", ln = 8, align = 'L')
+pdf.cell(180, 5, txt = "West Street", ln = 9, align = 'L')
+pdf.cell(180, 5, txt = "Mow Cop", ln = 10, align = 'L')
+pdf.cell(180, 5, txt = "ST7 4NY", ln = 11, align = 'L')
+pdf.output("myfile.pdf")

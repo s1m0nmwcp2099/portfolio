@@ -4,11 +4,28 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
 
 namespace prepData
 {
     class Program
     {
+        static bool URLExists(string url)
+        {
+            bool result = true;
+            WebRequest webRequest = WebRequest.Create(url);
+            webRequest.Timeout = 6000; // miliseconds
+            webRequest.Method = "HEAD";
+            try
+            {
+                webRequest.GetResponse();
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
         static string ModifiedLine(string rawLine){
             //IN # league,match_date,home_team,away_team,fthg,ftag,ftr,hthg,htag,htr,home_shots,away_shots,home_shots_target,away_shots_target,home_corners,away_corners,home_yellow,away_yellow,home_red,away_red,home_win_odds,draw_odds,away_win_odds
             //     0     ,1         ,2        ,3        ,4   ,5   ,6  ,7   ,8   ,9  ,10        ,11        ,12               ,13               ,14          ,15          ,16         ,17         ,18      ,19      ,20           ,21       ,22       
@@ -424,6 +441,7 @@ namespace prepData
             Console.WriteLine("Do you want to download fixtures? y or n");
             string ans=Console.ReadLine();
             if ((ans=="y"||ans=="Y") && URLExists(url)==true){
+                Console.WriteLine("Downloading fixtures");
                 if (File.Exists(filename)){
                     File.Delete(filename);
                 }
@@ -451,7 +469,9 @@ namespace prepData
             }
             //NORMALISE PROCESSED FIXTURES
             for (int i=0;i<62;i++){
-                maximums[i] = 0;
+                if (i != 58 || i != 59 || i!= 60){
+                    maximums[i] = 0;
+                }
             }
             
 
@@ -473,7 +493,7 @@ namespace prepData
             foreach (string match in ModifiedFixtures){
                 string[] cells = match.Split(',');
                 string newLine = "";
-                for (int i=0;i<62;i++){
+                for (int i=0;i<61;i++){//62 to 61
                     if (i != 0){
                         newLine += ",";
                     }

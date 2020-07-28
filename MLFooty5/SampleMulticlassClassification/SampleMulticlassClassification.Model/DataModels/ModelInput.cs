@@ -31,7 +31,7 @@ namespace SampleMulticlassClassification.Model.DataModels
 
 
         [ColumnName("av__hm_ftG_con"), LoadColumn(5)]
-        public float Av__hm_ftG_con { get; set; }
+        public float Av_hm_ftG_con { get; set; }
 
 
         [ColumnName("av_hm_htG_for"), LoadColumn(6)]
@@ -139,7 +139,7 @@ namespace SampleMulticlassClassification.Model.DataModels
 
 
         [ColumnName("av__aw_ftG_con"), LoadColumn(32)]
-        public float Av__aw_ftG_con { get; set; }
+        public float Av_aw_ftG_con { get; set; }
 
 
         [ColumnName("av_aw_htG_for"), LoadColumn(33)]

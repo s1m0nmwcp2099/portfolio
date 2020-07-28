@@ -1,0 +1,10 @@
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/bin/Debug/netcoreapp2.1/MLModel.zip
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/bin/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.deps.json
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/bin/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.dll
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/bin/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.pdb
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.csprojAssemblyReference.cache
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.AssemblyInfoInputs.cache
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.AssemblyInfo.cs
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.csproj.CoreCompileInputs.cache
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.dll
+/home/me/GithubRepo/portfolio/MLFooty5/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/Debug/netcoreapp2.1/SampleMulticlassClassification.Model.pdb
