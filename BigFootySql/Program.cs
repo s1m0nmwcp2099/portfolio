@@ -81,7 +81,7 @@ namespace BigFootySql
             bool[,] isDataMainLgs = new bool[Leagues.Count, Seasons.Count];
             for (int i = 0; i < Leagues.Count; i++){
                 for (int j = 0; j < Seasons.Count; j++){
-                    isDataMainLgs[i, j, k] = false;
+                    isDataMainLgs[i, j] = false;
                 }
             }
             
@@ -101,7 +101,7 @@ namespace BigFootySql
                 isDataMainLgs[Leagues.IndexOf("F1"), j] = true;
                 if (j >= 3){
                     isDataMainLgs[Leagues.IndexOf("F2"), j] = true;
-                    isDataMainLgs[Leagues.IndexOf("SP3"), j] = true;
+                    isDataMainLgs[Leagues.IndexOf("SP2"), j] = true;
                 }
                 if (j >= 1){
                     isDataMainLgs[Leagues.IndexOf("G1"), j] = true;
@@ -119,14 +119,16 @@ namespace BigFootySql
                 isDataMainLgs[Leagues.IndexOf("N1"), j] = true;
                 isDataMainLgs[Leagues.IndexOf("SP1"), j] = true;
             }
+            
             //download files
             List<string> LeagueFileNames = new List<string>();
             for (int i = 0; i < Leagues.Count; i++){
                 for (int j = 0; j < Seasons.Count; j++){
                     if (isDataMainLgs[i, j] == true){
                         string leagueUrl = $"https://www.football-data.co.uk/mmz4281/{Seasons[j]}/{Leagues[i]}.csv";
-                        string fName = $"Data/Previous/{Seasons[j]}-{Leagues}.csv";
-                        DownloadAndWriteData(leagueUrl, fName);
+                        string fName = $"Data/Previous/{Seasons[j]}-{Leagues[i]}.csv";
+                        Console.WriteLine($"Downloading: {Seasons[j]}-{Leagues[i]}");
+                        //DownloadAndWriteData(leagueUrl, fName);
                         LeagueFileNames.Add(fName);
                     }
                 }
@@ -134,7 +136,8 @@ namespace BigFootySql
             for (int i = 0; i < ExtraLeagues.Count; i ++){
                 string leagueUrl = $"https://www.football-data.co.uk/new/{ExtraLeagues[i]}.csv";
                 string fName = $"Data/Previous/{ExtraLeagues[i]}";
-                DownloadAndWriteData(leagueUrl, fName);
+                Console.WriteLine($"Downloading: {ExtraLeagues[i]}");
+                //DownloadAndWriteData(leagueUrl, fName);
                 LeagueFileNames.Add(fName);
             }
 
@@ -149,24 +152,50 @@ namespace BigFootySql
                     }
                     string[] hdrs = hdrLine.Split(',');
                     foreach (string hdr in hdrs){
-                        string _hdr = hdr;
-                        if (hdr == "Country"){
-                            _hdr = "Div";
-                        }else if (hdr == "Home"){
-                            _hdr = "HomeTeam";
-                        }else if (hdr == "Away"){
-                            _hdr = "AwayTeam";
-                        }else if (hdr == "HG"){
-                            _hdr = "FTHG";
-                        }else if (hdr == "AG"){
-                            _hdr = "FTAG";
-                        }
-                        if (!SqlHeaders.Contains(_hdr)){
-                            SqlHeaders.Add(_hdr);
+                        if (hdr != ""){
+                            string _hdr = hdr;
+                            if (hdr == "Country"){
+                                _hdr = "Div";
+                            }else if (hdr == "Home"){
+                                _hdr = "HomeTeam";
+                            }else if (hdr == "Away"){
+                                _hdr = "AwayTeam";
+                            }else if (hdr == "HG"){
+                                _hdr = "FTHG";
+                            }else if (hdr == "AG"){
+                                _hdr = "FTAG";
+                            }else if (hdr == "PH"){
+                                _hdr = "PSH";
+                            }else if (hdr == "PD"){
+                                _hdr = "PSD";
+                            }else if (hdr == "PA"){
+                                _hdr = "PSA";
+                            }
+                        
+                            if (!SqlHeaders.Contains(_hdr)){
+                                SqlHeaders.Add(_hdr);
+                            }
                         }
                     }
                 }
             }
+            string x = string.Join(',', SqlHeaders);
+            string hdrFName = "Data/Prog/sqlHeaders.csv";
+            if (File.Exists(hdrFName)){
+                File.Delete(hdrFName);
+            }
+            using (StreamWriter sw = new StreamWriter(hdrFName)){
+                sw.WriteLine(x);
+            }
+
+            /*
+            //write to sql
+            foreach (string fName in LeagueFileNames){
+                if (File.Exists(fName)){
+
+                }
+            }
+            */
         }
     }
 }
