@@ -9,6 +9,7 @@ namespace BigFootySql
 {
     class Program
     {
+        static string connStr = "server = localhost; user = simon; database = football; port = 3306; password = chainsaw";
         static bool URLExists(string url)
         {
             bool result = true;
@@ -170,6 +171,8 @@ namespace BigFootySql
                                 _hdr = "PSD";
                             }else if (hdr == "PA"){
                                 _hdr = "PSA";
+                            }else if (hdr == "Res"){
+                                _hdr = "FTR";
                             }
                         
                             if (!SqlHeaders.Contains(_hdr)){
@@ -187,6 +190,50 @@ namespace BigFootySql
             using (StreamWriter sw = new StreamWriter(hdrFName)){
                 sw.WriteLine(x);
             }
+
+            //create sql table
+            //start sql command
+            string sql = "CREATE TABLE football_data_complete (";
+
+            //get headers 
+            string allHeaders = "";
+            using (StreamReader sr = new StreamReader("Data/Prog/sqlHeaders.csv")){
+                allHeaders = sr.ReadLine();
+            }
+            string[] headers = allHeaders.Split(',');
+            Console.WriteLine("headers = " + headers.Length);
+            
+            //get header sql types 
+            string allHdrTypes = "";
+            using (StreamReader sr = new StreamReader("Data/Prog/bigDataSqlColumnTypes.csv")){
+                allHdrTypes = sr.ReadLine();
+            }
+            allHdrTypes = allHdrTypes.Replace("\"", String.Empty);
+            allHdrTypes = allHdrTypes.Replace("INT,", "INT-");
+            allHdrTypes = allHdrTypes.Replace("TIME,", "TIME-");
+            allHdrTypes = allHdrTypes.Replace("DATE", "DATE-");
+            allHdrTypes = allHdrTypes.Replace("CHAR,", "CHAR-");
+            allHdrTypes = allHdrTypes.Replace("),", ")-");
+            string[] hdrTypes = allHdrTypes.Split('-');
+            Console.WriteLine("header types = " + hdrTypes.Length);
+
+            foreach (string s in hdrTypes){
+                Console.WriteLine(s);
+            }
+
+            //add columns and types to sql string
+            for (int i = 0; i < headers.Length; i++){
+                if (i > 0){
+                    sql += ", ";
+                }
+                sql += $"{headers[i]} {hdrTypes[i]}";
+            }
+
+            //end sql string
+            sql += ");";
+
+            Console.WriteLine(sql);
+            
 
             /*
             //write to sql
