@@ -200,6 +200,13 @@ namespace BigFootySql
             using (StreamReader sr = new StreamReader("Data/Prog/sqlHeaders.csv")){
                 allHeaders = sr.ReadLine();
             }
+            allHeaders = allHeaders.Replace("Div", "ThisDiv");
+            allHeaders = allHeaders.Replace(">", "over");
+            allHeaders = allHeaders.Replace("<", "under");
+            allHeaders = allHeaders.Replace("2.5", "TwoPtFive");
+            allHeaders = allHeaders.Replace("365", "Stk");
+            allHeaders = allHeaders.Replace("1X2", "ResTot");
+            allHeaders = allHeaders.Replace("AS", "AwS");
             string[] headers = allHeaders.Split(',');
             Console.WriteLine("headers = " + headers.Length);
             
@@ -211,7 +218,7 @@ namespace BigFootySql
             allHdrTypes = allHdrTypes.Replace("\"", String.Empty);
             allHdrTypes = allHdrTypes.Replace("INT,", "INT-");
             allHdrTypes = allHdrTypes.Replace("TIME,", "TIME-");
-            allHdrTypes = allHdrTypes.Replace("DATE", "DATE-");
+            allHdrTypes = allHdrTypes.Replace("DATE,", "DATE-");
             allHdrTypes = allHdrTypes.Replace("CHAR,", "CHAR-");
             allHdrTypes = allHdrTypes.Replace("),", ")-");
             string[] hdrTypes = allHdrTypes.Split('-');
@@ -233,7 +240,12 @@ namespace BigFootySql
             sql += ");";
 
             Console.WriteLine(sql);
-            
+            using (MySqlConnection conn = new MySqlConnection(connStr)){
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
 
             /*
             //write to sql
