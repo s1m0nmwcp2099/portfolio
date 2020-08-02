@@ -9,6 +9,48 @@ namespace BigFootySql
 {
     class Program
     {
+        static string ReduceHeader(string originalHeader){
+            string newHeader = originalHeader;
+            if (originalHeader == "Country" || originalHeader == "Div"){
+                newHeader = "Div";
+            }else if (originalHeader == "Home"){
+                newHeader = "HomeTeam";
+            }else if (originalHeader == "Away"){
+                newHeader = "AwayTeam";
+            }else if (originalHeader == "HG"){
+                newHeader = "FTHG";
+            }else if (originalHeader == "AG"){
+                newHeader = "FTAG";
+            }else if (originalHeader == "PH"){
+                newHeader = "PSH";
+            }else if (originalHeader == "PD"){
+                newHeader = "PSD";
+            }else if (originalHeader == "PA"){
+                newHeader = "PSA";
+            }else if (originalHeader == "Res"){
+                newHeader = "FTR";
+            }
+            return newHeader;
+        }
+        static string SqliseCsvHeaderLine(string line){
+            line = line.Replace("Div", "ThisDiv");
+            line = line.Replace(">", "over");
+            line = line.Replace("<", "under");
+            line = line.Replace("2.5", "TwoPtFive");
+            line = line.Replace("365", "Stk");
+            line = line.Replace("1X2", "ResTot");
+            line = line.Replace("AS", "AwS");
+            return line;
+        }
+        static string SqliseCsvVariableLine(string line){
+            line = line.Replace("\"", String.Empty);
+            line = line.Replace("INT,", "INT-");
+            line = line.Replace("TIME,", "TIME-");
+            line = line.Replace("DATE,", "DATE-");
+            line = line.Replace("CHAR,", "CHAR-");
+            line = line.Replace("),", ")-");
+            return line;
+        }
         static string connStr = "server = localhost; user = simon; database = football; port = 3306; password = chainsaw";
         static bool URLExists(string url)
         {
@@ -152,31 +194,11 @@ namespace BigFootySql
                         hdrLine = sr.ReadLine();
                     }
                     string[] hdrs = hdrLine.Split(',');
-                    foreach (string hdr in hdrs){
-                        if (hdr != ""){
-                            string _hdr = hdr;
-                            if (hdr == "Country"){
-                                _hdr = "Div";
-                            }else if (hdr == "Home"){
-                                _hdr = "HomeTeam";
-                            }else if (hdr == "Away"){
-                                _hdr = "AwayTeam";
-                            }else if (hdr == "HG"){
-                                _hdr = "FTHG";
-                            }else if (hdr == "AG"){
-                                _hdr = "FTAG";
-                            }else if (hdr == "PH"){
-                                _hdr = "PSH";
-                            }else if (hdr == "PD"){
-                                _hdr = "PSD";
-                            }else if (hdr == "PA"){
-                                _hdr = "PSA";
-                            }else if (hdr == "Res"){
-                                _hdr = "FTR";
-                            }
-                        
-                            if (!SqlHeaders.Contains(_hdr)){
-                                SqlHeaders.Add(_hdr);
+                    foreach (string originalHdr in hdrs){
+                        if (originalHdr != ""){
+                            string newHdr = ReduceHeader(originalHdr);
+                            if (!SqlHeaders.Contains(newHdr)){
+                                SqlHeaders.Add(newHdr);
                             }
                         }
                     }
@@ -200,13 +222,7 @@ namespace BigFootySql
             using (StreamReader sr = new StreamReader("Data/Prog/sqlHeaders.csv")){
                 allHeaders = sr.ReadLine();
             }
-            allHeaders = allHeaders.Replace("Div", "ThisDiv");
-            allHeaders = allHeaders.Replace(">", "over");
-            allHeaders = allHeaders.Replace("<", "under");
-            allHeaders = allHeaders.Replace("2.5", "TwoPtFive");
-            allHeaders = allHeaders.Replace("365", "Stk");
-            allHeaders = allHeaders.Replace("1X2", "ResTot");
-            allHeaders = allHeaders.Replace("AS", "AwS");
+            allHeaders = SqliseCsvHeaderLine(allHeaders);
             string[] headers = allHeaders.Split(',');
             Console.WriteLine("headers = " + headers.Length);
             
@@ -215,18 +231,13 @@ namespace BigFootySql
             using (StreamReader sr = new StreamReader("Data/Prog/bigDataSqlColumnTypes.csv")){
                 allHdrTypes = sr.ReadLine();
             }
-            allHdrTypes = allHdrTypes.Replace("\"", String.Empty);
-            allHdrTypes = allHdrTypes.Replace("INT,", "INT-");
-            allHdrTypes = allHdrTypes.Replace("TIME,", "TIME-");
-            allHdrTypes = allHdrTypes.Replace("DATE,", "DATE-");
-            allHdrTypes = allHdrTypes.Replace("CHAR,", "CHAR-");
-            allHdrTypes = allHdrTypes.Replace("),", ")-");
+            allHdrTypes = SqliseCsvVariableLine(allHdrTypes);
             string[] hdrTypes = allHdrTypes.Split('-');
             Console.WriteLine("header types = " + hdrTypes.Length);
 
-            foreach (string s in hdrTypes){
+            /*foreach (string s in hdrTypes){
                 Console.WriteLine(s);
-            }
+            }*/
 
             //add columns and types to sql string
             for (int i = 0; i < headers.Length; i++){
@@ -240,21 +251,31 @@ namespace BigFootySql
             sql += ");";
 
             Console.WriteLine(sql);
-            using (MySqlConnection conn = new MySqlConnection(connStr)){
+            /*using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
-            }
+            }*/
 
-            /*
-            //write to sql
+            
+            //write to sql table
             foreach (string fName in LeagueFileNames){
-                if (File.Exists(fName)){
-
+                List<string> ThisPrevCsv = new List<string>();
+                using (StreamReader sr = new StreamReader(fName)){
+                    while (sr.Peek() > 0){
+                        ThisPrevCsv.Add(sr.ReadLine());
+                    }
                 }
+                string[] hdrs = ThisPrevCsv[0].Split(',');
+                for (int i = 0; i < hdrs.Length; i++){
+                    hdrs[i] = ReduceHeader(hdrs[i]);
+                }
+                string hdrLine = string.Join(",", hdrs);
+                hdrLine = SqliseCsvHeaderLine(hdrLine);
+                hdrs = hdrLine.Split(',');
+                
             }
-            */
         }
     }
 }
