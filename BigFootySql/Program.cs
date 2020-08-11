@@ -9,6 +9,17 @@ namespace BigFootySql
 {
     class Program
     {
+        static string CheckStringChars(string inStr){
+            string outStr = "";
+            for (int i = 0; i < inStr.Length; i++){
+                if ((int)inStr[i] == 65533){
+                    outStr += "o";
+                }else if (i != inStr.Length - 1 || (int)inStr[i] != 32){
+                    outStr += inStr[i];
+                }
+            }
+            return outStr;
+        }
         static string ReduceHeader(string originalHeader){
             string newHeader = originalHeader;
             if (originalHeader == "Country" || originalHeader == "Div"){
@@ -261,12 +272,14 @@ namespace BigFootySql
             
             //write to sql table
             foreach (string fName in LeagueFileNames){
+                //fetch from file and write to list
                 List<string> ThisPrevCsv = new List<string>();
                 using (StreamReader sr = new StreamReader(fName)){
                     while (sr.Peek() > 0){
                         ThisPrevCsv.Add(sr.ReadLine());
                     }
                 }
+                //get headers
                 string[] hdrs = ThisPrevCsv[0].Split(',');
                 for (int i = 0; i < hdrs.Length; i++){
                     hdrs[i] = ReduceHeader(hdrs[i]);
@@ -274,7 +287,27 @@ namespace BigFootySql
                 string hdrLine = string.Join(",", hdrs);
                 hdrLine = SqliseCsvHeaderLine(hdrLine);
                 hdrs = hdrLine.Split(',');
-                
+                //get index of referee column to remove diacritics
+                int refereeInd = Array.IndexOf(hdrs, "Referee");
+
+                //go through each line
+                for (int match = 1; match < ThisPrevCsv.Count; match++){
+                    string thisCsvLine = ThisPrevCsv[match];
+                    string[] parts = thisCsvLine.Split(',');
+                    //start sql string
+                    string sqlReplaceStart = "REPLACE INTO football_data_complete (";
+                    string sqlReplaceEnd = " VALUES (";
+                    for (int i = 0; i < hdrs.Length; i++){
+                        if (i != 0){
+                            sqlReplaceStart += ", ";
+                        }
+                        //check if cell has value
+                        if (string.IsNullOrEmpty(parts[i]) == false){
+                            sqlReplaceStart += hdrs[i];
+                            sqlReplaceEnd += 
+                        }
+                    }
+                }
             }
         }
     }
