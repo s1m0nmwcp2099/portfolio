@@ -225,7 +225,7 @@ namespace BigFootySql
             }
 
             //create sql table
-            //start sql command
+            //start sql commandManchester, UK
             string sql = "CREATE TABLE football_data_complete (";
 
             //get headers 
@@ -300,13 +300,23 @@ namespace BigFootySql
                     for (int i = 0; i < hdrs.Length; i++){
                         if (i != 0){
                             sqlReplaceStart += ", ";
+                            sqlReplaceEnd += ", ";
                         }
                         //check if cell has value
                         if (string.IsNullOrEmpty(parts[i]) == false){
                             sqlReplaceStart += hdrs[i];
-                            sqlReplaceEnd += 
+                            if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
+                                sqlReplaceEnd += ($"'{parts[i]}'");
+                            }else{
+                                sqlReplaceEnd += parts[i];
+                            }
                         }
                     }
+                    sqlReplaceStart += ")";
+                    sqlReplaceEnd += ");";
+                    string sqlReplaceWhole = sqlReplaceStart + sqlReplaceEnd;
+                    Console.WriteLine(sqlReplaceWhole);
+                    Console.ReadLine();
                 }
             }
         }
