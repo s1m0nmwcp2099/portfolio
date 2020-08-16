@@ -24,9 +24,9 @@ namespace BigFootySql
             string newHeader = originalHeader;
             if (originalHeader == "Country" || originalHeader == "Div"){
                 newHeader = "Div";
-            }else if (originalHeader == "Home"){
+            }else if (originalHeader == "Home" || originalHeader == "HT"){
                 newHeader = "HomeTeam";
-            }else if (originalHeader == "Away"){
+            }else if (originalHeader == "Away" || originalHeader == "AT"){
                 newHeader = "AwayTeam";
             }else if (originalHeader == "HG"){
                 newHeader = "FTHG";
@@ -63,8 +63,16 @@ namespace BigFootySql
             return line;
         }
         static string SqliseDate (string dtStr){
-            DateTime dt = Convert.ToDateTime(dtStr);
+            string newDtStr = dtStr.Replace(" ", string.Empty);
+            DateTime dt = Convert.ToDateTime(newDtStr);
             return dt.ToString("yyyy-MM-dd");
+        }
+        static string RemovePunctuation(string str){
+            string newString = str.Replace("'", string.Empty);
+            newString = newString.Replace(",", string.Empty);
+            newString = newString.Replace(".", string.Empty);
+            newString = newString.Replace("-", string.Empty);
+            return newString;
         }
         static string connStr = "server = localhost; user = simon; database = football; port = 3306; password = chainsaw";
         static bool URLExists(string url)
@@ -193,7 +201,7 @@ namespace BigFootySql
             }
             for (int i = 0; i < ExtraLeagues.Count; i ++){
                 string leagueUrl = $"https://www.football-data.co.uk/new/{ExtraLeagues[i]}.csv";
-                string fName = $"Data/Previous/{ExtraLeagues[i]}";
+                string fName = $"Data/Previous/{ExtraLeagues[i]}.csv";
                 Console.WriteLine($"Downloading: {ExtraLeagues[i]}");
                 //DownloadAndWriteData(leagueUrl, fName);
                 LeagueFileNames.Add(fName);
@@ -275,7 +283,25 @@ namespace BigFootySql
 
             
             //write to sql table
-            foreach (string fName in LeagueFileNames){
+            List<string> NeedQuotes = new List<string>();
+            NeedQuotes.Add("ThisDiv"); 
+            NeedQuotes.Add("Date");
+            NeedQuotes.Add("HomeTeam");
+            NeedQuotes.Add("AwayTeam");
+            NeedQuotes.Add("FTR");
+            NeedQuotes.Add("HTR");
+            NeedQuotes.Add("Time");
+            NeedQuotes.Add("Referee");
+            NeedQuotes.Add("LB");
+            NeedQuotes.Add("HT");
+            NeedQuotes.Add("AT");
+            NeedQuotes.Add("League");
+            NeedQuotes.Add("Season");
+
+            //foreach (string fName in LeagueFileNames){
+            for(int q = LeagueFileNames.IndexOf("Data/Previous/USA.csv"); q < LeagueFileNames.Count; q++){
+                string fName = LeagueFileNames[q];
+
                 //fetch from file and write to list
                 List<string> ThisPrevCsv = new List<string>();
                 using (StreamReader sr = new StreamReader(fName)){
@@ -312,6 +338,7 @@ namespace BigFootySql
                 //go through each line
                 for (int match = 1; match < ThisPrevCsv.Count; match++){
                     string thisCsvLine = ThisPrevCsv[match];
+                    thisCsvLine = thisCsvLine.Replace(", ", " ");
                     string[] parts = thisCsvLine.Split(',');
                     if (String.IsNullOrEmpty(parts[0]) == false){
                         //start sql string
@@ -322,35 +349,48 @@ namespace BigFootySql
                             if (hdrs[i] == "Date"){
                                 parts[i] = SqliseDate(parts[i]);
                             }
-                            if (hdrs[i] == "Referee"){
+                            if (hdrs[i] == "HomeTeam" || hdrs[i] == "AwayTeam" || hdrs[i] == "Referee"){
                                 parts[i] = CheckStringChars(parts[i]);
-                                //Console.ReadLine();
+                                parts[i] = RemovePunctuation(parts[i]);
+                            }
+                            if (parts[i] == "NA"){
+                                parts[i] = "NULL";
                             }
                             //check if cell has value
-                            if (string.IsNullOrEmpty(parts[i]) == false && string.IsNullOrEmpty(hdrs[i]) == false){
+                            if (string.IsNullOrEmpty(parts[i]) == false && string.IsNullOrEmpty(hdrs[i]) == false && hdrs[i] != "LB"){
                                 if (valAdded == true){
                                     sqlReplaceStart += ", ";
                                     sqlReplaceEnd += ", ";
                                 }
                                 sqlReplaceStart += hdrs[i];
-                                if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
+                                //if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
+                                if (NeedQuotes.Contains(hdrs[i])){
                                     sqlReplaceEnd += ($"'{parts[i]}'");
                                 }else{
                                     sqlReplaceEnd += parts[i];
                                 }
                                 valAdded = true;
                             }
-                            if (parts[0] == "D1"){
-                                Console.WriteLine($"i = {i} header length = {hdrs.Length}");
-                                Console.WriteLine(sqlReplaceStart + sqlReplaceEnd);
+                            /*if (parts[1] == "2002-08-17" && parts[2] == "Leverkusen"){
+                                //Console.WriteLine($"i = {i} header length = {hdrs.Length}");
+                                //Console.WriteLine(sqlReplaceStart + sqlReplaceEnd);
                                 //Console.ReadLine();
-                            }
+                                Console.WriteLine(hdrs[i] + " " + parts[i]);
+                            }*/
                         }
                         sqlReplaceStart += ")";
                         sqlReplaceEnd += ");";
                         string sqlReplaceWhole = sqlReplaceStart + sqlReplaceEnd;
                         Console.WriteLine(sqlReplaceWhole);
-                        //Console.ReadLine();
+                        /*if (parts[1] == "2002-08-17" && parts[2] == "Leverkusen"){
+                            Console.ReadLine();
+                        }*/
+                        using (MySqlConnection conn = new MySqlConnection(connStr)){
+                            conn.Open();
+                            MySqlCommand cmd = new MySqlCommand(sqlReplaceWhole, conn);
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                        }
                     }
                 }
             }
