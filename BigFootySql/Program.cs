@@ -62,6 +62,10 @@ namespace BigFootySql
             line = line.Replace("),", ")-");
             return line;
         }
+        static string SqliseDate (string dtStr){
+            DateTime dt = Convert.ToDateTime(dtStr);
+            return dt.ToString("yyyy-MM-dd");
+        }
         static string connStr = "server = localhost; user = simon; database = football; port = 3306; password = chainsaw";
         static bool URLExists(string url)
         {
@@ -225,7 +229,7 @@ namespace BigFootySql
             }
 
             //create sql table
-            //start sql commandManchester, UK
+            //start sql command
             string sql = "CREATE TABLE football_data_complete (";
 
             //get headers 
@@ -284,39 +288,70 @@ namespace BigFootySql
                 for (int i = 0; i < hdrs.Length; i++){
                     hdrs[i] = ReduceHeader(hdrs[i]);
                 }
-                string hdrLine = string.Join(",", hdrs);
+                //string hdrLine = string.Join(",", hdrs);
+                string hdrLine = "";
+                bool started = false;
+                for (int i = 0; i < hdrs.Length; i++){
+                    if (String.IsNullOrEmpty(hdrs[i]) == false){
+                        if (started == true){
+                            hdrLine += ",";
+                        }
+                        hdrLine += hdrs[i];
+                    }
+                    started = true;
+                }
                 hdrLine = SqliseCsvHeaderLine(hdrLine);
                 hdrs = hdrLine.Split(',');
+                foreach (string y in hdrs){
+                    Console.WriteLine($"hdr: {y}");
+                }
                 //get index of referee column to remove diacritics
-                int refereeInd = Array.IndexOf(hdrs, "Referee");
+                //int refereeInd = Array.IndexOf(hdrs, "Referee");
+                //int DateInd = Array.IndexOf(hdrs, "Date");
 
                 //go through each line
                 for (int match = 1; match < ThisPrevCsv.Count; match++){
                     string thisCsvLine = ThisPrevCsv[match];
                     string[] parts = thisCsvLine.Split(',');
-                    //start sql string
-                    string sqlReplaceStart = "REPLACE INTO football_data_complete (";
-                    string sqlReplaceEnd = " VALUES (";
-                    for (int i = 0; i < hdrs.Length; i++){
-                        if (i != 0){
-                            sqlReplaceStart += ", ";
-                            sqlReplaceEnd += ", ";
-                        }
-                        //check if cell has value
-                        if (string.IsNullOrEmpty(parts[i]) == false){
-                            sqlReplaceStart += hdrs[i];
-                            if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
-                                sqlReplaceEnd += ($"'{parts[i]}'");
-                            }else{
-                                sqlReplaceEnd += parts[i];
+                    if (String.IsNullOrEmpty(parts[0]) == false){
+                        //start sql string
+                        string sqlReplaceStart = "REPLACE INTO football_data_complete (";
+                        string sqlReplaceEnd = " VALUES (";
+                        bool valAdded = false;
+                        for (int i = 0; i < hdrs.Length && i < parts.Length; i++){//LAST
+                            if (hdrs[i] == "Date"){
+                                parts[i] = SqliseDate(parts[i]);
+                            }
+                            if (hdrs[i] == "Referee"){
+                                parts[i] = CheckStringChars(parts[i]);
+                                //Console.ReadLine();
+                            }
+                            //check if cell has value
+                            if (string.IsNullOrEmpty(parts[i]) == false && string.IsNullOrEmpty(hdrs[i]) == false){
+                                if (valAdded == true){
+                                    sqlReplaceStart += ", ";
+                                    sqlReplaceEnd += ", ";
+                                }
+                                sqlReplaceStart += hdrs[i];
+                                if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
+                                    sqlReplaceEnd += ($"'{parts[i]}'");
+                                }else{
+                                    sqlReplaceEnd += parts[i];
+                                }
+                                valAdded = true;
+                            }
+                            if (parts[0] == "D1"){
+                                Console.WriteLine($"i = {i} header length = {hdrs.Length}");
+                                Console.WriteLine(sqlReplaceStart + sqlReplaceEnd);
+                                //Console.ReadLine();
                             }
                         }
+                        sqlReplaceStart += ")";
+                        sqlReplaceEnd += ");";
+                        string sqlReplaceWhole = sqlReplaceStart + sqlReplaceEnd;
+                        Console.WriteLine(sqlReplaceWhole);
+                        //Console.ReadLine();
                     }
-                    sqlReplaceStart += ")";
-                    sqlReplaceEnd += ");";
-                    string sqlReplaceWhole = sqlReplaceStart + sqlReplaceEnd;
-                    Console.WriteLine(sqlReplaceWhole);
-                    Console.ReadLine();
                 }
             }
         }
