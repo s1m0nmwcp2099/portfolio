@@ -131,6 +131,7 @@ namespace BigFootySql
             Seasons.Add("1718"); 
             Seasons.Add("1819");
             Seasons.Add("1920");
+            Seasons.Add("2021");
             //Seasons.Add("2021"); //WHEN NEW SEASON KICKS OFF
 
             List<string> Leagues = new List<string>();

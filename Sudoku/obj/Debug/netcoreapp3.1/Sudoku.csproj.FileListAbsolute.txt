@@ -1,0 +1,13 @@
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.csprojAssemblyReference.cache
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.AssemblyInfoInputs.cache
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.AssemblyInfo.cs
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.csproj.CoreCompileInputs.cache
+/home/me/GithubRepo/portfolio/Sudoku/bin/Debug/netcoreapp3.1/Sudoku
+/home/me/GithubRepo/portfolio/Sudoku/bin/Debug/netcoreapp3.1/Sudoku.deps.json
+/home/me/GithubRepo/portfolio/Sudoku/bin/Debug/netcoreapp3.1/Sudoku.runtimeconfig.json
+/home/me/GithubRepo/portfolio/Sudoku/bin/Debug/netcoreapp3.1/Sudoku.runtimeconfig.dev.json
+/home/me/GithubRepo/portfolio/Sudoku/bin/Debug/netcoreapp3.1/Sudoku.dll
+/home/me/GithubRepo/portfolio/Sudoku/bin/Debug/netcoreapp3.1/Sudoku.pdb
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.dll
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.pdb
+/home/me/GithubRepo/portfolio/Sudoku/obj/Debug/netcoreapp3.1/Sudoku.genruntimeconfig.cache
