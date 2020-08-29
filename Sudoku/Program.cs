@@ -68,7 +68,7 @@ namespace Sudoku
                     //Compare vertical
                     for (int i = 1; i <= 9; i++){//check where other('there') square can be i possibilities
                         List<List<int>> AvNos = new List<List<int>>();
-                        for (int thr = 0; thr < 9; thr++){
+                        for (int thr = 0; thr < 9; thr++){//each 'there'
                             if (thr != here.Item1 && possibleCt[VertTheres[thr].Item1, VertTheres[thr].Item2] == i){
                                 AvNos.Add(new List<int>());
                                 for (int num = 1; num <= 9; num++){
@@ -86,7 +86,79 @@ namespace Sudoku
                                 }
                             }
                             if (matches >= i){
+                                for (int l = 0; l < i; l++){
+                                    foreach (int x in AvNos[l]){
+                                        grid[here.Item1, here.Item2, AvNos[l] - 1] = false;
+                                        possibleCt[here.Item1, here.Item2] -= 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //Compare horizontal
+                    for (int i = 1; i <= 9; i++){//check where other('there') square can be i possibilities
+                        List<List<int>> AvNos = new List<List<int>>();
+                        for (int thr = 0; thr < 9; thr++){//each 'there'
+                            if (thr != here.Item2 && possibleCt[HorizTheres[thr].Item1, HorizTheres[thr].Item2] == i){
+                                AvNos.Add(new List<int>());
+                                for (int num = 1; num <= 9; num++){
+                                    if (grid[HorizTheres[thr].Item1, HorizTheres[thr].Item2, num - 1] == true){
+                                        AvNos[AvNos.Count - 1].Add(num);
+                                    }
+                                }
+                            }
+                        }
+                        for (int j = 0; j < AvNos.Count - i; j++){
+                            int matches = 0;
+                            for (int k = j + 1; k < AvNos.Count; k++){
+                                if (AvNos[j].SequenceEqual(AvNos[k])){
+                                    matches++;
+                                }
+                            }
+                            if (matches >= i){
+                                for (int l = 0; l < i; l++){
+                                    foreach (int x in AvNos[l]){
+                                        grid[here.Item1, here.Item2, AvNos[l] - 1] = false;
+                                        possibleCt[here.Item1, here.Item2] -= 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //Compare sub-square
+                    for (int i = 1; i <= 9; i++){//check where other('there') square can be i possibilities
+                        List<List<int>> AvNos = new List<List<int>>();
+                        /*for (int thr = 0; thr < 9; thr++){//each 'there'
+                            if (thr != here.Item2 && possibleCt[HorizTheres[thr].Item1, HorizTheres[thr].Item2] == i){
+                                AvNos.Add(new List<int>());
+                                for (int num = 1; num <= 9; num++){
+                                    if (grid[HorizTheres[thr].Item1, HorizTheres[thr].Item2, num - 1] == true){
+                                        AvNos[AvNos.Count - 1].Add(num);
+                                    }
+                                }
+                            }
+                        }*/
+                        foreach ((int, int) subTp in SubTheres){
+                            if ((subTp.Item1 != here.Item1 || subTp.Item2 != here.Item2) && possibleCt[subTp.Item1, subTp.Item2] == i){
+                                AvNos.Add(new List<int>());
                                 
+                            }
+                        }
+                        for (int j = 0; j < AvNos.Count - i; j++){
+                            int matches = 0;
+                            for (int k = j + 1; k < AvNos.Count; k++){
+                                if (AvNos[j].SequenceEqual(AvNos[k])){
+                                    matches++;
+                                }
+                            }
+                            if (matches >= i){
+                                for (int l = 0; l < i; l++){
+                                    foreach (int x in AvNos[l]){
+                                        grid[here.Item1, here.Item2, AvNos[l] - 1] = false;
+                                        possibleCt[here.Item1, here.Item2] -= 1;
+                                    }
+                                }
                             }
                         }
                     }
