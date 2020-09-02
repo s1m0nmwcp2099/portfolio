@@ -17,32 +17,8 @@ hand there seem to be more ways to trip over myself that the Python compiler wil
 I also have an interest in machine learning. So far I have played around with ML.Net CLI and
 applied it to predict football (soccer) scores. 
 
-I have a keen interest in football and I make no apologies for this being reflected by the 
+I have a keen interest in football and I make no apologies for this being reflected by some
 contents of this repository.
 
 Finally I am using VSCode on Ubuntu 18.04. I feel that this has helped me immensely with
 Terminal commands.
-
-
-31/05/2020
-
-Currently I'm working on MLFooty5. This is the fifth version of a program designed to predict 
-the probability of football (soccer) results and to compare them to bookmaker odds in order to
-suggest value bets. It's written in C# and it utilises data from 
-http://www.football-data.co.uk from 21 European divisions.
-
-
-02/08/2020
-
-My latest project is to create my own sql table which takes all of the data from http://football-data.co.uk. This will save time in many future football-
-related projects due to having every piece of information from the website available in one place.
-
-The first challenges was to extract every column name from 573 csv files which cover 22 major European leagues going back to 1993 and 16 worldwide
-leagues going back to 2012. The level of detail recorded in different leagues at different times ranges from as little as just the score right through to a 
-myriad of data including number of shots, corners, free-kicks, cards, attendances, referees names and odds for different events and bookmakers.
-Additionally csv files for a few of the leagues used different column names to represent the same data in other leagues.
-I used C# to download and read the csv files and extract the headers. The next task was to eliminate unnecessary names which would duplicate columns and
-to format the column titles into SQL friendly names - eg "over two-and-a-half goals" is represented as ">2.5" in the csv headers. Clearly the ">" sign would
-cause a problem if used as a header whilst creating a SQL table.
-Obviously it would be impractical to physically type the SQL command to create a table with 168 columns so the next task was to create a list for the columns
-and another list for each corresponding SQL variable. The SQL command was created with a loop in C# to iterate through the list of column names and variables.
