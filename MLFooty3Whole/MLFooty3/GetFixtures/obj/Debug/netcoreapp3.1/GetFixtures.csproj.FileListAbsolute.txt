@@ -1,0 +1,13 @@
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.csprojAssemblyReference.cache
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.csproj.CoreCompileInputs.cache
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.AssemblyInfoInputs.cache
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.AssemblyInfo.cs
+/home/me/Projects/MLFooty3/GetFixtures/bin/Debug/netcoreapp3.1/GetFixtures
+/home/me/Projects/MLFooty3/GetFixtures/bin/Debug/netcoreapp3.1/GetFixtures.deps.json
+/home/me/Projects/MLFooty3/GetFixtures/bin/Debug/netcoreapp3.1/GetFixtures.runtimeconfig.json
+/home/me/Projects/MLFooty3/GetFixtures/bin/Debug/netcoreapp3.1/GetFixtures.runtimeconfig.dev.json
+/home/me/Projects/MLFooty3/GetFixtures/bin/Debug/netcoreapp3.1/GetFixtures.dll
+/home/me/Projects/MLFooty3/GetFixtures/bin/Debug/netcoreapp3.1/GetFixtures.pdb
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.dll
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.pdb
+/home/me/Projects/MLFooty3/GetFixtures/obj/Debug/netcoreapp3.1/GetFixtures.genruntimeconfig.cache

@@ -1,0 +1,13 @@
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.csprojAssemblyReference.cache
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.csproj.CoreCompileInputs.cache
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.AssemblyInfoInputs.cache
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.AssemblyInfo.cs
+/home/me/Projects/MLFooty3/TestingConsoleApp/bin/Debug/netcoreapp3.1/TestingConsoleApp
+/home/me/Projects/MLFooty3/TestingConsoleApp/bin/Debug/netcoreapp3.1/TestingConsoleApp.deps.json
+/home/me/Projects/MLFooty3/TestingConsoleApp/bin/Debug/netcoreapp3.1/TestingConsoleApp.runtimeconfig.json
+/home/me/Projects/MLFooty3/TestingConsoleApp/bin/Debug/netcoreapp3.1/TestingConsoleApp.runtimeconfig.dev.json
+/home/me/Projects/MLFooty3/TestingConsoleApp/bin/Debug/netcoreapp3.1/TestingConsoleApp.dll
+/home/me/Projects/MLFooty3/TestingConsoleApp/bin/Debug/netcoreapp3.1/TestingConsoleApp.pdb
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.dll
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.pdb
+/home/me/Projects/MLFooty3/TestingConsoleApp/obj/Debug/netcoreapp3.1/TestingConsoleApp.genruntimeconfig.cache

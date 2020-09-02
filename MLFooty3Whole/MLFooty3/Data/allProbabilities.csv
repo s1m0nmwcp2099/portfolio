@@ -1,0 +1,172 @@
+league,date,home,away,prediction,odds,probability,real
+F1,28/08/2020 00:00:00,Lyon,Dijon,Home,1.28,0.7420476,H
+F1,28/08/2020 00:00:00,Lyon,Dijon,Draw,5.75,0.15249358,H
+F1,28/08/2020 00:00:00,Lyon,Dijon,Away,9.00,0.1054588,H
+B1,28/08/2020 00:00:00,Oostende,Anderlecht,Home,3.50,0.29625624,D
+B1,28/08/2020 00:00:00,Oostende,Anderlecht,Draw,3.75,0.24783882,D
+B1,28/08/2020 00:00:00,Oostende,Anderlecht,Away,1.95,0.45590493,D
+F2,29/08/2020 00:00:00,Caen,Ajaccio,Home,2.45,0.39263815,H
+F2,29/08/2020 00:00:00,Caen,Ajaccio,Draw,2.90,0.30887145,H
+F2,29/08/2020 00:00:00,Caen,Ajaccio,Away,3.10,0.29849043,H
+B1,29/08/2020 00:00:00,Cercle Brugge,Kortrijk,Home,2.25,0.4077376,A
+B1,29/08/2020 00:00:00,Cercle Brugge,Kortrijk,Draw,3.50,0.2738616,A
+B1,29/08/2020 00:00:00,Cercle Brugge,Kortrijk,Away,2.90,0.3184008,A
+F2,29/08/2020 00:00:00,Chateauroux,Auxerre,Home,3.20,0.31652382,A
+F2,29/08/2020 00:00:00,Chateauroux,Auxerre,Draw,3.00,0.2931528,A
+F2,29/08/2020 00:00:00,Chateauroux,Auxerre,Away,2.37,0.39032334,A
+B1,29/08/2020 00:00:00,Eupen,St Truiden,Home,2.00,0.46826482,D
+B1,29/08/2020 00:00:00,Eupen,St Truiden,Draw,3.50,0.26121628,D
+B1,29/08/2020 00:00:00,Eupen,St Truiden,Away,3.60,0.2705189,D
+F2,29/08/2020 00:00:00,Grenoble,Toulouse,Home,2.25,0.4422664,H
+F2,29/08/2020 00:00:00,Grenoble,Toulouse,Draw,3.00,0.30433723,H
+F2,29/08/2020 00:00:00,Grenoble,Toulouse,Away,3.50,0.25339636,H
+SC0,29/08/2020 00:00:00,Hamilton,Rangers,Home,15.00,0.010784486,A
+SC0,29/08/2020 00:00:00,Hamilton,Rangers,Draw,7.00,0.07899463,A
+SC0,29/08/2020 00:00:00,Hamilton,Rangers,Away,1.16,0.91022086,A
+SC0,29/08/2020 00:00:00,Kilmarnock,Dundee United,Home,2.40,0.41541302,H
+SC0,29/08/2020 00:00:00,Kilmarnock,Dundee United,Draw,3.40,0.26274568,H
+SC0,29/08/2020 00:00:00,Kilmarnock,Dundee United,Away,2.87,0.32184127,H
+F2,29/08/2020 00:00:00,Le Havre,Amiens,Home,2.20,0.42607173,H
+F2,29/08/2020 00:00:00,Le Havre,Amiens,Draw,3.10,0.31132743,H
+F2,29/08/2020 00:00:00,Le Havre,Amiens,Away,3.50,0.2626008,H
+SC0,29/08/2020 00:00:00,Livingston,Ross County,Home,2.00,0.46061277,H
+SC0,29/08/2020 00:00:00,Livingston,Ross County,Draw,3.40,0.29967853,H
+SC0,29/08/2020 00:00:00,Livingston,Ross County,Away,3.60,0.23970869,H
+B1,29/08/2020 00:00:00,Mouscron,Waregem,Home,2.87,0.3713144,A
+B1,29/08/2020 00:00:00,Mouscron,Waregem,Draw,3.40,0.27339926,A
+B1,29/08/2020 00:00:00,Mouscron,Waregem,Away,2.37,0.35528633,A
+F2,29/08/2020 00:00:00,Nancy,Guingamp,Home,2.80,0.36014456,D
+F2,29/08/2020 00:00:00,Nancy,Guingamp,Draw,2.87,0.31632793,D
+F2,29/08/2020 00:00:00,Nancy,Guingamp,Away,2.80,0.3235275,D
+F2,29/08/2020 00:00:00,Paris FC,Valenciennes,Home,2.30,0.41286278,H
+F2,29/08/2020 00:00:00,Paris FC,Valenciennes,Draw,3.10,0.29256263,H
+F2,29/08/2020 00:00:00,Paris FC,Valenciennes,Away,3.25,0.2945746,H
+F1,29/08/2020 00:00:00,Rennes,Montpellier,Home,2.00,0.4558267,H
+F1,29/08/2020 00:00:00,Rennes,Montpellier,Draw,3.30,0.29490882,H
+F1,29/08/2020 00:00:00,Rennes,Montpellier,Away,3.80,0.2492645,H
+F2,29/08/2020 00:00:00,Sochaux,Troyes,Home,2.80,0.35896218,H
+F2,29/08/2020 00:00:00,Sochaux,Troyes,Draw,3.00,0.30436668,H
+F2,29/08/2020 00:00:00,Sochaux,Troyes,Away,2.70,0.33667114,H
+SC0,29/08/2020 00:00:00,St Johnstone,St Mirren,Home,2.15,0.44877952,H
+SC0,29/08/2020 00:00:00,St Johnstone,St Mirren,Draw,3.25,0.28315976,H
+SC0,29/08/2020 00:00:00,St Johnstone,St Mirren,Away,3.40,0.2680607,H
+F1,29/08/2020 00:00:00,Strasbourg,Nice,Home,2.20,0.41400167,A
+F1,29/08/2020 00:00:00,Strasbourg,Nice,Draw,3.30,0.29407758,A
+F1,29/08/2020 00:00:00,Strasbourg,Nice,Away,3.30,0.29192075,A
+F1,30/08/2020 00:00:00,Angers,Bordeaux,Home,2.25,0.41565213,A
+F1,30/08/2020 00:00:00,Angers,Bordeaux,Draw,3.10,0.30302253,A
+F1,30/08/2020 00:00:00,Angers,Bordeaux,Away,3.40,0.28132534,A
+F1,30/08/2020 00:00:00,Brest,Marseille,Home,3.00,0.33780557,A
+F1,30/08/2020 00:00:00,Brest,Marseille,Draw,3.50,0.26447877,A
+F1,30/08/2020 00:00:00,Brest,Marseille,Away,2.00,0.39771566,A
+SC0,30/08/2020 00:00:00,Celtic,Motherwell,Home,1.14,0.87932205,H
+SC0,30/08/2020 00:00:00,Celtic,Motherwell,Draw,8.00,0.07700841,H
+SC0,30/08/2020 00:00:00,Celtic,Motherwell,Away,15.00,0.043669514,H
+B1,30/08/2020 00:00:00,Charleroi,Antwerp,Home,2.10,0.41706118,H
+B1,30/08/2020 00:00:00,Charleroi,Antwerp,Draw,3.40,0.30093902,H
+B1,30/08/2020 00:00:00,Charleroi,Antwerp,Away,3.30,0.28199977,H
+B1,30/08/2020 00:00:00,Genk,Club Brugge,Home,2.80,0.36010516,A
+B1,30/08/2020 00:00:00,Genk,Club Brugge,Draw,3.60,0.25824124,A
+B1,30/08/2020 00:00:00,Genk,Club Brugge,Away,2.30,0.38165364,A
+SC0,30/08/2020 00:00:00,Hibernian,Aberdeen,Home,2.25,0.41967148,A
+SC0,30/08/2020 00:00:00,Hibernian,Aberdeen,Draw,3.30,0.29251614,A
+SC0,30/08/2020 00:00:00,Hibernian,Aberdeen,Away,3.10,0.28781238,A
+F1,30/08/2020 00:00:00,Metz,Monaco,Home,3.75,0.2742031,A
+F1,30/08/2020 00:00:00,Metz,Monaco,Draw,3.40,0.275393,A
+F1,30/08/2020 00:00:00,Metz,Monaco,Away,2.00,0.4504039,A
+F1,30/08/2020 00:00:00,Nantes,Nimes,Home,1.95,0.49444366,H
+F1,30/08/2020 00:00:00,Nantes,Nimes,Draw,3.20,0.280986,H
+F1,30/08/2020 00:00:00,Nantes,Nimes,Away,4.20,0.22457036,H
+F1,30/08/2020 00:00:00,Reims,Lille,Home,3.00,0.34193948,A
+F1,30/08/2020 00:00:00,Reims,Lille,Draw,3.10,0.31067753,A
+F1,30/08/2020 00:00:00,Reims,Lille,Away,2.45,0.34738296,A
+F1,30/08/2020 00:00:00,St Etienne,Lorient,Home,2.20,0.44191176,H
+F1,30/08/2020 00:00:00,St Etienne,Lorient,Draw,3.20,0.28276527,H
+F1,30/08/2020 00:00:00,St Etienne,Lorient,Away,3.40,0.27532297,H
+B1,28/08/2020,Oostende,Anderlecht,Home,3.5,0.30134797,D
+B1,28/08/2020,Oostende,Anderlecht,Draw,3.75,0.25072187,D
+B1,28/08/2020,Oostende,Anderlecht,Away,1.95,0.44793016,D
+B1,29/08/2020,Eupen,St Truiden,Home,2,0.46617842,D
+B1,29/08/2020,Eupen,St Truiden,Draw,3.5,0.26900578,D
+B1,29/08/2020,Eupen,St Truiden,Away,3.6,0.2648158,D
+B1,29/08/2020,Cercle Brugge,Kortrijk,Home,2.25,0.41573068,D
+B1,29/08/2020,Cercle Brugge,Kortrijk,Draw,3.5,0.2711163,D
+B1,29/08/2020,Cercle Brugge,Kortrijk,Away,2.9,0.31315306,D
+B1,29/08/2020,Mouscron,Waregem,Home,2.87,0.3717135,D
+B1,29/08/2020,Mouscron,Waregem,Draw,3.4,0.2711131,D
+B1,29/08/2020,Mouscron,Waregem,Away,2.37,0.3571734,D
+B1,30/08/2020,Genk,Club Brugge,Home,2.8,0.37234268,D
+B1,30/08/2020,Genk,Club Brugge,Draw,3.6,0.24866574,D
+B1,30/08/2020,Genk,Club Brugge,Away,2.3,0.3789916,D
+B1,30/08/2020,Charleroi,Antwerp,Home,2.1,0.41806343,D
+B1,30/08/2020,Charleroi,Antwerp,Draw,3.4,0.30100623,D
+B1,30/08/2020,Charleroi,Antwerp,Away,3.3,0.28093034,D
+B1,30/08/2020,Gent,Mechelen,Home,1.66,0.5250656,D
+B1,30/08/2020,Gent,Mechelen,Draw,4,0.23968785,D
+B1,30/08/2020,Gent,Mechelen,Away,4.33,0.23524652,D
+F1,28/08/2020,Lyon,Dijon,Home,1.28,0.7488949,D
+F1,28/08/2020,Lyon,Dijon,Draw,5.75,0.14539352,D
+F1,28/08/2020,Lyon,Dijon,Away,9,0.10571161,D
+F1,29/08/2020,Rennes,Montpellier,Home,2,0.4478927,D
+F1,29/08/2020,Rennes,Montpellier,Draw,3.3,0.29665926,D
+F1,29/08/2020,Rennes,Montpellier,Away,3.8,0.25544804,D
+F1,29/08/2020,Strasbourg,Nice,Home,2.2,0.4270373,D
+F1,29/08/2020,Strasbourg,Nice,Draw,3.3,0.27790815,D
+F1,29/08/2020,Strasbourg,Nice,Away,3.3,0.29505458,D
+F1,30/08/2020,Reims,Lille,Home,3,0.34913456,D
+F1,30/08/2020,Reims,Lille,Draw,3.1,0.29977515,D
+F1,30/08/2020,Reims,Lille,Away,2.45,0.3510903,D
+F1,30/08/2020,Angers,Bordeaux,Home,2.25,0.4240005,D
+F1,30/08/2020,Angers,Bordeaux,Draw,3.1,0.2906336,D
+F1,30/08/2020,Angers,Bordeaux,Away,3.4,0.28536594,D
+F1,30/08/2020,Metz,Monaco,Home,3.75,0.28242472,D
+F1,30/08/2020,Metz,Monaco,Draw,3.4,0.2702867,D
+F1,30/08/2020,Metz,Monaco,Away,2,0.44728857,D
+F1,30/08/2020,Nantes,Nimes,Home,1.95,0.4820289,D
+F1,30/08/2020,Nantes,Nimes,Draw,3.2,0.2881592,D
+F1,30/08/2020,Nantes,Nimes,Away,4.2,0.22981189,D
+F1,30/08/2020,St Etienne,Lorient,Home,2.2,0.43078703,D
+F1,30/08/2020,St Etienne,Lorient,Draw,3.2,0.2958126,D
+F1,30/08/2020,St Etienne,Lorient,Away,3.4,0.27340034,D
+F1,30/08/2020,Brest,Marseille,Home,3,0.35388675,D
+F1,30/08/2020,Brest,Marseille,Draw,3.5,0.24095997,D
+F1,30/08/2020,Brest,Marseille,Away,2,0.40515324,D
+F2,29/08/2020,Caen,Ajaccio,Home,2.45,0.37736952,D
+F2,29/08/2020,Caen,Ajaccio,Draw,2.9,0.32328737,D
+F2,29/08/2020,Caen,Ajaccio,Away,3.1,0.29934308,D
+F2,29/08/2020,Nancy,Guingamp,Home,2.8,0.3686984,D
+F2,29/08/2020,Nancy,Guingamp,Draw,2.87,0.3093674,D
+F2,29/08/2020,Nancy,Guingamp,Away,2.8,0.32193425,D
+F2,29/08/2020,Chateauroux,Auxerre,Home,3.2,0.33067855,D
+F2,29/08/2020,Chateauroux,Auxerre,Draw,3,0.28233042,D
+F2,29/08/2020,Chateauroux,Auxerre,Away,2.37,0.38699102,D
+F2,29/08/2020,Grenoble,Toulouse,Home,2.25,0.44733578,D
+F2,29/08/2020,Grenoble,Toulouse,Draw,3,0.2842573,D
+F2,29/08/2020,Grenoble,Toulouse,Away,3.5,0.26840693,D
+F2,29/08/2020,Le Havre,Amiens,Home,2.2,0.41139194,D
+F2,29/08/2020,Le Havre,Amiens,Draw,3.1,0.32228366,D
+F2,29/08/2020,Le Havre,Amiens,Away,3.5,0.2663244,D
+F2,29/08/2020,Paris FC,Valenciennes,Home,2.3,0.39748612,D
+F2,29/08/2020,Paris FC,Valenciennes,Draw,3.1,0.3102189,D
+F2,29/08/2020,Paris FC,Valenciennes,Away,3.25,0.29229498,D
+F2,29/08/2020,Sochaux,Troyes,Home,2.8,0.34811768,D
+F2,29/08/2020,Sochaux,Troyes,Draw,3,0.30810842,D
+F2,29/08/2020,Sochaux,Troyes,Away,2.7,0.3437739,D
+SC0,29/08/2020,Kilmarnock,Dundee United,Home,2.4,0.42034417,D
+SC0,29/08/2020,Kilmarnock,Dundee United,Draw,3.4,0.26832572,D
+SC0,29/08/2020,Kilmarnock,Dundee United,Away,2.87,0.31133014,D
+SC0,29/08/2020,Livingston,Ross County,Home,2,0.4458847,D
+SC0,29/08/2020,Livingston,Ross County,Draw,3.4,0.3071428,D
+SC0,29/08/2020,Livingston,Ross County,Away,3.6,0.2469725,D
+SC0,29/08/2020,St Johnstone,St Mirren,Home,2.15,0.4328515,D
+SC0,29/08/2020,St Johnstone,St Mirren,Draw,3.25,0.29369798,D
+SC0,29/08/2020,St Johnstone,St Mirren,Away,3.4,0.27345052,D
+SC0,29/08/2020,Hamilton,Rangers,Home,15,0.01109446,D
+SC0,29/08/2020,Hamilton,Rangers,Draw,7,0.07763006,D
+SC0,29/08/2020,Hamilton,Rangers,Away,1.16,0.9112755,D
+SC0,30/08/2020,Celtic,Motherwell,Home,1.14,0.88112295,D
+SC0,30/08/2020,Celtic,Motherwell,Draw,8,0.07655334,D
+SC0,30/08/2020,Celtic,Motherwell,Away,15,0.042323694,D
+SC0,30/08/2020,Hibernian,Aberdeen,Home,2.25,0.42524573,D
+SC0,30/08/2020,Hibernian,Aberdeen,Draw,3.3,0.2867914,D
+SC0,30/08/2020,Hibernian,Aberdeen,Away,3.1,0.28796285,D
