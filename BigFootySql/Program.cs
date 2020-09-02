@@ -9,6 +9,12 @@ namespace BigFootySql
 {
     class Program
     {
+        static string RemoveFirstCharacterSpace (string inStr){
+            if (inStr.Length > 0 && (int)inStr[0] == 32){//32 is ascii for space
+                inStr = inStr.Remove(0, 1);
+            }
+            return inStr;
+        }
         static string CheckStringChars(string inStr){
             string outStr = "";
             for (int i = 0; i < inStr.Length; i++){
@@ -195,7 +201,9 @@ namespace BigFootySql
                         string leagueUrl = $"https://www.football-data.co.uk/mmz4281/{Seasons[j]}/{Leagues[i]}.csv";
                         string fName = $"Data/Previous/{Seasons[j]}-{Leagues[i]}.csv";
                         Console.WriteLine($"Downloading: {Seasons[j]}-{Leagues[i]}");
-                        //DownloadAndWriteData(leagueUrl, fName);
+                        if (Seasons[j] == "1920" || Seasons[j] == "2021"){
+                            DownloadAndWriteData(leagueUrl, fName);
+                        }
                         LeagueFileNames.Add(fName);
                     }
                 }
@@ -204,7 +212,7 @@ namespace BigFootySql
                 string leagueUrl = $"https://www.football-data.co.uk/new/{ExtraLeagues[i]}.csv";
                 string fName = $"Data/Previous/{ExtraLeagues[i]}.csv";
                 Console.WriteLine($"Downloading: {ExtraLeagues[i]}");
-                //DownloadAndWriteData(leagueUrl, fName);
+                DownloadAndWriteData(leagueUrl, fName);
                 LeagueFileNames.Add(fName);
             }
 
@@ -300,97 +308,110 @@ namespace BigFootySql
             NeedQuotes.Add("Season");
 
             //foreach (string fName in LeagueFileNames){
-            for(int q = LeagueFileNames.IndexOf("Data/Previous/USA.csv"); q < LeagueFileNames.Count; q++){
+            //for(int q = LeagueFileNames.IndexOf("Data/Previous/USA.csv"); q < LeagueFileNames.Count; q++){
+            for(int q = 0; q < LeagueFileNames.Count; q++){
                 string fName = LeagueFileNames[q];
-
-                //fetch from file and write to list
-                List<string> ThisPrevCsv = new List<string>();
-                using (StreamReader sr = new StreamReader(fName)){
-                    while (sr.Peek() > 0){
-                        ThisPrevCsv.Add(sr.ReadLine());
-                    }
-                }
-                //get headers
-                string[] hdrs = ThisPrevCsv[0].Split(',');
-                for (int i = 0; i < hdrs.Length; i++){
-                    hdrs[i] = ReduceHeader(hdrs[i]);
-                }
-                //string hdrLine = string.Join(",", hdrs);
-                string hdrLine = "";
-                bool started = false;
-                for (int i = 0; i < hdrs.Length; i++){
-                    if (String.IsNullOrEmpty(hdrs[i]) == false){
-                        if (started == true){
-                            hdrLine += ",";
+                //if (File.Exists(LeagueFileNames[q]) && (q >= LeagueFileNames.IndexOf("Data/Previous/AUT.csv") || LeagueFileNames[q].Contains("1920") || LeagueFileNames[q].Contains("2021"))){
+                if (File.Exists(LeagueFileNames[q]) && q >= LeagueFileNames.IndexOf("Data/Previous/BRA.csv")){
+                    //above line is to reduce writing for update
+                    //fetch from file and write to list
+                    List<string> ThisPrevCsv = new List<string>();
+                    using (StreamReader sr = new StreamReader(fName)){
+                        while (sr.Peek() > 0){
+                            ThisPrevCsv.Add(sr.ReadLine());
                         }
-                        hdrLine += hdrs[i];
                     }
-                    started = true;
-                }
-                hdrLine = SqliseCsvHeaderLine(hdrLine);
-                hdrs = hdrLine.Split(',');
-                foreach (string y in hdrs){
-                    Console.WriteLine($"hdr: {y}");
-                }
-                //get index of referee column to remove diacritics
-                //int refereeInd = Array.IndexOf(hdrs, "Referee");
-                //int DateInd = Array.IndexOf(hdrs, "Date");
+                    //get headers
+                    string[] hdrs = ThisPrevCsv[0].Split(',');
+                    for (int i = 0; i < hdrs.Length; i++){
+                        hdrs[i] = ReduceHeader(hdrs[i]);
+                    }
+                    //string hdrLine = string.Join(",", hdrs);
+                    string hdrLine = "";
+                    bool started = false;
+                    for (int i = 0; i < hdrs.Length; i++){
+                        if (String.IsNullOrEmpty(hdrs[i]) == false){
+                            if (started == true){
+                                hdrLine += ",";
+                            }
+                            hdrLine += hdrs[i];
+                        }
+                        started = true;
+                    }
+                    hdrLine = SqliseCsvHeaderLine(hdrLine);
+                    hdrs = hdrLine.Split(',');
+                    foreach (string y in hdrs){
+                        Console.WriteLine($"hdr: {y}");
+                    }
+                    //get index of referee column to remove diacritics
+                    //int refereeInd = Array.IndexOf(hdrs, "Referee");
+                    //int DateInd = Array.IndexOf(hdrs, "Date");
 
-                //go through each line
-                for (int match = 1; match < ThisPrevCsv.Count; match++){
-                    string thisCsvLine = ThisPrevCsv[match];
-                    thisCsvLine = thisCsvLine.Replace(", ", " ");
-                    string[] parts = thisCsvLine.Split(',');
-                    if (String.IsNullOrEmpty(parts[0]) == false){
-                        //start sql string
-                        string sqlReplaceStart = "REPLACE INTO football_data_complete (";
-                        string sqlReplaceEnd = " VALUES (";
-                        bool valAdded = false;
-                        for (int i = 0; i < hdrs.Length && i < parts.Length; i++){//LAST
-                            if (hdrs[i] == "Date"){
-                                parts[i] = SqliseDate(parts[i]);
-                            }
-                            if (hdrs[i] == "HomeTeam" || hdrs[i] == "AwayTeam" || hdrs[i] == "Referee"){
-                                parts[i] = CheckStringChars(parts[i]);
-                                parts[i] = RemovePunctuation(parts[i]);
-                            }
-                            if (parts[i] == "NA"){
-                                parts[i] = "NULL";
-                            }
-                            //check if cell has value
-                            if (string.IsNullOrEmpty(parts[i]) == false && string.IsNullOrEmpty(hdrs[i]) == false && hdrs[i] != "LB"){
-                                if (valAdded == true){
-                                    sqlReplaceStart += ", ";
-                                    sqlReplaceEnd += ", ";
+                    //go through each line
+                    for (int match = 1; match < ThisPrevCsv.Count; match++){
+                        string thisCsvLine = ThisPrevCsv[match];
+                        thisCsvLine = thisCsvLine.Replace(", ", " "); //eliminate ','s in referee names
+                        string[] parts = thisCsvLine.Split(',');
+                        //put back in ',' to separate date and time
+                        if (parts[Array.IndexOf(hdrs, "Date")].Length > 10){
+                            parts[Array.IndexOf(hdrs, "Date")] = parts[Array.IndexOf(hdrs, "Date")].Insert(10, ",");
+                            //rebuild csv line
+                            thisCsvLine = string.Join(',', parts);
+                            //break down again
+                            parts = thisCsvLine.Split(',');
+                        }
+                        if (String.IsNullOrEmpty(parts[0]) == false){
+                            //start sql string
+                            string sqlReplaceStart = "REPLACE INTO football_data_complete (";
+                            string sqlReplaceEnd = " VALUES (";
+                            bool valAdded = false;
+                            for (int i = 0; i < hdrs.Length && i < parts.Length; i++){//LAST
+                                if (hdrs[i] == "Date"){
+                                    parts[i] = RemoveFirstCharacterSpace(parts[i]);
+                                    parts[i] = SqliseDate(parts[i]);
                                 }
-                                sqlReplaceStart += hdrs[i];
-                                //if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
-                                if (NeedQuotes.Contains(hdrs[i])){
-                                    sqlReplaceEnd += ($"'{parts[i]}'");
-                                }else{
-                                    sqlReplaceEnd += parts[i];
+                                if (hdrs[i] == "HomeTeam" || hdrs[i] == "AwayTeam" || hdrs[i] == "Referee"){
+                                    parts[i] = CheckStringChars(parts[i]);
+                                    parts[i] = RemovePunctuation(parts[i]);
                                 }
-                                valAdded = true;
+                                if (parts[i] == "NA"){
+                                    parts[i] = "NULL";
+                                }
+                                //check if cell has value
+                                if (string.IsNullOrEmpty(parts[i]) == false && string.IsNullOrEmpty(hdrs[i]) == false && hdrs[i] != "LB"){
+                                    if (valAdded == true){
+                                        sqlReplaceStart += ", ";
+                                        sqlReplaceEnd += ", ";
+                                    }
+                                    sqlReplaceStart += hdrs[i];
+                                    //if (hdrTypes[i] == "VARCHAR(11)" || hdrTypes[i] == "DATE" || hdrTypes[i] == "VARCHAR(25)" || hdrTypes[i] == "CHAR" || hdrTypes[i] == "TIME"){
+                                    if (NeedQuotes.Contains(hdrs[i])){
+                                        sqlReplaceEnd += ($"'{parts[i]}'");
+                                    }else{
+                                        sqlReplaceEnd += parts[i];
+                                    }
+                                    valAdded = true;
+                                }
+                                /*if (parts[1] == "2002-08-17" && parts[2] == "Leverkusen"){
+                                    //Console.WriteLine($"i = {i} header length = {hdrs.Length}");
+                                    //Console.WriteLine(sqlReplaceStart + sqlReplaceEnd);
+                                    //Console.ReadLine();
+                                    Console.WriteLine(hdrs[i] + " " + parts[i]);
+                                }*/
                             }
+                            sqlReplaceStart += ")";
+                            sqlReplaceEnd += ");";
+                            string sqlReplaceWhole = sqlReplaceStart + sqlReplaceEnd;
+                            Console.WriteLine(sqlReplaceWhole);
                             /*if (parts[1] == "2002-08-17" && parts[2] == "Leverkusen"){
-                                //Console.WriteLine($"i = {i} header length = {hdrs.Length}");
-                                //Console.WriteLine(sqlReplaceStart + sqlReplaceEnd);
-                                //Console.ReadLine();
-                                Console.WriteLine(hdrs[i] + " " + parts[i]);
+                                Console.ReadLine();
                             }*/
-                        }
-                        sqlReplaceStart += ")";
-                        sqlReplaceEnd += ");";
-                        string sqlReplaceWhole = sqlReplaceStart + sqlReplaceEnd;
-                        Console.WriteLine(sqlReplaceWhole);
-                        /*if (parts[1] == "2002-08-17" && parts[2] == "Leverkusen"){
-                            Console.ReadLine();
-                        }*/
-                        using (MySqlConnection conn = new MySqlConnection(connStr)){
-                            conn.Open();
-                            MySqlCommand cmd = new MySqlCommand(sqlReplaceWhole, conn);
-                            cmd.ExecuteNonQuery();
-                            conn.Close();
+                            using (MySqlConnection conn = new MySqlConnection(connStr)){
+                                conn.Open();
+                                MySqlCommand cmd = new MySqlCommand(sqlReplaceWhole, conn);
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
                         }
                     }
                 }
