@@ -9,6 +9,7 @@ namespace BigFootySql
 {
     class Program
     {
+        static string lastUpdateDateFile = "when.txt";
         static string RemoveFirstCharacterSpace (string inStr){
             if (inStr.Length > 0 && (int)inStr[0] == 32){//32 is ascii for space
                 inStr = inStr.Remove(0, 1);
@@ -109,6 +110,12 @@ namespace BigFootySql
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Do you just want to update?");
+            string ans = Console.ReadLine();
+            bool updt = true;
+            if (ans == "n" || ans == "N"){
+                updt = false;
+            }
             List<string> Seasons=new List<string>();
             Seasons.Add("9394");
             Seasons.Add("9495");
@@ -311,8 +318,8 @@ namespace BigFootySql
             //for(int q = LeagueFileNames.IndexOf("Data/Previous/USA.csv"); q < LeagueFileNames.Count; q++){
             for(int q = 0; q < LeagueFileNames.Count; q++){
                 string fName = LeagueFileNames[q];
-                //if (File.Exists(LeagueFileNames[q]) && (q >= LeagueFileNames.IndexOf("Data/Previous/AUT.csv") || LeagueFileNames[q].Contains("1920") || LeagueFileNames[q].Contains("2021"))){
-                if (File.Exists(LeagueFileNames[q]) && q >= LeagueFileNames.IndexOf("Data/Previous/BRA.csv")){
+                if (File.Exists(LeagueFileNames[q]) && (q >= LeagueFileNames.IndexOf("Data/Previous/AUT.csv") || LeagueFileNames[q].Contains("2021"))){
+                //if (File.Exists(LeagueFileNames[q]) && q >= LeagueFileNames.IndexOf("Data/Previous/BRA.csv")){
                     //above line is to reduce writing for update
                     //fetch from file and write to list
                     List<string> ThisPrevCsv = new List<string>();
@@ -349,6 +356,11 @@ namespace BigFootySql
 
                     //go through each line
                     for (int match = 1; match < ThisPrevCsv.Count; match++){
+                        //get date of last update
+                        DateTime lastUpdateDate = Convert.ToDateTime("1970-2-1");
+                        using (StreamReader sr = new StreamReader(lastUpdateDateFile)){
+                            lastUpdateDate = Convert.ToDateTime(sr.ReadLine());
+                        }
                         string thisCsvLine = ThisPrevCsv[match];
                         thisCsvLine = thisCsvLine.Replace(", ", " "); //eliminate ','s in referee names
                         string[] parts = thisCsvLine.Split(',');
@@ -360,7 +372,7 @@ namespace BigFootySql
                             //break down again
                             parts = thisCsvLine.Split(',');
                         }
-                        if (String.IsNullOrEmpty(parts[0]) == false){
+                        if (String.IsNullOrEmpty(parts[0]) == false && Convert.ToDateTime(parts[Array.IndexOf(hdrs, "Date")]) > lastUpdateDate.AddDays(-14)){
                             //start sql string
                             string sqlReplaceStart = "REPLACE INTO football_data_complete (";
                             string sqlReplaceEnd = " VALUES (";
@@ -415,6 +427,13 @@ namespace BigFootySql
                         }
                     }
                 }
+            }
+            //date of update
+            if (File.Exists(lastUpdateDateFile)){
+                File.Delete(lastUpdateDateFile);
+            }
+            using (StreamWriter sw = new StreamWriter(lastUpdateDateFile)){
+                sw.WriteLine(DateTime.Now);
             }
         }
     }
