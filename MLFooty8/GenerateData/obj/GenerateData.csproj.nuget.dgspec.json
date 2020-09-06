@@ -39,6 +39,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.Data.Analysis": {
+              "target": "Package",
+              "version": "[*, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.19, )"
