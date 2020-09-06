@@ -49,6 +49,7 @@ namespace GenerateData
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read()){
                     //rdr.GetOrdinal("Date");
+                    rdr.GetInt32
                 }
             }
         }
