@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using Microsoft.Data.Analysis;
+using System.Collections.Generic;
 
 namespace GenerateData
 {
