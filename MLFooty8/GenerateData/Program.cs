@@ -42,7 +42,7 @@ namespace GenerateData
             List<int> _HC = new List<int>();
             //AC
             List<int> _AC = new List<int>();
-            string sql = "SELECT * FROM football_data_complete WHERE FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HTHG IS NOT NULL AND HTAG IS NOT NULL AND HTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND HC IS NOT NULL AND AC IS NOT NULL;"
+            string sql = "SELECT * FROM football_data_complete WHERE FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HTHG IS NOT NULL AND HTAG IS NOT NULL AND HTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND HC IS NOT NULL AND AC IS NOT NULL";
             using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
