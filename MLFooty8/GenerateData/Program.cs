@@ -2,23 +2,44 @@
 using MySql.Data.MySqlClient;
 using Microsoft.Data.Analysis;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GenerateData
 {
     class Program
     {
-        static float[] ResultPerGame(bool atHome, int matchInd, Dataframe df){
-            float[] rpg = new float[3];
+        static float[] AveragesPerGame(bool atHome, int matchInd, Dataframe df){
+            float[] rpg = new float[3]; //result per game: 0=win; 1=draw; 2=loss
+            float[] gpg = new float[2]; //goals per game: 0=scored per game; 1=conceded per game
+            float[] gpst = new float[2]; //goals per shot on target: 0=for; 1= against
+            float[] gps = new float[2]; //goals per shot: 0=for; 1=against
+            float[] stpg = new float[2]; //shots on target per game
+            float[] stps = new float[2]; //shots on target per shot
+            float[] spg = new float[2]; //shots per game
+            
+            for (int i = 0; i < 3; i++){
+                rpg[i] = 0f;
+                if (i < 2){
+                    gpg[i] = 0f;
+                    gps[i] = 0f;
+                    gpst[i] = 0f;
+                    stpg[i] = 0f;
+                    stps[i] = 0f;
+                    spg[i] = 0f;
+                }
+            }
             int adj = 0; //this is to adjust dataframe column index depending on whether team is playing home or away
             if (atHome == false){
                 adj = 1;
             }
             float played = 0F;
             int prevMatchCt = 0;
-            for (int prevMatchInd = matchInd - 1; prevMatchInd >= 0 && prevMatchCt >= 10; prevMatchInd--){
+            for (int prevMatchInd = matchInd - 1; prevMatchInd >= 0 && prevMatchCt <= 10; prevMatchInd--){
                 if (df[matchInd, 2 + adj] == df[prevMatchInd, 2 + adj]){ //check when team played previous games
                     prevMatchCt++;
                     float myDeltaExp = MathF.Exp((df[matchInd, 1] - df[prevMatchInd - 1]).Days * -0.007F); //time delay exponential
+                    
+                    //win draw or loss
                     if (df[prevMatchInd, 6] == "D"){ //check previous result draw
                         rpg[1] += myDeltaExp;
                     }else if (df[prevMatchInd, 6] == "H"){
@@ -34,11 +55,70 @@ namespace GenerateData
                             rpg[0] += myDeltaExp;
                         }
                     }
+
+                    //goals per game
+                    gpg[0] += (df[prevMatchInd, 4 + adj] * myDeltaExp); //add time weighted home goals
+                    gpg[1] += (df[prevMatchInd, 5 - adj] * myDeltaExp); // -"- away goals
+
+                    //goals per shot on target
+                    //gpst[0] += (df[prevMatchInd, 4 + adj] / df[prevMatchInd, 12 + adj] * myDeltaExp);
+                    gpst[0] += XperYcorrectZero(df[prevMatchInd, 4 + adj], df[prevMatchInd, 12 + adj], myDeltaExp);
+                    //gpst[1] += (df[prevMatchInd, 5 - adj] / df[prevMatchInd, 13 - adj] * myDeltaExp);
+                    gpst[1] += XperYcorrectZero(df[prevMatchInd, 5 - adj], df[prevMatchInd, 13 - adj], myDeltaExp);
+
+                    //goals per shot
+                    //gps[0] += (df[prevMatchInd, 4 + adj] / df[prevMatchInd, 10 + adj] * myDeltaExp);
+                    gps[0] += XperYcorrectZero(df[prevMatchInd, 4 + adj], df[prevMatchInd, 10 + adj], myDeltaExp);
+                    //gps[1] += (df[prevMatchInd, 5 - adj] / df[prevMatchInd, 11 - adj] * myDeltaExp);
+                    gps[1] += XperYcorrectZero(df[prevMatchInd, 5 - adj], df[prevMatchInd, 11 - adj], myDeltaExp);
+
+                    //shots on target per game
+                    stpg[0] += (df[prevMatchInd, 12 + adj] * myDeltaExp);
+                    stpg[1] += (df[prevMatchInd, 13 - adj] * myDeltaExp);
+
+                    //shots on target per shot
+                    //stps[0] += (df[prevMatchInd, 12 + adj] / df[prevMatchInd, 10 + adj] * myDeltaExp);
+                    stps[0] += XperYcorrectZero(df[prevMatchInd, 12 + adj], df[prevMatchInd, 10 + adj], myDeltaExp);
+                    //stps[1] += (df[prevMatchInd, 13 - adj] / df[prevMatchInd, 11 - adj] * myDeltaExp);
+                    stps[0] += XperYcorrectZero(df[prevMatchInd, 13 - adj], df[prevMatchInd, 11 - adj], myDeltaExp);
+
+                    //shots per game
+                    spg[0] += (df[prevMatchInd, 10 + adj] * myDeltaExp);
+                    spg[1] += (df[prevMatchInd, 11 - adj] * myDeltaExp);
+
                     played += myDeltaExp;
                 }
             }
-            //average
-               
+            //averages
+            for (int i = 0; i < 3; i++){
+                rpg[i] /= played;
+                if (i < 2){
+                    gpg[i] /= played;
+                    gpst[i] /= played;
+                    gps[i] /= played;
+                    stpg[i] /= played;
+                    stps[i] /= played;
+                    spg[i] /= played;
+                }
+            }
+
+            if (prevMatchCt >= 10){
+                //join arrays
+                return rpg.Concat(gpg).Concat(gpst).Concat(gps).Concat(stpg).Concat(stps).Concat(spg);
+                //     0,1,2,     3,4,        5,6,          7,8,         9,10,      11,12,       13,14
+            }else{
+                float[] dud = new float[15];
+                for (int i = 0; i < 15; i++){
+                    dud[i] = -1;
+                }
+            } 
+        }
+        static float XperYcorrectZero (float x, float y, float delta){
+            if (y != 0f){
+                return (x / y * delta);
+            }else{
+                return delta;
+            }
         }
         static string connStr = "server = localhost; user = simon; database = football; port = 3306; password = chainsaw";
         static void Main(string[] args)
@@ -120,15 +200,15 @@ namespace GenerateData
             PrimitiveDataFrameColumn<float> agspg = new PrimitiveDataFrameColumn<float>("Agspg", 0);  //away goals scored pg
             PrimitiveDataFrameColumn<float> agcpg = new PrimitiveDataFrameColumn<float>("Agcpg", 0);  //away goals conceded pg
             
-            PrimitiveDataFrameColumn<float> hgsps = new PrimitiveDataFrameColumn<float>("Hgsps", 0);  //home goals scored per shot
-            PrimitiveDataFrameColumn<float> hgcps = new PrimitiveDataFrameColumn<float>("Hgcps", 0);  //home goals conceded per shot
-            PrimitiveDataFrameColumn<float> agsps = new PrimitiveDataFrameColumn<float>("Agsps", 0);  //away goals scored per shot
-            PrimitiveDataFrameColumn<float> agcps = new PrimitiveDataFrameColumn<float>("Agcps", 0);  //away goals conceded per shot
-            
             PrimitiveDataFrameColumn<float> hgspst = new PrimitiveDataFrameColumn<float>("Hgspst", 0);  //home goals scored per shot on target
             PrimitiveDataFrameColumn<float> hgcpst = new PrimitiveDataFrameColumn<float>("Hgcpst", 0);  //home goals conceded per shot on target
             PrimitiveDataFrameColumn<float> agspst = new PrimitiveDataFrameColumn<float>("Agspst", 0);  //away goals scored per shot on target
             PrimitiveDataFrameColumn<float> agcpst = new PrimitiveDataFrameColumn<float>("Agcpst", 0);  //away goals conceded per shot on target
+
+            PrimitiveDataFrameColumn<float> hgsps = new PrimitiveDataFrameColumn<float>("Hgsps", 0);  //home goals scored per shot
+            PrimitiveDataFrameColumn<float> hgcps = new PrimitiveDataFrameColumn<float>("Hgcps", 0);  //home goals conceded per shot
+            PrimitiveDataFrameColumn<float> agsps = new PrimitiveDataFrameColumn<float>("Agsps", 0);  //away goals scored per shot
+            PrimitiveDataFrameColumn<float> agcps = new PrimitiveDataFrameColumn<float>("Agcps", 0);  //away goals conceded per shot
             
             PrimitiveDataFrameColumn<float> hsfpg = new PrimitiveDataFrameColumn<float>("Hsfpg", 0);  //home shots for per game
             PrimitiveDataFrameColumn<float> hsapg = new PrimitiveDataFrameColumn<float>("Hsapg", 0);  //home shots against per game
@@ -146,27 +226,16 @@ namespace GenerateData
             PrimitiveDataFrameColumn<float> astapg = new PrimitiveDataFrameColumn<float>("Astaps", 0);  //away shots on target against ps
 
             for (int gm = 0; gm < thisDiv.Length; gm++){
-                //FT WINS DRAWS LOSSES
-                //wins
-                float winsPerGame = 0;
-                
-                //GOALS
-                //goals per game
-
-                //goals per shot
-
-                //goals per shot on target
-
-                
-                //SHOTS ON TARGET
-                //shots on target per game
-
-                //shots on target per shot
-
-
-                //SHOTS
-                //shots per game
-
+                float[] homeStats = AveragesPerGame(true, gm, df);
+                hwpg.Append(homeStats[0]);
+                hdpg.Append(homeStats[1]);
+                hlpg.Append(homeStats[2]);
+                hgspst.Append(homeStats[3]);
+                hgcpst.Append(homeStats[4]);
+                hgsps.Append(homeStats[5]);
+                hgcps.Append(homeStats[6]);
+                hsfpg.Append(homeStats[7]);
+                hsfpg.Append(homeStats[8]);
             }
         }
     }
