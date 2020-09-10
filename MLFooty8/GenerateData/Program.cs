@@ -162,15 +162,10 @@ namespace GenerateData
                     fthg.Append(rdr.GetInt32(4));
                     ftag.Append(rdr.GetInt32(5));
                     ftr.Append(rdr.GetString(6));
-                    //hthg.Append(rdr.GetInt32(7));
-                    //htag.Append(rdr.GetInt32(8));
-                    //htr.Append(rdr.GetString(9));
                     hs.Append(rdr.GetInt32(7));
                     aws.Append(rdr.GetInt32(8));
                     hst.Append(rdr.GetInt32(9));
                     awst.Append(rdr.GetInt32(10));
-                    //hc.Append(rdr.GetInt32(11));
-                    //ac.Append(rdr.GetInt32(12));
                 }
                 conn.Close();
             }
