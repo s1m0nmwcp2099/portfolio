@@ -8,7 +8,7 @@ namespace GenerateData
 {
     class Program
     {
-        static float[] AveragesPerGame(bool atHome, int matchInd, Dataframe df){
+        static float[] AveragesPerGame(bool atHome, int matchInd, DataFrame df){
             float[] rpg = new float[3]; //result per game: 0=win; 1=draw; 2=loss
             float[] gpg = new float[2]; //goals per game: 0=scored per game; 1=conceded per game
             float[] gpst = new float[2]; //goals per shot on target: 0=for; 1= against
@@ -35,20 +35,21 @@ namespace GenerateData
             float played = 0F;
             int prevMatchCt = 0;
             for (int prevMatchInd = matchInd - 1; prevMatchInd >= 0 && prevMatchCt <= 10; prevMatchInd--){
-                if (df[matchInd, 2 + adj] == df[prevMatchInd, 2 + adj]){ //check when team played previous games
+                if ((string)df[matchInd, 2 + adj] == (string)df[prevMatchInd, 2 + adj]){ //check when team played previous games
+                    //Console.WriteLine(df.Rows[prevMatchInd]);
                     prevMatchCt++;
-                    float myDeltaExp = MathF.Exp((df[matchInd, 1] - df[prevMatchInd - 1]).Days * -0.007F); //time delay exponential
+                    float myDeltaExp = MathF.Exp(((DateTime)df[matchInd, 1] - (DateTime)df[prevMatchInd, 1]).Days * -0.007F); //time delay exponential
                     
                     //win draw or loss
-                    if (df[prevMatchInd, 6] == "D"){ //check previous result draw
+                    if ((string)df[prevMatchInd, 6] == "D"){ //check previous result draw
                         rpg[1] += myDeltaExp;
-                    }else if (df[prevMatchInd, 6] == "H"){
+                    }else if ((string)df[prevMatchInd, 6] == "H"){
                         if (atHome == true){
                             rpg[0] += myDeltaExp;
                         }else{
                             rpg[2] += myDeltaExp;
                         }
-                    }else if (df[prevMatchInd, 6] == "A"){
+                    }else if ((string)df[prevMatchInd, 6] == "A"){
                         if (atHome == true){
                             rpg[2] += myDeltaExp;
                         }else{
@@ -57,38 +58,33 @@ namespace GenerateData
                     }
 
                     //goals per game
-                    gpg[0] += (df[prevMatchInd, 4 + adj] * myDeltaExp); //add time weighted home goals
-                    gpg[1] += (df[prevMatchInd, 5 - adj] * myDeltaExp); // -"- away goals
+                    gpg[0] += ((int)df[prevMatchInd, 4 + adj] * myDeltaExp); //add time weighted home goals
+                    gpg[1] += ((int)df[prevMatchInd, 5 - adj] * myDeltaExp); // -"- away goals
 
                     //goals per shot on target
-                    //gpst[0] += (df[prevMatchInd, 4 + adj] / df[prevMatchInd, 12 + adj] * myDeltaExp);
-                    gpst[0] += XperYcorrectZero(df[prevMatchInd, 4 + adj], df[prevMatchInd, 12 + adj], myDeltaExp);
-                    //gpst[1] += (df[prevMatchInd, 5 - adj] / df[prevMatchInd, 13 - adj] * myDeltaExp);
-                    gpst[1] += XperYcorrectZero(df[prevMatchInd, 5 - adj], df[prevMatchInd, 13 - adj], myDeltaExp);
+                    gpst[0] += XperYcorrectZero((int)df[prevMatchInd, 4 + adj], (int)df[prevMatchInd, 9 + adj], myDeltaExp);
+                    gpst[1] += XperYcorrectZero((int)df[prevMatchInd, 5 - adj], (int)df[prevMatchInd, 10 - adj], myDeltaExp);
 
                     //goals per shot
-                    //gps[0] += (df[prevMatchInd, 4 + adj] / df[prevMatchInd, 10 + adj] * myDeltaExp);
-                    gps[0] += XperYcorrectZero(df[prevMatchInd, 4 + adj], df[prevMatchInd, 10 + adj], myDeltaExp);
-                    //gps[1] += (df[prevMatchInd, 5 - adj] / df[prevMatchInd, 11 - adj] * myDeltaExp);
-                    gps[1] += XperYcorrectZero(df[prevMatchInd, 5 - adj], df[prevMatchInd, 11 - adj], myDeltaExp);
+                    gps[0] += XperYcorrectZero((int)df[prevMatchInd, 4 + adj], (int)df[prevMatchInd, 7 + adj], myDeltaExp);
+                    gps[1] += XperYcorrectZero((int)df[prevMatchInd, 5 - adj], (int)df[prevMatchInd, 8 - adj], myDeltaExp);
 
                     //shots on target per game
-                    stpg[0] += (df[prevMatchInd, 12 + adj] * myDeltaExp);
-                    stpg[1] += (df[prevMatchInd, 13 - adj] * myDeltaExp);
+                    stpg[0] += ((int)df[prevMatchInd, 9 + adj] * myDeltaExp);
+                    stpg[1] += ((int)df[prevMatchInd, 10 - adj] * myDeltaExp);
 
                     //shots on target per shot
-                    //stps[0] += (df[prevMatchInd, 12 + adj] / df[prevMatchInd, 10 + adj] * myDeltaExp);
-                    stps[0] += XperYcorrectZero(df[prevMatchInd, 12 + adj], df[prevMatchInd, 10 + adj], myDeltaExp);
-                    //stps[1] += (df[prevMatchInd, 13 - adj] / df[prevMatchInd, 11 - adj] * myDeltaExp);
-                    stps[0] += XperYcorrectZero(df[prevMatchInd, 13 - adj], df[prevMatchInd, 11 - adj], myDeltaExp);
+                    stps[0] += XperYcorrectZero((int)df[prevMatchInd, 9 + adj], (int)df[prevMatchInd, 7 + adj], myDeltaExp);
+                    stps[0] += XperYcorrectZero((int)df[prevMatchInd, 10 - adj], (int)df[prevMatchInd, 8 - adj], myDeltaExp);
 
                     //shots per game
-                    spg[0] += (df[prevMatchInd, 10 + adj] * myDeltaExp);
-                    spg[1] += (df[prevMatchInd, 11 - adj] * myDeltaExp);
+                    spg[0] += ((int)df[prevMatchInd, 7 + adj] * myDeltaExp);
+                    spg[1] += ((int)df[prevMatchInd, 8 - adj] * myDeltaExp);
 
                     played += myDeltaExp;
                 }
             }
+            
             //averages
             for (int i = 0; i < 3; i++){
                 rpg[i] /= played;
@@ -104,18 +100,20 @@ namespace GenerateData
 
             if (prevMatchCt >= 10){
                 //join arrays
-                return rpg.Concat(gpg).Concat(gpst).Concat(gps).Concat(stpg).Concat(stps).Concat(spg);
+                return rpg.Concat(gpg).Concat(gpst).Concat(gps).Concat(stpg).Concat(stps).Concat(spg).ToArray();
                 //     0,1,2,     3,4,        5,6,          7,8,         9,10,      11,12,       13,14
+                //Console.ReadLine();
             }else{
                 float[] dud = new float[15];
                 for (int i = 0; i < 15; i++){
-                    dud[i] = -1;
+                    dud[i] = -1f;
                 }
+                return dud;
             } 
         }
-        static float XperYcorrectZero (float x, float y, float delta){
+        static float XperYcorrectZero (int x, int y, float delta){
             if (y != 0f){
-                return (x / y * delta);
+                return (Convert.ToSingle(x) / Convert.ToSingle(y) * delta);
             }else{
                 return delta;
             }
@@ -124,8 +122,7 @@ namespace GenerateData
         static void Main(string[] args)
         {
             //GATHER HISTORICAL MATCH DATA FROM MYSQL TABLE FOR MATCHES THAT INCLUDE HALF TIME SCORES, SHOTS, SHOTS ON TARGETIS NOT
-            string sqlCt = "SELECT COUNT(*) FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HTHG IS NOT NULL AND HTAG IS NOT NULL AND HTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND HC IS NOT NULL AND AC IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HTHG <> 'null' AND HTAG <> 'null' AND HTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null' AND HC <> 'null' AND AC <> 'null');";
-            //string sqlCt = "SELECT COUNT(*) FROM football_data_complete WHERE (FTHG AND FTAG AND FTR AND HTHG AND HTAG AND HTR AND HS AND AwS AND HST AND AwST AND HC AND AC) IS NOT NULL";
+            string sqlCt = "SELECT COUNT(*) FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null');";
             int ct = 0;
             using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
@@ -146,18 +143,13 @@ namespace GenerateData
             PrimitiveDataFrameColumn<int> fthg = new PrimitiveDataFrameColumn<int>("FTHG", 0);
             PrimitiveDataFrameColumn<int> ftag = new PrimitiveDataFrameColumn<int>("FTAG", 0);
             StringDataFrameColumn ftr = new StringDataFrameColumn("FTR", 0);
-            PrimitiveDataFrameColumn<int> hthg = new PrimitiveDataFrameColumn<int>("HTHG", 0);
-            PrimitiveDataFrameColumn<int> htag = new PrimitiveDataFrameColumn<int>("HTAG", 0);
-            StringDataFrameColumn htr = new StringDataFrameColumn("HTR", 0);
             PrimitiveDataFrameColumn<int> hs = new PrimitiveDataFrameColumn<int>("HS", 0);
             PrimitiveDataFrameColumn<int> aws = new PrimitiveDataFrameColumn<int>("AwS", 0);
             PrimitiveDataFrameColumn<int> hst = new PrimitiveDataFrameColumn<int>("HST", 0);
             PrimitiveDataFrameColumn<int> awst = new PrimitiveDataFrameColumn<int>("AwST", 0);
-            PrimitiveDataFrameColumn<int> hc = new PrimitiveDataFrameColumn<int>("HC", 0);
-            PrimitiveDataFrameColumn<int> ac = new PrimitiveDataFrameColumn<int>("AC", 0);
-
-            string sql = "SELECT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HTHG, HTAG, HTR, HS, AwS, HST, AwST, HC, AC  FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HTHG IS NOT NULL AND HTAG IS NOT NULL AND HTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND HC IS NOT NULL AND AC IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HTHG <> 'null' AND HTAG <> 'null' AND HTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null' AND HC <> 'null' AND AC <> 'null');";
-            //string sql = "SELECT * FROM football_data_complete WHERE (FTHG AND FTAG AND FTR AND HTHG AND HTAG AND HTR AND HS AND AwS AND HST AND AwST AND HC AND AC) IS NOT NULL";
+            
+            string sql = "SELECT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null');";
+            
             using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -170,20 +162,20 @@ namespace GenerateData
                     fthg.Append(rdr.GetInt32(4));
                     ftag.Append(rdr.GetInt32(5));
                     ftr.Append(rdr.GetString(6));
-                    hthg.Append(rdr.GetInt32(7));
-                    htag.Append(rdr.GetInt32(8));
-                    htr.Append(rdr.GetString(9));
-                    hs.Append(rdr.GetInt32(10));
-                    aws.Append(rdr.GetInt32(11));
-                    hst.Append(rdr.GetInt32(12));
-                    awst.Append(rdr.GetInt32(13));
-                    hc.Append(rdr.GetInt32(14));
-                    ac.Append(rdr.GetInt32(15));
+                    //hthg.Append(rdr.GetInt32(7));
+                    //htag.Append(rdr.GetInt32(8));
+                    //htr.Append(rdr.GetString(9));
+                    hs.Append(rdr.GetInt32(7));
+                    aws.Append(rdr.GetInt32(8));
+                    hst.Append(rdr.GetInt32(9));
+                    awst.Append(rdr.GetInt32(10));
+                    //hc.Append(rdr.GetInt32(11));
+                    //ac.Append(rdr.GetInt32(12));
                 }
                 conn.Close();
             }
             //CREATE DATAFRAME
-            DataFrame df = new DataFrame(thisDiv, date, homeTeam, awayTeam, fthg, ftag, ftr, hthg, htag, htr, hs, aws, hst, awst, hc, ac);
+            DataFrame df = new DataFrame(thisDiv, date, homeTeam, awayTeam, fthg, ftag, ftr, hs, aws, hst, awst);
             //Console.WriteLine(df.Info());
             //Console.WriteLine(df.Sample(20));
 
@@ -220,23 +212,56 @@ namespace GenerateData
             PrimitiveDataFrameColumn<float> astfpg = new PrimitiveDataFrameColumn<float>("Astfpg", 0);  //away shots on target for pg
             PrimitiveDataFrameColumn<float> astapg = new PrimitiveDataFrameColumn<float>("Astapg", 0);  //away shots on target against pg
 
-            PrimitiveDataFrameColumn<float> hstfpg = new PrimitiveDataFrameColumn<float>("Hstfps", 0);  //home shots on target for per shot
-            PrimitiveDataFrameColumn<float> hstapg = new PrimitiveDataFrameColumn<float>("Hstaps", 0);  //home shots on target against per shot
-            PrimitiveDataFrameColumn<float> astfpg = new PrimitiveDataFrameColumn<float>("Astfps", 0);  //away shots on target for ps
-            PrimitiveDataFrameColumn<float> astapg = new PrimitiveDataFrameColumn<float>("Astaps", 0);  //away shots on target against ps
+            PrimitiveDataFrameColumn<float> hstfps = new PrimitiveDataFrameColumn<float>("Hstfps", 0);  //home shots on target for per shot
+            PrimitiveDataFrameColumn<float> hstaps = new PrimitiveDataFrameColumn<float>("Hstaps", 0);  //home shots on target against per shot
+            PrimitiveDataFrameColumn<float> astfps = new PrimitiveDataFrameColumn<float>("Astfps", 0);  //away shots on target for ps
+            PrimitiveDataFrameColumn<float> astaps = new PrimitiveDataFrameColumn<float>("Astaps", 0);  //away shots on target against ps
 
             for (int gm = 0; gm < thisDiv.Length; gm++){
+                //home team stats
                 float[] homeStats = AveragesPerGame(true, gm, df);
                 hwpg.Append(homeStats[0]);
                 hdpg.Append(homeStats[1]);
                 hlpg.Append(homeStats[2]);
-                hgspst.Append(homeStats[3]);
-                hgcpst.Append(homeStats[4]);
-                hgsps.Append(homeStats[5]);
-                hgcps.Append(homeStats[6]);
-                hsfpg.Append(homeStats[7]);
-                hsfpg.Append(homeStats[8]);
+                hgspg.Append(homeStats[3]);
+                hgcpg.Append(homeStats[4]);
+                hgspst.Append(homeStats[5]);
+                hgcpst.Append(homeStats[6]);
+                hgsps.Append(homeStats[7]);
+                hgcps.Append(homeStats[8]);
+                hstfpg.Append(homeStats[9]);
+                hstapg.Append(homeStats[10]);
+                hstfps.Append(homeStats[11]);
+                hstaps.Append(homeStats[12]);
+                hsfpg.Append(homeStats[13]);
+                hsapg.Append(homeStats[14]);
+
+                //away team stats
+                float[] awayStats = AveragesPerGame(false, gm, df);
+                awpg.Append(awayStats[0]);
+                adpg.Append(awayStats[1]);
+                alpg.Append(awayStats[2]);
+                agspg.Append(awayStats[3]);
+                agcpg.Append(awayStats[4]);
+                agspst.Append(awayStats[5]);
+                agcpst.Append(awayStats[6]);
+                agsps.Append(awayStats[7]);
+                agcps.Append(awayStats[8]);
+                astfpg.Append(awayStats[9]);
+                astapg.Append(awayStats[10]);
+                astfps.Append(awayStats[11]);
+                astaps.Append(awayStats[12]);
+                asfpg.Append(awayStats[13]);
+                asapg.Append(awayStats[14]);
+
+                if (gm % 100 == 0){
+                    Console.WriteLine(gm + " games processed");
+                }
             }
+            //create processed dataframe
+            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg);
+            Console.WriteLine(dfp.Info());
+            Console.WriteLine(dfp.Sample(10));
         }
     }
 }
