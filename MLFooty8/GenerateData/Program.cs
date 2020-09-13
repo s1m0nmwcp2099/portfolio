@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.Data.Analysis;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace GenerateData
 {
@@ -75,7 +76,7 @@ namespace GenerateData
 
                     //shots on target per shot
                     stps[0] += XperYcorrectZero((int)df[prevMatchInd, 9 + adj], (int)df[prevMatchInd, 7 + adj], myDeltaExp);
-                    stps[0] += XperYcorrectZero((int)df[prevMatchInd, 10 - adj], (int)df[prevMatchInd, 8 - adj], myDeltaExp);
+                    stps[1] += XperYcorrectZero((int)df[prevMatchInd, 10 - adj], (int)df[prevMatchInd, 8 - adj], myDeltaExp);
 
                     //shots per game
                     spg[0] += ((int)df[prevMatchInd, 7 + adj] * myDeltaExp);
@@ -122,7 +123,7 @@ namespace GenerateData
         static void Main(string[] args)
         {
             //GATHER HISTORICAL MATCH DATA FROM MYSQL TABLE FOR MATCHES THAT INCLUDE HALF TIME SCORES, SHOTS, SHOTS ON TARGETIS NOT
-            string sqlCt = "SELECT COUNT(*) FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null');";
+            string sqlCt = "SELECT COUNT(*) FROM football_data_complete WHERE FTHG > -1 AND FTAG > -1 AND HS > -1 AND AwS > -1 AND HST > -1 AND AwST > -1;";
             int ct = 0;
             using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
@@ -148,8 +149,9 @@ namespace GenerateData
             PrimitiveDataFrameColumn<int> hst = new PrimitiveDataFrameColumn<int>("HST", 0);
             PrimitiveDataFrameColumn<int> awst = new PrimitiveDataFrameColumn<int>("AwST", 0);
             
-            string sql = "SELECT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null');";
-            
+            //string sql = "SELECT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE (FTHG IS NOT NULL AND FTAG IS NOT NULL AND FTR IS NOT NULL AND HS IS NOT NULL AND AwS IS NOT NULL AND HST IS NOT NULL AND AwST IS NOT NULL AND FTHG <> 'null' AND FTAG <> 'null' AND FTR <> 'null' AND HS <> 'null' AND AwS <> 'null' AND HST <> 'null' AND AwST <> 'null');";
+            string sql = "SELECT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE FTHG > -1 AND FTAG > -1 AND HS > -1 AND AwS > -1 AND HST > -1 AND AwST > -1;";
+
             using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -212,6 +214,8 @@ namespace GenerateData
             PrimitiveDataFrameColumn<float> astfps = new PrimitiveDataFrameColumn<float>("Astfps", 0);  //away shots on target for ps
             PrimitiveDataFrameColumn<float> astaps = new PrimitiveDataFrameColumn<float>("Astaps", 0);  //away shots on target against ps
 
+            PrimitiveDataFrameColumn<bool> rowValid = new PrimitiveDataFrameColumn<bool>("RowValid", 0);
+
             for (int gm = 0; gm < thisDiv.Length; gm++){
                 //home team stats
                 float[] homeStats = AveragesPerGame(true, gm, df);
@@ -249,14 +253,33 @@ namespace GenerateData
                 asfpg.Append(awayStats[13]);
                 asapg.Append(awayStats[14]);
 
-                if (gm % 100 == 0){
+                if (gm % 1000 == 0){
                     Console.WriteLine(gm + " games processed");
                 }
+
+                //define whether each row is valid
+                if (homeStats.Contains(-1) || awayStats.Contains(-1)){
+                    rowValid.Append(false);
+                }else{
+                    rowValid.Append(true);
+                }
             }
+
             //create processed dataframe
-            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg);
+            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg, rowValid, ftr);
             Console.WriteLine(dfp.Info());
             Console.WriteLine(dfp.Sample(10));
+
+            dfp = dfp.Filter(rowValid);
+
+            Console.WriteLine(dfp.Info());
+            Console.WriteLine(dfp.Sample(10));
+
+            string fName = "processedData.csv";
+            if (File.Exists(fName)){
+                File.Delete(fName);
+            }
+            dfp.ToCSV(fName); //this doesn't exist
         }
     }
 }
