@@ -275,11 +275,22 @@ namespace GenerateData
             Console.WriteLine(dfp.Info());
             Console.WriteLine(dfp.Sample(10));
 
-            string fName = "processedData.csv";
+            //write to csv
+            string fName = "../Data/processedData.csv";
             if (File.Exists(fName)){
                 File.Delete(fName);
             }
-            dfp.ToCSV(fName); //this doesn't exist
+            string[] hdrs = new string[dfp.Columns.Count];
+            for (int i = 0; i < dfp.Columns.Count; i++){
+                hdrs[i] = dfp.Columns[i].Name;
+            }
+            string hdrLine = string.Join(",", hdrs);
+            using (StreamWriter sw = new StreamWriter(fName)){
+                sw.WriteLine(hdrLine);
+                for (int i = 0; i < dfp.Rows.Count; i++){
+                    sw.WriteLine(string.Join(",", dfp.Rows[i]));
+                }
+            }
         }
     }
 }
