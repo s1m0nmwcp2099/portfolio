@@ -290,12 +290,14 @@ namespace BigFootySql
             sql += ");";
 
             Console.WriteLine(sql);
-            /*using (MySqlConnection conn = new MySqlConnection(connStr)){
+
+            //THIS CREATES TABLE
+            using (MySqlConnection conn = new MySqlConnection(connStr)){
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
-            }*/
+            }
 
             
             //write to sql table
@@ -318,8 +320,9 @@ namespace BigFootySql
             //for(int q = LeagueFileNames.IndexOf("Data/Previous/USA.csv"); q < LeagueFileNames.Count; q++){
             for(int q = 0; q < LeagueFileNames.Count; q++){
                 string fName = LeagueFileNames[q];
-                if (File.Exists(LeagueFileNames[q]) && (q >= LeagueFileNames.IndexOf("Data/Previous/AUT.csv") || LeagueFileNames[q].Contains("2021"))){
+                //if (File.Exists(LeagueFileNames[q]) && (q >= LeagueFileNames.IndexOf("Data/Previous/AUT.csv") || LeagueFileNames[q].Contains("2021"))){
                 //if (File.Exists(LeagueFileNames[q]) && q >= LeagueFileNames.IndexOf("Data/Previous/BRA.csv")){
+                if (File.Exists(LeagueFileNames[q])){
                     //above line is to reduce writing for update
                     //fetch from file and write to list
                     List<string> ThisPrevCsv = new List<string>();
