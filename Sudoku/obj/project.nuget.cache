@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X85XMSFJVY4uswP5wnoqyT7lpFkIgrZcFVKsv3lq00XszsAshqiiG5RTUNt/IsQDDIrKOj9LfVaBmodpA0/6xQ==",
+  "dgSpecHash": "ohcwyzCrW+XzIlxB4J0nGXRGAHoFGdRM3qjI8y2X2HxA3Y9EwtHvCFWTDsHGScBIIgS3hcbK4q3gDgHoq17ChQ==",
   "success": true,
-  "projectFilePath": "/home/me/GithubRepo/portfolio/Sudoku/Sudoku.csproj",
+  "projectFilePath": "/home/simon/GithubRepo/portfolio/Sudoku/Sudoku.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
