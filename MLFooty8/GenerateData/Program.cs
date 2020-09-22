@@ -9,6 +9,7 @@ namespace GenerateData
 {
     class Program
     {
+        
         static float[] AveragesPerGame(bool atHome, int matchInd, DataFrame df){
             float[] rpg = new float[3]; //result per game: 0=win; 1=draw; 2=loss
             float[] gpg = new float[2]; //goals per game: 0=scored per game; 1=conceded per game

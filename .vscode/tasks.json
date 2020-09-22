@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/MLFootballResultPredictor/fetchAndCalculate/fetchAndCalculate.csproj",
+                "${workspaceFolder}/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.ConsoleApp/SampleMulticlassClassification.ConsoleApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/MLFootballResultPredictor/fetchAndCalculate/fetchAndCalculate.csproj",
+                "${workspaceFolder}/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.ConsoleApp/SampleMulticlassClassification.ConsoleApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/MLFootballResultPredictor/fetchAndCalculate/fetchAndCalculate.csproj",
+                "${workspaceFolder}/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.ConsoleApp/SampleMulticlassClassification.ConsoleApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

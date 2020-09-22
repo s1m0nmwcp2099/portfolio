@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OI3TE0W/ewhMSdwxR0EkwIZfzfpKkyIAD9I2GZfY5k13QDNQtQQcVDG39CAOAvo9x1pWQnD7A43cxAEGjmd/aw==",
+  "dgSpecHash": "q0mNJjHnJh0l1q3GJJNix6LUGjfLphBs95rmgHdWpczUd3tqgY1A0R+Do3I4QWIvOJ8mz7VuWCjbzAy9sJTJmA==",
   "success": true,
-  "projectFilePath": "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj",
+  "projectFilePath": "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.ConsoleApp/SampleMulticlassClassification.ConsoleApp.csproj",
   "expectedPackageFiles": [
     "/usr/share/dotnet/sdk/NuGetFallbackFolder/microsoft.csharp/4.3.0/microsoft.csharp.4.3.0.nupkg.sha512",
     "/home/simon/.nuget/packages/microsoft.ml/1.3.1/microsoft.ml.1.3.1.nupkg.sha512",

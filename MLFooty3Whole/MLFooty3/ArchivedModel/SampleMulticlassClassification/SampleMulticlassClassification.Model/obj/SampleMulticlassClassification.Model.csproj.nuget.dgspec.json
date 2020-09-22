@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/home/me/Projects/MLFooty3/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj": {}
+    "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj": {}
   },
   "projects": {
-    "/home/me/Projects/MLFooty3/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj": {
+    "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/me/Projects/MLFooty3/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj",
+        "projectUniqueName": "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj",
         "projectName": "SampleMulticlassClassification.Model",
-        "projectPath": "/home/me/Projects/MLFooty3/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj",
-        "packagesPath": "/home/me/.nuget/packages/",
-        "outputPath": "/home/me/Projects/MLFooty3/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/",
+        "projectPath": "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.Model/SampleMulticlassClassification.Model.csproj",
+        "packagesPath": "/home/simon/.nuget/packages/",
+        "outputPath": "/home/simon/GithubRepo/portfolio/MLFooty3Whole/MLFooty3/ArchivedModel/SampleMulticlassClassification/SampleMulticlassClassification.Model/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/me/.nuget/NuGet/NuGet.Config"
+          "/home/simon/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -60,7 +60,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
         }
       }
     }
