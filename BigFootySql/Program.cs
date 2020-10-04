@@ -119,7 +119,7 @@ namespace BigFootySql
                 updt = false;
             }
             List<string> Seasons=new List<string>();
-            Seasons.Add("9394");
+            /*Seasons.Add("9394");
             Seasons.Add("9495");
             Seasons.Add("9596");
             Seasons.Add("9697");
@@ -144,7 +144,7 @@ namespace BigFootySql
             Seasons.Add("1516");
             Seasons.Add("1617");
             Seasons.Add("1718"); 
-            Seasons.Add("1819");
+            Seasons.Add("1819");*/
             Seasons.Add("1920");
             Seasons.Add("2021");
             //Seasons.Add("2021"); //WHEN NEW SEASON KICKS OFF
@@ -211,7 +211,7 @@ namespace BigFootySql
                         string fName = $"Data/Previous/{Seasons[j]}-{Leagues[i]}.csv";
                         Console.WriteLine($"Downloading: {Seasons[j]}-{Leagues[i]}");
                         if (Seasons[j] == "1920" || Seasons[j] == "2021"){
-                            //DownloadAndWriteData(leagueUrl, fName);
+                            DownloadAndWriteData(leagueUrl, fName);
                         }
                         LeagueFileNames.Add(fName);
                     }
@@ -221,7 +221,7 @@ namespace BigFootySql
                 string leagueUrl = $"https://www.football-data.co.uk/new/{ExtraLeagues[i]}.csv";
                 string fName = $"Data/Previous/{ExtraLeagues[i]}.csv";
                 Console.WriteLine($"Downloading: {ExtraLeagues[i]}");
-                //DownloadAndWriteData(leagueUrl, fName);
+                DownloadAndWriteData(leagueUrl, fName);
                 LeagueFileNames.Add(fName);
             }
 

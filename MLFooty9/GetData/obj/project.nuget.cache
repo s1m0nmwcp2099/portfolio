@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "TKNDqqzsK1zoQo4w61clCw/M55T+Cw0zXaqUY+/OJr8m+uWv3uptBOB7aZTG5WQAtDA+Lfq1JNnpiEXM4d1kog==",
+  "success": true,
+  "projectFilePath": "/home/simon/GithubRepo/portfolio/MLFooty9/GetData/GetData.fsproj",
+  "expectedPackageFiles": [
+    "/home/simon/.nuget/packages/fsharp.core/4.7.2/fsharp.core.4.7.2.nupkg.sha512"
+  ],
+  "logs": []
+}

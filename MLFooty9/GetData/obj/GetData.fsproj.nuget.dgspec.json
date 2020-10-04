@@ -1,0 +1,63 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/simon/GithubRepo/portfolio/MLFooty9/GetData/GetData.fsproj": {}
+  },
+  "projects": {
+    "/home/simon/GithubRepo/portfolio/MLFooty9/GetData/GetData.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/simon/GithubRepo/portfolio/MLFooty9/GetData/GetData.fsproj",
+        "projectName": "GetData",
+        "projectPath": "/home/simon/GithubRepo/portfolio/MLFooty9/GetData/GetData.fsproj",
+        "packagesPath": "/home/simon/.nuget/packages/",
+        "outputPath": "/home/simon/GithubRepo/portfolio/MLFooty9/GetData/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/simon/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "FSharp.Core": {
+              "target": "Package",
+              "version": "[4.7.2, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
