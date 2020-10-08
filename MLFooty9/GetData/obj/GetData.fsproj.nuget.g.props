@@ -16,6 +16,8 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMySql_Data Condition=" '$(PkgMySql_Data)' == '' ">/home/simon/.nuget/packages/mysql.data/8.0.19</PkgMySql_Data>
+    <PkgMicrosoft_Data_Analysis Condition=" '$(PkgMicrosoft_Data_Analysis)' == '' ">/home/simon/.nuget/packages/microsoft.data.analysis/0.4.0</PkgMicrosoft_Data_Analysis>
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/home/simon/.nuget/packages/fsharp.core/4.7.2</PkgFSharp_Core>
   </PropertyGroup>
 </Project>
