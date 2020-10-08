@@ -41,24 +41,12 @@ let get_sql_data() =
     
     let df = DataFrame(cols)
 
-let fetch_data() =
-    //Create dataframe columns
-    let thisDiv = StringDataFrameColumn("ThisDiv", int64 0)
-    let matchDates = PrimitiveDataFrameColumn<DateTime>("MatchDates", int64 0)
-    let homeTeams = StringDataFrameColumn("HomeTeams", int64 0)
-    let awayTeams = StringDataFrameColumn("AwayTeams", int64 0)
-    let fthg = PrimitiveDataFrameColumn<int>("Fthg", int64 0)   //home goals
-    let ftag = PrimitiveDataFrameColumn<int>("Ftag", int64 0)   //away goals
-    let ftr = StringDataFrameColumn("Ftr", int64 0)             //result
-    let hs = PrimitiveDataFrameColumn<int>("Hs", int64 0)       //home shots
-    let aws = PrimitiveDataFrameColumn<int>("Aws", int64 0)     //away shots
-    let hst = PrimitiveDataFrameColumn<int>("Hst", int64 0)     //home shots on target
-    let awst = PrimitiveDataFrameColumn<int>("Awst", int64 0)
+let averages_per_game atHm matchInd df =
+    let mutable adj = 0
+    if atHm = false then
+        adj <- 1
+    
 
-    //fetch match data from mysql
-    let sql = "SELECT COUNT(*) FROM football_data_complete WHERE FTHG > -1 AND FTAG > -1 AND HS > -1 AND AwS > -1 AND HST > -1 AND AwST > -1;"
-    let conn = MySqlConnection(string: connStr)
-    conn
 
 [<EntryPoint>]
 let main argv =
