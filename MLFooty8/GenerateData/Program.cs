@@ -217,6 +217,8 @@ namespace GenerateData
 
             PrimitiveDataFrameColumn<bool> rowValid = new PrimitiveDataFrameColumn<bool>("RowValid", 0);
 
+            StringDataFrameColumn over = new StringDataFrameColumn("Over", 0);
+
             for (int gm = 0; gm < thisDiv.Length; gm++){
                 //home team stats
                 float[] homeStats = AveragesPerGame(true, gm, df);
@@ -254,6 +256,13 @@ namespace GenerateData
                 asfpg.Append(awayStats[13]);
                 asapg.Append(awayStats[14]);
 
+                //over 2.5
+                if ((int)df[gm, 4] + (int)df[gm, 5] > 2){
+                    over.Append("Y");
+                }else{
+                    over.Append("N");
+                }
+
                 if (gm % 1000 == 0){
                     Console.WriteLine(gm + " games processed");
                 }
@@ -267,7 +276,7 @@ namespace GenerateData
             }
 
             //create processed dataframe
-            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg, rowValid, ftr);
+            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg, rowValid, ftr, over);
             Console.WriteLine(dfp.Info());
             Console.WriteLine(dfp.Sample(10));
 

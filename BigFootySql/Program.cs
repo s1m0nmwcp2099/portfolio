@@ -257,7 +257,7 @@ namespace BigFootySql
             //create sql table
             //start sql command
             string sql = "CREATE TABLE football_data_complete (";
-
+            
             //get headers 
             string allHeaders = "";
             using (StreamReader sr = new StreamReader("Data/Prog/sqlHeaders.csv")){

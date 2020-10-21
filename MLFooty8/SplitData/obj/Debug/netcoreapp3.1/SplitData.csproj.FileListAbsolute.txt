@@ -1,0 +1,13 @@
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.csprojAssemblyReference.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.AssemblyInfoInputs.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.AssemblyInfo.cs
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.csproj.CoreCompileInputs.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/bin/Debug/netcoreapp3.1/SplitData
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/bin/Debug/netcoreapp3.1/SplitData.deps.json
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/bin/Debug/netcoreapp3.1/SplitData.runtimeconfig.json
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/bin/Debug/netcoreapp3.1/SplitData.runtimeconfig.dev.json
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/bin/Debug/netcoreapp3.1/SplitData.dll
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/bin/Debug/netcoreapp3.1/SplitData.pdb
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.dll
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.pdb
+/home/simon/GithubRepo/portfolio/MLFooty8/SplitData/obj/Debug/netcoreapp3.1/SplitData.genruntimeconfig.cache
