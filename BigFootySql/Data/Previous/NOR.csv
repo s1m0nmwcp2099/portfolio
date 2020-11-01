@@ -2086,11 +2086,25 @@ Norway,Eliteserien,2020,27/09/2020,17:00,Kristiansund,Brann,1,1,D,1.9,4.3,3.61,1
 Norway,Eliteserien,2020,27/09/2020,17:00,Mjondalen,Viking,1,2,A,3.26,3.78,2.16,3.4,3.78,2.18,3.22,3.6,2.11
 Norway,Eliteserien,2020,27/09/2020,17:00,Stabaek,Start,2,0,H,1.93,3.69,4.09,2.04,3.78,4.15,1.9,3.58,3.9
 Norway,Eliteserien,2020,27/09/2020,19:30,Bodo/Glimt,Valerenga,2,0,H,1.63,4.52,4.93,1.7,4.86,5.15,1.62,4.45,4.53
-Norway,Eliteserien,2020/2021,03/10/2020,17:00,Sarpsborg 08,Stabaek,4,0,H,1.87,3.78,4.24,1.95,3.99,4.5,1.86,3.61,4.07
-Norway,Eliteserien,2020/2021,03/10/2020,19:30,Valerenga,Mjondalen,4,1,H,1.39,5.09,8.16,1.4,5.4,9,1.35,5.04,8
-Norway,Eliteserien,2020/2021,04/10/2020,17:00,Aalesund,Kristiansund,1,2,A,3.75,4.02,1.93,3.75,4.15,1.98,3.55,3.89,1.91
-Norway,Eliteserien,2020/2021,04/10/2020,17:00,Bodo/Glimt,Sandefjord,2,1,H,1.27,6.5,10.62,1.28,6.89,12.04,1.25,6.16,10.15
-Norway,Eliteserien,2020/2021,04/10/2020,17:00,Brann,Molde,1,2,A,3.05,3.95,2.21,3.05,4.04,2.69,2.92,3.81,2.19
-Norway,Eliteserien,2020/2021,04/10/2020,17:00,Start,Haugesund,5,1,H,2.91,3.39,2.54,3,3.5,2.6,2.83,3.33,2.45
-Norway,Eliteserien,2020/2021,04/10/2020,17:00,Viking,Stromsgodset,2,2,D,1.88,4.2,3.79,1.93,4.37,3.93,1.87,4.05,3.59
-Norway,Eliteserien,2020/2021,04/10/2020,19:30,Rosenborg,Odd,4,1,H,1.79,4.1,4.26,1.83,4.2,4.4,1.78,3.94,4.08
+Norway,Eliteserien,2020,03/10/2020,17:00,Sarpsborg 08,Stabaek,4,0,H,1.87,3.78,4.24,1.95,3.99,4.5,1.86,3.61,4.07
+Norway,Eliteserien,2020,03/10/2020,19:30,Valerenga,Mjondalen,4,1,H,1.39,5.09,8.16,1.4,5.4,9,1.35,5.04,8
+Norway,Eliteserien,2020,04/10/2020,17:00,Aalesund,Kristiansund,1,2,A,3.75,4.02,1.93,3.75,4.15,1.98,3.55,3.89,1.91
+Norway,Eliteserien,2020,04/10/2020,17:00,Bodo/Glimt,Sandefjord,2,1,H,1.27,6.5,10.62,1.28,6.89,12.04,1.25,6.16,10.15
+Norway,Eliteserien,2020,04/10/2020,17:00,Brann,Molde,1,2,A,3.05,3.95,2.21,3.05,4.04,2.69,2.92,3.81,2.19
+Norway,Eliteserien,2020,04/10/2020,17:00,Start,Haugesund,5,1,H,2.91,3.39,2.54,3,3.5,2.6,2.83,3.33,2.45
+Norway,Eliteserien,2020,04/10/2020,17:00,Viking,Stromsgodset,2,2,D,1.88,4.2,3.79,1.93,4.37,3.93,1.87,4.05,3.59
+Norway,Eliteserien,2020,04/10/2020,19:30,Rosenborg,Odd,4,1,H,1.79,4.1,4.26,1.83,4.2,4.4,1.78,3.94,4.08
+Norway,Eliteserien,2020,17/10/2020,17:00,Mjondalen,Brann,2,0,H,3.07,3.71,2.28,3.25,3.75,2.36,2.98,3.53,2.26
+Norway,Eliteserien,2020,17/10/2020,19:30,Molde,Bodo/Glimt,4,2,H,1.69,4.68,4.31,1.71,4.78,4.55,1.66,4.53,4.2
+Norway,Eliteserien,2020,18/10/2020,17:00,Haugesund,Sarpsborg 08,2,0,H,2.35,3.31,3.27,2.4,3.5,3.27,2.25,3.31,3.19
+Norway,Eliteserien,2020,18/10/2020,17:00,Kristiansund,Rosenborg,0,0,D,3.44,3.79,2.09,3.44,3.9,2.14,3.31,3.71,2.05
+Norway,Eliteserien,2020,18/10/2020,17:00,Stabaek,Aalesund,4,0,H,1.83,3.82,4.37,1.88,4,4.37,1.81,3.78,4.11
+Norway,Eliteserien,2020,18/10/2020,17:00,Stromsgodset,Start,1,1,D,1.86,4.07,3.94,1.9,4.2,4.01,1.84,3.95,3.78
+Norway,Eliteserien,2020,18/10/2020,19:30,Sandefjord,Valerenga,0,3,A,4.21,3.72,1.89,4.33,3.75,1.97,4,3.58,1.88
+Norway,Eliteserien,2020,24/10/2020,17:00,Start,Sandefjord,0,1,A,1.97,3.53,4.09,1.98,3.75,4.12,1.91,3.57,3.87
+Norway,Eliteserien,2020,24/10/2020,19:30,Brann,Stabaek,1,1,D,2.05,3.68,3.64,2.14,3.76,3.64,2.02,3.61,3.46
+Norway,Eliteserien,2020,25/10/2020,17:00,Aalesund,Odd,0,3,A,3.76,4.07,1.91,3.93,4.24,1.95,3.73,4.01,1.84
+Norway,Eliteserien,2020,25/10/2020,17:00,Molde,Stromsgodset,2,1,H,1.3,6.2,9.15,1.34,6.5,11.25,1.28,5.96,8.75
+Norway,Eliteserien,2020,25/10/2020,17:00,Sarpsborg 08,Rosenborg,1,2,A,3.64,3.41,2.15,3.64,3.58,2.2,3.42,3.37,2.12
+Norway,Eliteserien,2020,25/10/2020,17:00,Valerenga,Kristiansund,1,1,D,1.64,4.47,4.9,1.66,4.54,5.5,1.59,4.34,4.88
+Norway,Eliteserien,2020,25/10/2020,19:30,Bodo/Glimt,Mjondalen,2,0,H,1.27,6.27,10.81,1.3,6.76,11,1.26,6,9.62
