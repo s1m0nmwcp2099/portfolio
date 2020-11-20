@@ -57,12 +57,12 @@ namespace SampleClassification.ConsoleApp
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations 
-            var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("Over", "Over")
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hgspst", "Hgcpst", "Hgsps", "Hgcps", "Hstfpg", "Hstapg", "Hstfps", "Hstaps", "Hsfpg", "Hsapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Agspst", "Agcpst", "Agsps", "Agcps", "Astfpg", "Astapg", "Astfps", "Astaps", "Asfpg", "Asapg" }))
+            var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("FTR", "FTR")
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hstfpg", "Hstapg", "Hsfpg", "Hsapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Astfpg", "Astapg", "Asfpg", "Asapg" }))
                                       .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(new LbfgsMaximumEntropyMulticlassTrainer.Options() { L2Regularization = 0.6499436f, L1Regularization = 0.89028597f, OptimizationTolerance = 0.0001f, HistorySize = 50, MaximumNumberOfIterations = 1565283711, InitialWeightsDiameter = 0.11091634f, DenseOptimizer = false, LabelColumnName = "Over", FeatureColumnName = "Features" })
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.LinearSvm(new LinearSvmTrainer.Options() { Lambda = 0.0009490795f, PerformProjection = false, NoBias = true, NumberOfIterations = 73, InitialWeightsDiameter = 0.32045767f, Shuffle = true, LabelColumnName = "FTR", FeatureColumnName = "Features" }), labelColumnName: "FTR")
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
@@ -85,7 +85,7 @@ namespace SampleClassification.ConsoleApp
             // Evaluate the model and show accuracy stats
             Console.WriteLine("===== Evaluating Model's accuracy with Test data =====");
             IDataView predictions = mlModel.Transform(testDataView);
-            var metrics = mlContext.MulticlassClassification.Evaluate(predictions, "Over", "Score");
+            var metrics = mlContext.MulticlassClassification.Evaluate(predictions, "FTR", "Score");
             PrintMulticlassClassificationMetrics(metrics);
         }
 

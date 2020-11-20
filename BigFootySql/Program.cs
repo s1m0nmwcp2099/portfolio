@@ -111,7 +111,10 @@ namespace BigFootySql
         }
         static void Main(string[] args)
         {
-            
+            DateTime lastUpdateDate = Convert.ToDateTime("1970-2-1");
+            using (StreamReader sr = new StreamReader(lastUpdateDateFile)){
+                lastUpdateDate = Convert.ToDateTime(sr.ReadLine());
+            }
             Console.WriteLine("Do you just want to update?");
             string ans = Console.ReadLine();
             bool updt = true;
@@ -362,13 +365,15 @@ namespace BigFootySql
                     //go through each line
                     for (int match = 1; match < ThisPrevCsv.Count; match++){
                         //get date of last update
-                        DateTime lastUpdateDate = Convert.ToDateTime("1970-2-1");
+                        /*DateTime lastUpdateDate = Convert.ToDateTime("1970-2-1");
                         using (StreamReader sr = new StreamReader(lastUpdateDateFile)){
                             lastUpdateDate = Convert.ToDateTime(sr.ReadLine());
-                        }
+                        }*/
                         string thisCsvLine = ThisPrevCsv[match];
                         if (thisCsvLine != string.Empty){
-                            thisCsvLine = thisCsvLine.Replace(", ", " "); //eliminate ','s in referee names
+                            if (!LeagueFileNames[q].Contains("JPN")){
+                                thisCsvLine = thisCsvLine.Replace(", ", " "); //eliminate ','s in referee names
+                            }
                             string[] parts = thisCsvLine.Split(',');
                             //put back in ',' to separate date and time
                             if (parts[Array.IndexOf(hdrs, "Date")].Length > 10){

@@ -42,120 +42,72 @@ namespace SampleClassification.Model
         public float Hgcpg { get; set; }
 
 
-        [ColumnName("Hgspst"), LoadColumn(8)]
-        public float Hgspst { get; set; }
-
-
-        [ColumnName("Hgcpst"), LoadColumn(9)]
-        public float Hgcpst { get; set; }
-
-
-        [ColumnName("Hgsps"), LoadColumn(10)]
-        public float Hgsps { get; set; }
-
-
-        [ColumnName("Hgcps"), LoadColumn(11)]
-        public float Hgcps { get; set; }
-
-
-        [ColumnName("Hstfpg"), LoadColumn(12)]
+        [ColumnName("Hstfpg"), LoadColumn(8)]
         public float Hstfpg { get; set; }
 
 
-        [ColumnName("Hstapg"), LoadColumn(13)]
+        [ColumnName("Hstapg"), LoadColumn(9)]
         public float Hstapg { get; set; }
 
 
-        [ColumnName("Hstfps"), LoadColumn(14)]
-        public float Hstfps { get; set; }
-
-
-        [ColumnName("Hstaps"), LoadColumn(15)]
-        public float Hstaps { get; set; }
-
-
-        [ColumnName("Hsfpg"), LoadColumn(16)]
+        [ColumnName("Hsfpg"), LoadColumn(10)]
         public float Hsfpg { get; set; }
 
 
-        [ColumnName("Hsapg"), LoadColumn(17)]
+        [ColumnName("Hsapg"), LoadColumn(11)]
         public float Hsapg { get; set; }
 
 
-        [ColumnName("AwayTeam"), LoadColumn(18)]
+        [ColumnName("AwayTeam"), LoadColumn(12)]
         public string AwayTeam { get; set; }
 
 
-        [ColumnName("Awpg"), LoadColumn(19)]
+        [ColumnName("Awpg"), LoadColumn(13)]
         public float Awpg { get; set; }
 
 
-        [ColumnName("Adpg"), LoadColumn(20)]
+        [ColumnName("Adpg"), LoadColumn(14)]
         public float Adpg { get; set; }
 
 
-        [ColumnName("Alpg"), LoadColumn(21)]
+        [ColumnName("Alpg"), LoadColumn(15)]
         public float Alpg { get; set; }
 
 
-        [ColumnName("Agspg"), LoadColumn(22)]
+        [ColumnName("Agspg"), LoadColumn(16)]
         public float Agspg { get; set; }
 
 
-        [ColumnName("Agcpg"), LoadColumn(23)]
+        [ColumnName("Agcpg"), LoadColumn(17)]
         public float Agcpg { get; set; }
 
 
-        [ColumnName("Agspst"), LoadColumn(24)]
-        public float Agspst { get; set; }
-
-
-        [ColumnName("Agcpst"), LoadColumn(25)]
-        public float Agcpst { get; set; }
-
-
-        [ColumnName("Agsps"), LoadColumn(26)]
-        public float Agsps { get; set; }
-
-
-        [ColumnName("Agcps"), LoadColumn(27)]
-        public float Agcps { get; set; }
-
-
-        [ColumnName("Astfpg"), LoadColumn(28)]
+        [ColumnName("Astfpg"), LoadColumn(18)]
         public float Astfpg { get; set; }
 
 
-        [ColumnName("Astapg"), LoadColumn(29)]
+        [ColumnName("Astapg"), LoadColumn(19)]
         public float Astapg { get; set; }
 
 
-        [ColumnName("Astfps"), LoadColumn(30)]
-        public float Astfps { get; set; }
-
-
-        [ColumnName("Astaps"), LoadColumn(31)]
-        public float Astaps { get; set; }
-
-
-        [ColumnName("Asfpg"), LoadColumn(32)]
+        [ColumnName("Asfpg"), LoadColumn(20)]
         public float Asfpg { get; set; }
 
 
-        [ColumnName("Asapg"), LoadColumn(33)]
+        [ColumnName("Asapg"), LoadColumn(21)]
         public float Asapg { get; set; }
 
 
-        [ColumnName("RowValid"), LoadColumn(34)]
+        [ColumnName("RowValid"), LoadColumn(22)]
         public bool RowValid { get; set; }
 
 
-        [ColumnName("FTR"), LoadColumn(35)]
+        [ColumnName("FTR"), LoadColumn(23)]
         public string FTR { get; set; }
 
 
-        [ColumnName("Over"), LoadColumn(36)]
-        public string Over { get; set; }
+        [ColumnName("Over"), LoadColumn(24)]
+        public bool Over { get; set; }
 
 
     }

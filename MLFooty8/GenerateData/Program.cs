@@ -276,7 +276,8 @@ namespace GenerateData
             }
 
             //create processed dataframe
-            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg, rowValid, ftr, over);
+            //DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg, rowValid, ftr, over);
+            DataFrame dfp = new DataFrame(thisDiv, date, homeTeam, hwpg, hdpg, hlpg, hgspg, hgcpg, hstfpg, hstapg, hsfpg, hsapg, awayTeam, awpg, adpg, alpg, agspg, agcpg, astfpg, astapg, asfpg, asapg, rowValid, ftr, over);
             Console.WriteLine(dfp.Info());
             Console.WriteLine(dfp.Sample(10));
 
@@ -298,7 +299,9 @@ namespace GenerateData
             using (StreamWriter sw = new StreamWriter(fName)){
                 sw.WriteLine(hdrLine);
                 for (int i = 0; i < dfp.Rows.Count; i++){
-                    sw.WriteLine(string.Join(",", dfp.Rows[i]));
+                    if (rowValid[i] == true){
+                        sw.WriteLine(string.Join(",", dfp.Rows[i]));
+                    }
                 }
             }
         }
