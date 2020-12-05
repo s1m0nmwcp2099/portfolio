@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/simon/GithubRepo/portfolio/FirstAspNet/FirstAspNet.csproj",
-      "projectName": "FirstAspNet",
-      "projectPath": "/home/simon/GithubRepo/portfolio/FirstAspNet/FirstAspNet.csproj",
+      "projectUniqueName": "/home/simon/GithubRepo/portfolio/FirstAspNet/MyWebApp/MyWebApp.csproj",
+      "projectName": "MyWebApp",
+      "projectPath": "/home/simon/GithubRepo/portfolio/FirstAspNet/MyWebApp/MyWebApp.csproj",
       "packagesPath": "/home/simon/.nuget/packages/",
-      "outputPath": "/home/simon/GithubRepo/portfolio/FirstAspNet/obj/",
+      "outputPath": "/home/simon/GithubRepo/portfolio/FirstAspNet/MyWebApp/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
