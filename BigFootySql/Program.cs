@@ -389,6 +389,9 @@ namespace BigFootySql
                                 string sqlReplaceEnd = " VALUES (";
                                 bool valAdded = false;
                                 for (int i = 0; i < hdrs.Length && i < parts.Length; i++){//LAST
+                                    if (hdrs[i] == "League"){
+                                        parts[i] = RemoveFirstCharacterSpace(parts[i]);
+                                    }
                                     if (hdrs[i] == "Date"){
                                         parts[i] = RemoveFirstCharacterSpace(parts[i]);
                                         parts[i] = SqliseDate(parts[i]);
