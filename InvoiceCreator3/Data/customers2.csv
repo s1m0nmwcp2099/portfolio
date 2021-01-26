@@ -1,0 +1,4 @@
+customer_name,email,contact_first_name,contact_last_name,customer_currency,account_number,phone,fax,mobile,toll_free,website,country,province/state,address_line_1,address_line_2,city,postal_code/zip_code,shipping_address,ship-to_contact,ship-to_country,ship-to_province/state,ship-to_address_line_1,ship-to_address_line_2,ship-to_city,ship-to_postal_code/zip_code,ship-to_phone,delivery_instructions
+Jolly Jacks,admin@jollyjacks.co.uk,Jackie,Smith,GBP,,447732123456,,,,,United Kingdom,West Midlands,6 This Street,,This City,WM88 8XX,False,,,,,,,,,
+Pop’s Pantry,accountspayable@popspantry.co.uk,Pop Baker,,,,,,,,,United Kingdom,,Ground Floor Suite One,"This Road, That Business Park",This Town,WB99 1ZZ,False,,,,,,,,,
+Spitfires R Us,accounts@spitfiresrus.co.uk,John Doe,,,,447478654321,,,,,United Kingdom,,The Cottage,The Lane,The Village,AK27 8PF,False,,,,,,,,,
