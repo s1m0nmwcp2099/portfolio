@@ -97,21 +97,21 @@ def item_creator(description, quant, price):
     # add item button
     def add_item():
         if len(desc_items) == 0:
-            Label(mainframe, text='Items').grid(row=4, column=0)
-            Label(mainframe, text='Quantity').grid(row=4, column=1)
-            Label(mainframe, text='Price').grid(row=4, column=2)
-            Label(mainframe, text='Amount').grid(row=4, column=3)
-            Label(mainframe, text='Tax').grid(row=4, column=4)
+            Label(invGuiFrame, text='Items').grid(row=4, column=0)
+            Label(invGuiFrame, text='Quantity').grid(row=4, column=1)
+            Label(invGuiFrame, text='Price').grid(row=4, column=2)
+            Label(invGuiFrame, text='Amount').grid(row=4, column=3)
+            Label(invGuiFrame, text='Tax').grid(row=4, column=4)
         
         description =  description_box.get(1.0, "end-1c")
         descs.append(description)
-        desc_items.append(Text(mainframe, width=40, height=3))
+        desc_items.append(Text(invGuiFrame, width=40, height=3))
         desc_items[len(desc_items)-1].grid(row=len(desc_items)+4, column=0)
         desc_items[len(desc_items)-1].insert('0.0', description)
 
         quantity = int(quantity_box.get())
         quantities.append(quantity)
-        quantity_items.append(Label(mainframe, text=quantity))
+        quantity_items.append(Label(invGuiFrame, text=quantity))
         quantity_items[len(quantity_items)-1].grid(row=len(quantity_items)+4, column=1)
         # quantity_items[len(quantity_items)-1].insert("end", quantity)
         
@@ -119,14 +119,14 @@ def item_creator(description, quant, price):
         prices.append(price)
         price_string = '£'+('%.2f' %price)
         print(price_string)
-        price_items.append(Label(mainframe, text=price_string))
+        price_items.append(Label(invGuiFrame, text=price_string))
         price_items[len(price_items)-1].grid(row=len(price_items)+4, column=2)
         # price_items[len(price_items)-1].insert(0, price_string)
 
         amount = quantity*price
         amounts.append(amount)
         amount_string = '£'+('%.2f' %amount)
-        amount_items.append(Label(mainframe, text=amount_string))
+        amount_items.append(Label(invGuiFrame, text=amount_string))
         amount_items[len(amount_items)-1].grid(row=len(amount_items)+4, column=3)
 
         if vatVar.get() == vat_options[0]:
@@ -141,9 +141,10 @@ def item_creator(description, quant, price):
         print(tax_rate)
         print('%.2f' %amount)
 
-        tax_percents.append(Label(mainframe, text=tax_rate_str))
+        tax_percents.append(Label(invGuiFrame, text=tax_rate_str))
         tax_rate_strs.append(tax_rate_str)
         tax_percents[len(tax_percents)-1].grid(row=len(tax_percents)+4, column=4)
+
 
         def edit_action():
             print('This is the edit button test action')
@@ -153,15 +154,36 @@ def item_creator(description, quant, price):
             this_column = edit_button.grid_info()['column']
             print('Column = '+str(this_column))
 
+
         def delete_action():
-            print('This is the delete button test action')
+            """print('This is the delete button test action')
             print(str(delete_button))
             this_row = delete_button.grid_info()['row']
             print('Row ='+str(this_row))
             this_column = delete_button.grid_info()['column']
-            print('Column = '+str(this_column))
+            print('Column = '+str(this_column))"""
+            this_ind = edit_button.grid_info()['row']-5
+            desc_items[this_ind].destroy()
+            del desc_items[this_ind]
+            quantity_items[this_ind].destroy()
+            del quantity_items[this_ind]
+            del descs[this_ind]
+            price_items[this_ind].destroy()
+            del price_items[this_ind]
+            del prices[this_ind]
+            amount_items[this_ind].destroy()
+            del amount_items[this_ind]
+            del amounts[this_ind]
+            tax_percents[this_ind].destroy()
+            del tax_percents[this_ind]
+            del tax_rate_strs[this_ind]
+            edit_btns[this_ind].destroy()
+            del edit_btns[this_ind]
+            delete_btns[this_ind].destroy()
+            del delete_btns[this_ind]
 
-        edit_button = Button(mainframe, text='Edit')
+
+        edit_button = Button(invGuiFrame, text='Edit')
         edit_button.grid(row=len(edit_btns)+5, column=5)
         edit_button.configure(command=edit_action)
         edit_btns.append(edit_button)
@@ -169,7 +191,7 @@ def item_creator(description, quant, price):
         # edit_btns[len(edit_btns)-1].grid(row=len(edit_btns)+4, column=5)
         # print("Edit button: "+str(edit_btns[len(edit_btns)-1]))
 
-        delete_button = Button(mainframe, text='Delete')
+        delete_button = Button(invGuiFrame, text='Delete')
         delete_button.grid(row=len(delete_btns)+5, column=6)
         delete_button.configure(command=delete_action)
         delete_btns.append(delete_button)
@@ -262,12 +284,13 @@ def generateInvoice():
 
     #inside right
     order = order_number_box.get()
+    inv_num = inv_number_box.get()
     if order == '':
         lhText = 'Invoice Number: \nInvoice Date: \nPayment Due: \nAmount Due (GBP): \n'
-        rhText = f'123456-1234\n{inv_dt}\n{due_dt}\n£{"%.2f" %total}\n'
+        rhText = f'{inv_num}\n{inv_dt}\n{due_dt}\n£{"%.2f" %total}\n'
     else:
         lhText = 'Invoice Number: \nPO/SO Number: \nInvoice Date: \nPayment Due: \nAmount Due (GBP): \n'
-        rhText = f'123456-1234\n{order}\n{inv_dt}\n{due_dt}\n£{"%.2f" %total}\n'
+        rhText = f'{inv_num}\n{order}\n{inv_dt}\n{due_dt}\n£{"%.2f" %total}\n'
     pdf.set_xy(3*effective_page_width/5+pdf.l_margin, ybefore)
     pdf.set_font('Arial', 'B', 10)
     pdf.multi_cell(w=effective_page_width/5, h=8, txt=lhText, border=0, ln=1, align='R')
@@ -442,14 +465,17 @@ def generateInvoice():
     #write pdf
     pdf.output('fpdfdemo.pdf', 'F')
 
+    invGuiFrame.quit()
+
+
 
 # Create main window
 root = Tk()
-mainframe = Frame(root)
-mainframe.grid(column=0, row=0, sticky=(N,W,E,S))
-mainframe.columnconfigure(0, weight=1)
-mainframe.rowconfigure(0, weight=1)
-mainframe.pack(pady=10, padx=10)
+invGuiFrame = Frame(root)
+invGuiFrame.grid(column=0, row=0, sticky=(N,W,E,S))
+invGuiFrame.columnconfigure(0, weight=1)
+invGuiFrame.rowconfigure(0, weight=1)
+invGuiFrame.pack(pady=10, padx=10)
 
 
 # fetch customers from file and put into collection
@@ -457,49 +483,49 @@ custVar = StringVar(root)
 customer_df = pd.read_csv('Data/customers2.csv')
 customer_df = customer_df.fillna('') #eliminate 'na'
 # tkvar.set(customer_df.iloc[0,0])  # if we want to set default
-custMenu = OptionMenu(mainframe, custVar, *customer_df['customer_name'])
-Label(mainframe, text='Choose customer').grid(row=0, column=0)
+custMenu = OptionMenu(invGuiFrame, custVar, *customer_df['customer_name'])
+Label(invGuiFrame, text='Choose customer').grid(row=0, column=0)
 custMenu.grid(row = 1, column = 0)
 
 
 # invoice date button
-inv_dt_btn = Button(mainframe, text='Invoice date', command=partial(setDate, 'Set invoice date'))
+inv_dt_btn = Button(invGuiFrame, text='Invoice date', command=partial(setDate, 'Set invoice date'))
 inv_dt_btn.grid(row=0, column=1)
 # invoice date label
-inv_dt_show = Label(mainframe, text='Not selected') # get variable from here
-# inv_dt_show = Text(mainframe, width=20, height=1)
+inv_dt_show = Label(invGuiFrame, text='Not selected') # get variable from here
+# inv_dt_show = Text(invGuiFrame, width=20, height=1)
 inv_dt_show.grid(row=1, column=1)
 
 
 # due date button
-due_dt_btn = Button(mainframe, text='Due date', command=partial(setDate, 'Set due date'))
+due_dt_btn = Button(invGuiFrame, text='Due date', command=partial(setDate, 'Set due date'))
 due_dt_btn.grid(row=0, column=2)
 # due date label
-due_dt_show = Label(mainframe, text='Not selected') # get variable from here
-# due_dt_show = Text(mainframe, width=20, height=1)
+due_dt_show = Label(invGuiFrame, text='Not selected') # get variable from here
+# due_dt_show = Text(invGuiFrame, width=20, height=1)
 due_dt_show.grid(row=1, column=2)
 
 
 # PO number
-Label(mainframe, text='Order number').grid(row=0, column=3)
-order_number_box = Entry(mainframe, text='Order number')
+Label(invGuiFrame, text='Order number').grid(row=0, column=3)
+order_number_box = Entry(invGuiFrame, text='Order number')
 order_number_box.grid(row=1, column=3)
 
 
 # Invoice number
-Label(mainframe, text='Invoice number').grid(row=0, column=5)
-inv_number_box = Entry(mainframe)
+Label(invGuiFrame, text='Invoice number').grid(row=0, column=5)
+inv_number_box = Entry(invGuiFrame)
 inv_number_box.grid(row=1, column=5)
 inv_number_box.insert(0, '107790-')
 
 
-# submit_btn=Button(mainframe, text='Submit', command=generateInvoice)
+# submit_btn=Button(invGuiFrame, text='Submit', command=generateInvoice)
 item_ct = 0
-add_item_btn = Button(mainframe, text='Add item', command=partial(item_creator, '', 1, 0))
+add_item_btn = Button(invGuiFrame, text='Add item', command=partial(item_creator, '', 1, 0))
 add_item_btn.grid(row=2, column=5)
 
 
-submit_btn = Button(mainframe, text='Generate PDF', command=generateInvoice).grid(row=3, column=5)
+submit_btn = Button(invGuiFrame, text='Generate PDF', command=generateInvoice).grid(row=3, column=5)
 
 
 desc_items = []
