@@ -46,30 +46,14 @@ def setDate(x):
 def delete_action(i):
     # i = delete_button.grid_info()['row']-5
     desc_items[i].destroy()
-    del desc_items[i]
-    del descs[i]
-
     quantity_items[i].destroy()
-    del quantity_items[i]
-    del quantities[i]
-
     price_items[i].destroy()
-    del price_items[i]
-    del prices[i]
-
     amount_items[i].destroy()
-    del amount_items[i]
-    del amounts[i]
-
     tax_percents[i].destroy()
-    del tax_percents[i]
-    del tax_rate_strs[i]
-
     edit_btns[i].destroy()
-    del edit_btns[i]
-    
     delete_btns[i].destroy()
-    del delete_btns[i]
+    
+    is_active[i] = False
 
 
 def add_item_to_main_gui(_description, _quantity, _price, _amount, _v_var, _v_options, i):
@@ -89,9 +73,10 @@ def add_item_to_main_gui(_description, _quantity, _price, _amount, _v_var, _v_op
         tax_rate_str = '5%'
 
     if i < len(desc_items):
-        desc_items[i] = Text(invGuiFrame, width=40, height=3)
+        """desc_items[i] = Text(invGuiFrame, width=40, height=3)
         desc_items[i].insert('0.0', _description)
-        descs[i] = _description
+        descs[i] = _description"""
+
 
         quantity_items[i] = Label(invGuiFrame, text=_quantity)
         quantities[i] = _quantity
@@ -106,9 +91,11 @@ def add_item_to_main_gui(_description, _quantity, _price, _amount, _v_var, _v_op
         tax_rate_strs[i] = tax_rate_str
     else:
         desc_items.append(Text(invGuiFrame, width=40, height=3))
+        #desc_items.append(Label(invGuiFrame, width=40, text=_description))
         descs.append(_description)
         desc_items[len(desc_items)-1].grid(row=len(desc_items)+4, column=0)
         desc_items[len(desc_items)-1].insert('0.0', _description)
+        desc_items[len(desc_items)-1].configure(state=DISABLED)
 
         quantity_items.append(Label(invGuiFrame, text=_quantity))
         quantities.append(_quantity)
@@ -136,9 +123,12 @@ def add_item_to_main_gui(_description, _quantity, _price, _amount, _v_var, _v_op
         delete_button.configure(command=partial(delete_action, delete_button.grid_info()['row']-5))
         delete_btns.append(delete_button)
 
+        is_active.append(True)
+
 
 def edit_item(i):
     print(f'Edit button {i} pressed')
+    add_item(desc_items[i], quantity_items[i], price_items[i],)
     
 
 
@@ -221,11 +211,12 @@ def generateInvoice():
     vat = 0.00
     otherTax = 0.00
     for i in range(0, len(amounts)):
-        subtotal += amounts[i]
-        if tax_rate_strs[i] == '20%':
-            vat += (0.2*amounts[i])
-        elif tax_rate_strs[i] == '5%':
-            otherTax += (0.05*amounts[i])
+        if is_active[i] == True:
+            subtotal += amounts[i]
+            if tax_rate_strs[i] == '20%':
+                vat += (0.2*amounts[i])
+            elif tax_rate_strs[i] == '5%':
+                otherTax += (0.05*amounts[i])
     total = subtotal+vat+otherTax
 
 
@@ -358,37 +349,38 @@ def generateInvoice():
 
 
     for i in range (0, len(desc_items)):
-        print(descs[i])
-        print(quantities[i])
-        print(prices[i])
+        if is_active[i] == True:
+            print(descs[i])
+            print(quantities[i])
+            print(prices[i])
 
-        # desrciption 1,2 / 5
-        pdf.ln(4)
-        ybefore = pdf.get_y()
-        
+            # desrciption 1,2 / 5
+            pdf.ln(4)
+            ybefore = pdf.get_y()
+            
 
-        # quantity 3 of 5 quantity
-        pdf.set_xy(2*effective_page_width/5+pdf.l_margin, ybefore)
-        pdf.cell(w=effective_page_width/5, h=4, txt=str(quantities[i]), ln=1, align='C')
-
-
-        # price - Body 4 of 5
-        pdf.set_xy(3*effective_page_width/5+pdf.l_margin, ybefore)
-        
-        pdf.cell(w=effective_page_width/5, h=4, txt='£'+('%.2f' %prices[i]), ln=1, align='R')
+            # quantity 3 of 5 quantity
+            pdf.set_xy(2*effective_page_width/5+pdf.l_margin, ybefore)
+            pdf.cell(w=effective_page_width/5, h=4, txt=str(quantities[i]), ln=1, align='C')
 
 
-        # amount - Body 5 of 5
-        pdf.set_xy(4*effective_page_width/5+pdf.l_margin, ybefore)
-        pdf.cell(w=effective_page_width/5, h=4, txt='£'+('%.2f' %amounts[i]), ln=1, align='R')
+            # price - Body 4 of 5
+            pdf.set_xy(3*effective_page_width/5+pdf.l_margin, ybefore)
+            
+            pdf.cell(w=effective_page_width/5, h=4, txt='£'+('%.2f' %prices[i]), ln=1, align='R')
 
 
-        # pdf.multi_cell(w=2*effective_page_width/5, h=4, txt=description, border=0, align='L',ln=1)
-        pdf.set_xy(pdf.l_margin, ybefore)
-        pdf.multi_cell(w=2*effective_page_width/5, h=4, txt=descs[i], border=0, ln=1, align='L')
+            # amount - Body 5 of 5
+            pdf.set_xy(4*effective_page_width/5+pdf.l_margin, ybefore)
+            pdf.cell(w=effective_page_width/5, h=4, txt='£'+('%.2f' %amounts[i]), ln=1, align='R')
 
 
-        pdf.ln(4)
+            # pdf.multi_cell(w=2*effective_page_width/5, h=4, txt=description, border=0, align='L',ln=1)
+            pdf.set_xy(pdf.l_margin, ybefore)
+            pdf.multi_cell(w=2*effective_page_width/5, h=4, txt=descs[i], border=0, ln=1, align='L')
+
+
+            pdf.ln(4)
         
 
 
@@ -555,6 +547,7 @@ tax_percents = []
 tax_rate_strs = []
 edit_btns = []
 delete_btns = []
+is_active = []
 
 
 # execute
