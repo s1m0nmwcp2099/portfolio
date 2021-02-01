@@ -56,39 +56,40 @@ def delete_action(i):
     is_active[i] = False
 
 
-def add_item_to_main_gui(_description, _quantity, _price, _amount, _v_var, _v_options, i):
+def add_item_to_main_gui(_description, _quantity, _price, _amount, _t_mult, _v_options, i):
     price_string = '£'+('%.2f' %_price)
     amount_string = '£'+('%.2f' %_amount)
 
-    if _v_var.get() == _v_options[0]:
-        tax_rate = 1.0
+    if _t_mult == 0.0:
         tax_rate_str = '0%'
-    elif _v_var.get() == _v_options[1]:
-        tax_rate = 1.2
+    elif _t_mult == 0.2:
         tax_rate_str = '20%'
-
-    
-    elif _v_var.get() == _v_options[2]:
-        tax_rate = 1.05
+    elif _t_mult == 0.05:
         tax_rate_str = '5%'
 
     if i < len(desc_items):
-        """desc_items[i] = Text(invGuiFrame, width=40, height=3)
+        # desc_items[i] = Text(invGuiFrame, width=40, height=3)
         desc_items[i].insert('0.0', _description)
-        descs[i] = _description"""
+        desc_items[i].configure(status=DISABLED)
+        descs[i] = _description
 
 
-        quantity_items[i] = Label(invGuiFrame, text=_quantity)
+        # quantity_items[i] = Label(invGuiFrame, text=_quantity)
+        quantity_items[i].configure(text=_quantity)
         quantities[i] = _quantity
 
-        price_items[i] = Label(invGuiFrame, text=price_string)
+        # price_items[i] = Label(invGuiFrame, text=price_string)
+        price_items[i].configure(text=price_string)
         prices.append[i] = _price
 
-        amount_items.append[i] = Label(invGuiFrame, text=amount_string)
+        # amount_items.append[i] = Label(invGuiFrame, text=amount_string)
+        amount_items[i].configure(text=amount_string)
         amounts.append[i] = _amount
 
-        tax_percents[i] = Label(invGuiFrame, text=tax_rate_str)
+        # tax_percents[i] = Label(invGuiFrame, text=tax_rate_str)
+        tax_percents[i].configure(text=tax_rate_str)
         tax_rate_strs[i] = tax_rate_str
+        tax_mults[i] = _t_mult
     else:
         desc_items.append(Text(invGuiFrame, width=40, height=3))
         #desc_items.append(Label(invGuiFrame, width=40, text=_description))
@@ -128,12 +129,12 @@ def add_item_to_main_gui(_description, _quantity, _price, _amount, _v_var, _v_op
 
 def edit_item(i):
     print(f'Edit button {i} pressed')
-    add_item(desc_items[i], quantity_items[i], price_items[i],)
+    add_item(desc_items[i], quantity_items[i], price_items[i], tax_mults[i], )
     
 
 
 # add item button
-def add_item(d_box, q_box, p_box, v_var, v_options, frame):
+def add_item(d_box, q_box, p_box, t_mult, v_options, frame):
     # headers
     if len(desc_items) == 0:
         Label(invGuiFrame, text='Items').grid(row=4, column=0)
@@ -146,7 +147,7 @@ def add_item(d_box, q_box, p_box, v_var, v_options, frame):
     quantity = int(q_box.get())
     price = float(p_box.get())
     amount = quantity*price
-    add_item_to_main_gui(description, quantity, price, amount, v_var, v_options, len(desc_items))
+    add_item_to_main_gui(description, quantity, price, amount, t_mult, v_options, len(desc_items))
     frame.destroy()
 
 
@@ -189,19 +190,19 @@ def item_creator(description, quant, price):
     Label(subframe, text='Select tax').grid(row=0, column=4)
     tax_dropdown = OptionMenu(subframe, vatVar, *vat_options)
     tax_dropdown.grid(row=1, column=4)
-    tax_rate = 1.2
+    tax_mult = 0.2
     def change_tax_dropdown(*args):
         if vatVar.get() == vat_options[0]:
-            tax_rate = 1.0
+            tax_mult = 0.0
         elif vatVar.get() == vat_options[1]:
-            tax_rate = 1.2
+            tax_mult = 0.2
         elif vatVar.get() == vat_options[2]:
-            tax_rate = 1.05
+            tax_mult = 0.05
         print(vatVar.get())
     vatVar.trace('w', change_tax_dropdown)
 
 
-    add_button = Button(subframe, text='Add', command=partial(add_item, description_box, quantity_box, price_box, vatVar, vat_options, subframe)).grid(row=1, column=5)
+    add_button = Button(subframe, text='Add', command=partial(add_item, description_box, quantity_box, price_box, tax_mult, vat_options, subframe)).grid(row=1, column=5)
 
 
 def generateInvoice():
@@ -217,6 +218,7 @@ def generateInvoice():
                 vat += (0.2*amounts[i])
             elif tax_rate_strs[i] == '5%':
                 otherTax += (0.05*amounts[i])
+            
     total = subtotal+vat+otherTax
 
 
@@ -544,6 +546,7 @@ prices = []
 amount_items = []
 amounts = []
 tax_percents = []
+tax_mults = []
 tax_rate_strs = []
 edit_btns = []
 delete_btns = []
