@@ -55,8 +55,8 @@ def delete_action(i):
     
     is_active[i] = False
 
-
-def add_item_to_main_gui(_description, _quantity, _price, _amount, _t_mult, _v_options, i):
+"""
+def add_item_to_main_gui(_description, _quantity, _price, _amount, _t_mult, i):
     price_string = '£'+('%.2f' %_price)
     amount_string = '£'+('%.2f' %_amount)
 
@@ -124,34 +124,124 @@ def add_item_to_main_gui(_description, _quantity, _price, _amount, _t_mult, _v_o
         delete_button.configure(command=partial(delete_action, delete_button.grid_info()['row']-5))
         delete_btns.append(delete_button)
 
-        is_active.append(True)
+        is_active.append(True)"""
 
 
 def edit_item(i):
     print(f'Edit button {i} pressed')
-    add_item(desc_items[i], quantity_items[i], price_items[i], tax_mults[i], )
-    
+    item_creator(False, i)
 
 
-# add item button
-def add_item(d_box, q_box, p_box, t_mult, v_options, frame):
-    # headers
-    if len(desc_items) == 0:
-        Label(invGuiFrame, text='Items').grid(row=4, column=0)
-        Label(invGuiFrame, text='Quantity').grid(row=4, column=1)
-        Label(invGuiFrame, text='Price').grid(row=4, column=2)
-        Label(invGuiFrame, text='Amount').grid(row=4, column=3)
-        Label(invGuiFrame, text='Tax').grid(row=4, column=4)
-    
-    description = d_box.get(1.0, "end-1c")
-    quantity = int(q_box.get())
-    price = float(p_box.get())
-    amount = quantity*price
-    add_item_to_main_gui(description, quantity, price, amount, t_mult, v_options, len(desc_items))
-    frame.destroy()
+# def item_creator(description, quant, price):
+def item_creator(is_new, i):
+    if is_new == True:
+        description = ''
+        quant = 1
+        price = 0.00
+    else:
+        description = descs[i]
+        quant = quantities[i]
+        price = prices[i]
+        
+    # add item button
+    def add_item():
+        def add_item_to_main_gui(i):
+            price_string = '£'+('%.2f' %price)
+            amount_string = '£'+('%.2f' %amount)
 
+            if vatVar.get() == vat_options[0]:
+                tax_rate_str = '0%'
+                tax_mult = 0.0
+            elif vatVar.get() == vat_options[1]:
+                tax_rate_str = '20%'
+                tax_mult = 0.2
+            elif vatVar.get() == vat_options[2]:
+                tax_rate_str = '5%'
+                tax_mult = 0.05
 
-def item_creator(description, quant, price):
+            if is_new == False: # for editing an existing item
+                descs[i] = description
+                desc_items[i].destroy()
+                desc_items[i] = Text(invGuiFrame, width=40, height=3)
+                desc_items[i].grid(row=5+i, column=0)
+                desc_items[i].insert('0.0', description)
+                desc_items[i].configure(state=DISABLED)
+
+                quantities[i] = quantity
+                quantity_items[i].destroy()
+                quantity_items[i] = Label(invGuiFrame, text=quantity)
+                quantity_items[i].grid(row=5+i, column=1)
+
+                prices[i] = price
+                price_items[i].destroy()
+                price_items[i] = Label(invGuiFrame, text=price_string)
+                price_items[i].grid(row=5+i, column=2)
+                
+                amounts[i] = amount
+                amount_items[i].destroy()
+                amount_items[i] = Label(invGuiFrame, text=amount_string)
+                amount_items[i].grid(row=5+i, column=3)
+
+                tax_rate_strs[i] = vatVar.get()
+                tax_percents[i].destroy()
+                tax_percents[i] = Label(invGuiFrame, text=vatVar.get())
+                tax_percents[i].grid(row=5+i, column=4)
+                tax_mults[i] = tax_mult
+            else:
+                desc_items.append(Text(invGuiFrame, width=40, height=3))
+                #desc_items.append(Label(invGuiFrame, width=40, text=description))
+                descs.append(description)
+                desc_items[len(desc_items)-1].grid(row=len(desc_items)+4, column=0)
+                desc_items[len(desc_items)-1].insert('0.0', description)
+                desc_items[len(desc_items)-1].configure(state=DISABLED)
+
+                quantity_items.append(Label(invGuiFrame, text=quantity))
+                quantities.append(quantity)
+                quantity_items[len(quantity_items)-1].grid(row=len(quantity_items)+4, column=1)
+
+                price_items.append(Label(invGuiFrame, text=price_string))
+                prices.append(price)
+                price_items[len(price_items)-1].grid(row=len(price_items)+4, column=2)
+
+                amount_items.append(Label(invGuiFrame, text=amount_string))
+                amounts.append(amount)
+                amount_items[len(amount_items)-1].grid(row=len(amount_items)+4, column=3)
+
+                tax_percents.append(Label(invGuiFrame, text=vatVar.get()))
+                tax_rate_strs.append(tax_rate_str)
+                tax_mults.append(tax_mult)
+                tax_percents[len(tax_percents)-1].grid(row=len(tax_percents)+4, column=4)
+
+                edit_button = Button(invGuiFrame, text='Edit')
+                edit_button.grid(row=len(edit_btns)+5, column=5)
+                edit_button.configure(command=partial(edit_item, edit_button.grid_info()['row']-5))
+                edit_btns.append(edit_button)
+
+                delete_button = Button(invGuiFrame, text='Delete')
+                delete_button.grid(row=len(delete_btns)+5, column=6)
+                delete_button.configure(command=partial(delete_action, delete_button.grid_info()['row']-5))
+                delete_btns.append(delete_button)
+
+                is_active.append(True)
+        # headers
+        if len(desc_items) == 0 and is_new == True:
+            Label(invGuiFrame, text='Items').grid(row=4, column=0)
+            Label(invGuiFrame, text='Quantity').grid(row=4, column=1)
+            Label(invGuiFrame, text='Price').grid(row=4, column=2)
+            Label(invGuiFrame, text='Amount').grid(row=4, column=3)
+            Label(invGuiFrame, text='Tax').grid(row=4, column=4)
+        
+        description = description_box.get(1.0, "end-1c")
+        quantity = int(quantity_box.get())
+        price = float(price_box.get())
+        amount = quantity*price
+        if is_new == True:
+            x = len(desc_items)
+        else:
+            x = i
+        add_item_to_main_gui(x)
+        subframe.destroy()
+
     subframe = tk.Toplevel(root)
     subframe.grid()
     subframe.columnconfigure(0, weight=1)
@@ -200,9 +290,8 @@ def item_creator(description, quant, price):
             tax_mult = 0.05
         print(vatVar.get())
     vatVar.trace('w', change_tax_dropdown)
-
-
-    add_button = Button(subframe, text='Add', command=partial(add_item, description_box, quantity_box, price_box, tax_mult, vat_options, subframe)).grid(row=1, column=5)
+    
+    add_button = Button(subframe, text='Add', command=add_item).grid(row=1, column=5)
 
 
 def generateInvoice():
@@ -528,15 +617,6 @@ inv_number_box.grid(row=1, column=5)
 inv_number_box.insert(0, '107790-')
 
 
-# submit_btn=Button(invGuiFrame, text='Submit', command=generateInvoice)
-item_ct = 0
-add_item_btn = Button(invGuiFrame, text='Add item', command=partial(item_creator, '', 1, 0))
-add_item_btn.grid(row=2, column=5)
-
-
-submit_btn = Button(invGuiFrame, text='Generate PDF', command=generateInvoice).grid(row=3, column=5)
-
-
 desc_items = []
 descs = []
 quantity_items = []
@@ -551,6 +631,16 @@ tax_rate_strs = []
 edit_btns = []
 delete_btns = []
 is_active = []
+
+
+# submit_btn=Button(invGuiFrame, text='Submit', command=generateInvoice)
+item_ct = 0
+# add_item_btn = Button(invGuiFrame, text='Add item', command=partial(item_creator, '', 1, 0))
+add_item_btn = Button(invGuiFrame, text='Add item', command=partial(item_creator, True, 0))
+add_item_btn.grid(row=2, column=5)
+
+
+submit_btn = Button(invGuiFrame, text='Generate PDF', command=generateInvoice).grid(row=3, column=5)
 
 
 # execute
