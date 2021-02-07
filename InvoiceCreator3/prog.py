@@ -206,6 +206,7 @@ def item_creator(is_new, i):
     # VAT or other - dropdown
     vat_options = ('No VAT', 'VAT: 20%', '5%')
     vatVar = StringVar(root)
+    vatVar.set(vat_options[1])
     Label(subframe, text='Select tax').grid(row=0, column=4)
     tax_dropdown = OptionMenu(subframe, vatVar, *vat_options)
     tax_dropdown.grid(row=1, column=4)
@@ -496,35 +497,68 @@ def generateInvoice():
 
 
 def pre_generate_invoice(): # checks
+    def destroy(frame):
+        frame.destroy()
+
+    error_messages = []
     safe = True
     this_whole_inv_number = inv_number_box.get()
 
-    row_ind = 0
-    #check invoice number
-    print(f'This invoice number is {this_whole_inv_number}')
-    print(f'Previous invoice number is {invoices_df.iloc[0, 0]}')
-    
-    customer_safe = True
-    inv_date_safe = True
-    due_date_safe = True
-    inv_num_safe = True
-    item_ct_safe = True
-
     if custVar.get() == '':
-        customer_safe = False
+        safe = False
+        error_messages.append('No customer selected')
     
-    print(f'Invoice date is {inv_dt_show.cget("text")}')
+    if inv_dt_show.cget("text") == 'Not selected':
+        safe = False
+        error_messages.append('Must have invoice date')
 
-    if  len(invoices_df[invoices_df['invoice number']==this_whole_inv_number]):
-        invNumCheckframe = tk.Toplevel(root)
-        invNumCheckframe.grid()
-        invNumCheckframe.columnconfigure(0, weight=1)
-        invNumCheckframe.rowconfigure(0, weight=1)
+    if due_dt_show.cget("text") == 'Not selected':
+        safe = False
+        error_messages.append('Must have due by date')
+
+    inv_num_split = this_whole_inv_number.split('-')
+    if inv_num_split[len(inv_num_split)-1] == '':
+        safe = False
+        error_messages.append('No invoice number allocated')
+    inv_num_digit_safe = True
+    for j in range (0, len(inv_num_split[len(inv_num_split)-1])):
+        if ord(inv_num_split[len(inv_num_split)-1][j]) < 48 or ord(inv_num_split[len(inv_num_split)-1][j]) > 57:
+            safe = False
+            inv_num_digit_safe = False
+    if inv_num_digit_safe == False:
+        error_messages.append('Invoice number must only contain numbers')
+
+    if safe == False:
+        warningFrame = tk.Toplevel(root)
+        warningFrame.grid()
+        warningFrame.columnconfigure(0, weight=1)
+        warningFrame.rowconfigure(0, weight=1)
+
+        row_ind = 0
+
+        for j in range (0, len(error_messages)):
+            Label(warningFrame, text=error_messages[j]).grid(row=row_ind, column=0)
+            row_ind += 1
+        warning_btn = Button(warningFrame, text='OK', command=partial(destroy, warningFrame))
+        warning_btn.grid(row=row_ind, column=0)
+    
+    # check duplicate invoice number
+    duplicate_safe = True
+    if len(invoices_df[invoices_df['invoice number'] == this_whole_inv_number]) and safe == True:
+        duplicate_safe = False
+        invNumCheckFrame = tk.Toplevel(root)
+        invNumCheckFrame.grid()
+        invNumCheckFrame.columnconfigure(0, weight=1)
+        invNumCheckFrame.rowconfigure(0, weight=1)
         print('We already have this')
-        Label(invNumCheckframe, text='Invoice number already exists. Continuing will overwrite.').grid(row=row_ind, column=0)
-        row_ind += 1
-    else:
-        print('This is new')
+        Label(invNumCheckFrame, text='Invoice number already exists. Continuing will overwrite.').grid(row=0, column=0, columnspan=2)
+        cancel_btn = Button(invNumCheckFrame, text='Cancel', command=partial(destroy, invNumCheckFrame))
+        cancel_btn.grid(row=1, column=0)
+        proceed_btn = Button(invNumCheckFrame, text='Proceed', command=generateInvoice)
+        proceed_btn.grid(row=1, column=1)
+
+    if safe == True and duplicate_safe == True:
+        generateInvoice()
 
 
 
