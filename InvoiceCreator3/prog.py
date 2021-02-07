@@ -55,77 +55,6 @@ def delete_action(i):
     
     is_active[i] = False
 
-"""
-def add_item_to_main_gui(_description, _quantity, _price, _amount, _t_mult, i):
-    price_string = '£'+('%.2f' %_price)
-    amount_string = '£'+('%.2f' %_amount)
-
-    if _t_mult == 0.0:
-        tax_rate_str = '0%'
-    elif _t_mult == 0.2:
-        tax_rate_str = '20%'
-    elif _t_mult == 0.05:
-        tax_rate_str = '5%'
-
-    if i < len(desc_items):
-        # desc_items[i] = Text(invGuiFrame, width=40, height=3)
-        desc_items[i].insert('0.0', _description)
-        desc_items[i].configure(status=DISABLED)
-        descs[i] = _description
-
-
-        # quantity_items[i] = Label(invGuiFrame, text=_quantity)
-        quantity_items[i].configure(text=_quantity)
-        quantities[i] = _quantity
-
-        # price_items[i] = Label(invGuiFrame, text=price_string)
-        price_items[i].configure(text=price_string)
-        prices.append[i] = _price
-
-        # amount_items.append[i] = Label(invGuiFrame, text=amount_string)
-        amount_items[i].configure(text=amount_string)
-        amounts.append[i] = _amount
-
-        # tax_percents[i] = Label(invGuiFrame, text=tax_rate_str)
-        tax_percents[i].configure(text=tax_rate_str)
-        tax_rate_strs[i] = tax_rate_str
-        tax_mults[i] = _t_mult
-    else:
-        desc_items.append(Text(invGuiFrame, width=40, height=3))
-        #desc_items.append(Label(invGuiFrame, width=40, text=_description))
-        descs.append(_description)
-        desc_items[len(desc_items)-1].grid(row=len(desc_items)+4, column=0)
-        desc_items[len(desc_items)-1].insert('0.0', _description)
-        desc_items[len(desc_items)-1].configure(state=DISABLED)
-
-        quantity_items.append(Label(invGuiFrame, text=_quantity))
-        quantities.append(_quantity)
-        quantity_items[len(quantity_items)-1].grid(row=len(quantity_items)+4, column=1)
-
-        price_items.append(Label(invGuiFrame, text=price_string))
-        prices.append(_price)
-        price_items[len(price_items)-1].grid(row=len(price_items)+4, column=2)
-
-        amount_items.append(Label(invGuiFrame, text=amount_string))
-        amounts.append(_amount)
-        amount_items[len(amount_items)-1].grid(row=len(amount_items)+4, column=3)
-
-        tax_percents.append(Label(invGuiFrame, text=tax_rate_str))
-        tax_rate_strs.append(tax_rate_str)
-        tax_percents[len(tax_percents)-1].grid(row=len(tax_percents)+4, column=4)
-
-        edit_button = Button(invGuiFrame, text='Edit')
-        edit_button.grid(row=len(edit_btns)+5, column=5)
-        edit_button.configure(command=partial(edit_item, edit_button.grid_info()['row']-5))
-        edit_btns.append(edit_button)
-
-        delete_button = Button(invGuiFrame, text='Delete')
-        delete_button.grid(row=len(delete_btns)+5, column=6)
-        delete_button.configure(command=partial(delete_action, delete_button.grid_info()['row']-5))
-        delete_btns.append(delete_button)
-
-        is_active.append(True)"""
-
 
 def edit_item(i):
     print(f'Edit button {i} pressed')
@@ -566,6 +495,39 @@ def generateInvoice():
     invGuiFrame.quit()
 
 
+def pre_generate_invoice(): # checks
+    safe = True
+    this_whole_inv_number = inv_number_box.get()
+
+    row_ind = 0
+    #check invoice number
+    print(f'This invoice number is {this_whole_inv_number}')
+    print(f'Previous invoice number is {invoices_df.iloc[0, 0]}')
+    
+    customer_safe = True
+    inv_date_safe = True
+    due_date_safe = True
+    inv_num_safe = True
+    item_ct_safe = True
+
+    if custVar.get() == '':
+        customer_safe = False
+    
+    print(f'Invoice date is {inv_dt_show.cget("text")}')
+
+    if  len(invoices_df[invoices_df['invoice number']==this_whole_inv_number]):
+        invNumCheckframe = tk.Toplevel(root)
+        invNumCheckframe.grid()
+        invNumCheckframe.columnconfigure(0, weight=1)
+        invNumCheckframe.rowconfigure(0, weight=1)
+        print('We already have this')
+        Label(invNumCheckframe, text='Invoice number already exists. Continuing will overwrite.').grid(row=row_ind, column=0)
+        row_ind += 1
+    else:
+        print('This is new')
+
+
+
 
 # Create main window
 root = Tk()
@@ -574,6 +536,33 @@ invGuiFrame.grid(column=0, row=0, sticky=(N,W,E,S))
 invGuiFrame.columnconfigure(0, weight=1)
 invGuiFrame.rowconfigure(0, weight=1)
 invGuiFrame.pack(pady=10, padx=10)
+
+
+# fetch previous invoice details
+invoices_df = pd.read_csv('Data/invoices.csv')
+# print(invoices_df["invoice number"])
+
+
+# fetch prefix and number details from file
+with open("Data/prefix.txt", "r") as my_file:
+    file_data = my_file.read()
+prefix = ''
+for i in range (0, len(file_data)):
+    if file_data[i].isprintable():
+        prefix += file_data[i]
+print(f'prefix = {prefix}, type = {type(prefix)}, length = {len(prefix)}')
+
+with open("Data/number.txt", "r") as my_file:
+    file_data = my_file.read()
+last_inv_number = ''
+for i in range (0, len(file_data)):
+    if file_data[i].isdigit():
+        last_inv_number += file_data[i]
+last_inv_number = int(last_inv_number)
+print(f'last invoice number = {last_inv_number}, type = {type(last_inv_number)}')
+
+whole_inv_number = prefix+'-'+str(last_inv_number+1)
+print(whole_inv_number)
 
 
 # fetch customers from file and put into collection
@@ -614,7 +603,7 @@ order_number_box.grid(row=1, column=3)
 Label(invGuiFrame, text='Invoice number').grid(row=0, column=5)
 inv_number_box = Entry(invGuiFrame)
 inv_number_box.grid(row=1, column=5)
-inv_number_box.insert(0, '107790-')
+inv_number_box.insert(0, whole_inv_number)
 
 
 desc_items = []
@@ -640,7 +629,8 @@ add_item_btn = Button(invGuiFrame, text='Add item', command=partial(item_creator
 add_item_btn.grid(row=2, column=5)
 
 
-submit_btn = Button(invGuiFrame, text='Generate PDF', command=generateInvoice).grid(row=3, column=5)
+# submit_btn = Button(invGuiFrame, text='Generate PDF', command=generateInvoice).grid(row=3, column=5)
+submit_btn = Button(invGuiFrame, text='Generate PDF', command=pre_generate_invoice).grid(row=3, column=5)
 
 
 # execute
