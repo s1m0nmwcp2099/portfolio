@@ -8,6 +8,7 @@ import numpy as np
 from tkcalendar import Calendar, DateEntry
 import datetime
 from functools import partial
+from csv import writer
 
 
 # date
@@ -263,11 +264,13 @@ def generateInvoice():
     
     inv_dt = datetime.date(year=1970, month=1, day=1)
     inv_dt = inv_dt_show.cget("text")
+    record_inv_dt = inv_dt
     inv_dt = datetime.datetime.strptime(inv_dt, '%Y-%m-%d')
     inv_dt = inv_dt.strftime('%d %B, %Y')
 
     due_dt = datetime.date(year=1970, month=1, day=1)
     due_dt = due_dt_show.cget("text")
+    record_due_dt = due_dt
     due_dt = datetime.datetime.strptime(due_dt, '%Y-%m-%d')
     due_dt = due_dt.strftime('%d %B, %Y')
     
@@ -495,6 +498,18 @@ def generateInvoice():
 
     invGuiFrame.quit()
 
+    # record the current invoice number
+    # inv_num, customer, inv_date, due_date, amount
+    inv_record = (new_invoice_number, customer, record_inv_dt, record_due_dt, ('%.2f' %total))
+    print(inv_record)
+    with open('Data/invoices.csv', 'a+', newline='') as write_obj:
+        csv_writer = writer(write_obj)
+        csv_writer.writerow(inv_record)
+    
+    # record invoice number
+    with open('Data/invoiceNumber.txt', 'w') as write_obj:
+        write_obj.write(new_invoice_number)
+
 
 def pre_generate_invoice(): # checks
     def destroy(frame):
@@ -578,7 +593,7 @@ invoices_df = pd.read_csv('Data/invoices.csv')
 
 
 # fetch prefix and number details from file
-with open("Data/prefix.txt", "r") as my_file:
+"""with open("Data/prefix.txt", "r") as my_file:
     file_data = my_file.read()
 prefix = ''
 for i in range (0, len(file_data)):
@@ -596,7 +611,17 @@ last_inv_number = int(last_inv_number)
 print(f'last invoice number = {last_inv_number}, type = {type(last_inv_number)}')
 
 whole_inv_number = prefix+'-'+str(last_inv_number+1)
-print(whole_inv_number)
+print(whole_inv_number)"""
+
+with open('Data/invoiceNumber.txt', "r") as my_file:
+    file_data = my_file.read()
+previous_invoice_number = ''
+for i in range (0, len(file_data)):
+    if file_data[i].isprintable():
+        previous_invoice_number += file_data[i]
+prev_inv_num_pts = previous_invoice_number.split('-')
+prefix = prev_inv_num_pts[0]
+new_invoice_number = prefix+'-'+str(int(prev_inv_num_pts[1])+1)
 
 
 # fetch customers from file and put into collection
@@ -637,7 +662,7 @@ order_number_box.grid(row=1, column=3)
 Label(invGuiFrame, text='Invoice number').grid(row=0, column=5)
 inv_number_box = Entry(invGuiFrame)
 inv_number_box.grid(row=1, column=5)
-inv_number_box.insert(0, whole_inv_number)
+inv_number_box.insert(0, new_invoice_number)
 
 
 desc_items = []
