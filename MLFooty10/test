@@ -1,0 +1,527 @@
+{
+ "metadata": {
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5-final"
+  },
+  "orig_nbformat": 2,
+  "kernelspec": {
+   "name": "python38564bit294f150e2a86464d83848abce420123d",
+   "display_name": "Python 3.8.5 64-bit",
+   "language": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2,
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sql_dt_fNm = '/home/simon/GithubRepo/portfolio/BigFootySql/when.txt'\n",
+    "with open (sql_dt_fNm, 'r') as my_file:\n",
+    "    last_sql_update_dt_str = my_file.read()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "'17/02/2021 21:33:49\\n'"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 13
+    }
+   ],
+   "source": [
+    "last_sql_update_dt_str"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "'17/02/2021 21:33:49'"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 15
+    }
+   ],
+   "source": [
+    "last_sql_update_dt_str = last_sql_update_dt_str.replace('\\n', '')\n",
+    "last_sql_update_dt_str"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2021, 2, 17, 21, 33, 49)"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 27
+    }
+   ],
+   "source": [
+    "from datetime import datetime\n",
+    "our_dt = datetime.strptime(last_sql_update_dt_str, '%d/%m/%Y %H:%M:%S')\n",
+    "our_dt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2021, 2, 20, 19, 27, 46, 502233)"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 28
+    }
+   ],
+   "source": [
+    "datetime.now()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2021, 2, 20, 19, 51, 56, 954438)"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 30
+    }
+   ],
+   "source": [
+    "datetime.now()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "'xbcd'"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 36
+    }
+   ],
+   "source": [
+    "inStr = 'abcd'\n",
+    "inStr = inStr.replace(inStr[0], 'x')\n",
+    "inStr"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2020, 12, 11, 0, 0)"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 37
+    }
+   ],
+   "source": [
+    "dt = '11/12/2020'\n",
+    "dt = datetime.strptime(dt, '%d/%m/%Y')\n",
+    "dt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "'2020-12-11'"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 38
+    }
+   ],
+   "source": [
+    "dt = dt.strftime('%Y-%m-%d')\n",
+    "dt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2020, 1, 1, 0, 0)"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 42
+    }
+   ],
+   "source": [
+    "dt = datetime(2020,1,1)\n",
+    "dt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "  Div        Date   Time     HomeTeam       AwayTeam  FTHG  FTAG FTR  HTHG  \\\n",
+       "0  E1  11/09/2020  19:45      Watford  Middlesbrough     1     0   H     1   \n",
+       "1  E1  12/09/2020  12:30   Birmingham      Brentford     1     0   H     1   \n",
+       "2  E1  12/09/2020  12:30      Wycombe      Rotherham     0     1   A     0   \n",
+       "3  E1  12/09/2020  15:00     Barnsley          Luton     0     1   A     0   \n",
+       "4  E1  12/09/2020  15:00  Bournemouth      Blackburn     3     2   H     1   \n",
+       "\n",
+       "   HTAG  ... AvgC<2.5  AHCh  B365CAHH  B365CAHA  PCAHH  PCAHA  MaxCAHH  \\\n",
+       "0     0  ...     1.65 -0.50      2.05      1.85   2.04   1.85     2.09   \n",
+       "1     0  ...     1.67  0.50      1.97      1.93   1.96   1.93     1.97   \n",
+       "2     0  ...     1.86  0.25      1.99      1.91   1.95   1.93     2.04   \n",
+       "3     0  ...     1.83 -0.50      1.77      2.02   1.81   2.10     1.87   \n",
+       "4     1  ...     1.89 -0.50      2.06      1.84   2.07   1.85     2.11   \n",
+       "\n",
+       "   MaxCAHA  AvgCAHH  AvgCAHA  \n",
+       "0     1.88     2.02     1.82  \n",
+       "1     1.99     1.91     1.93  \n",
+       "2     1.98     1.93     1.92  \n",
+       "3     2.14     1.80     2.05  \n",
+       "4     1.90     2.02     1.83  \n",
+       "\n",
+       "[5 rows x 106 columns]"
+      ],
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Div</th>\n      <th>Date</th>\n      <th>Time</th>\n      <th>HomeTeam</th>\n      <th>AwayTeam</th>\n      <th>FTHG</th>\n      <th>FTAG</th>\n      <th>FTR</th>\n      <th>HTHG</th>\n      <th>HTAG</th>\n      <th>...</th>\n      <th>AvgC&lt;2.5</th>\n      <th>AHCh</th>\n      <th>B365CAHH</th>\n      <th>B365CAHA</th>\n      <th>PCAHH</th>\n      <th>PCAHA</th>\n      <th>MaxCAHH</th>\n      <th>MaxCAHA</th>\n      <th>AvgCAHH</th>\n      <th>AvgCAHA</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>E1</td>\n      <td>11/09/2020</td>\n      <td>19:45</td>\n      <td>Watford</td>\n      <td>Middlesbrough</td>\n      <td>1</td>\n      <td>0</td>\n      <td>H</td>\n      <td>1</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.65</td>\n      <td>-0.50</td>\n      <td>2.05</td>\n      <td>1.85</td>\n      <td>2.04</td>\n      <td>1.85</td>\n      <td>2.09</td>\n      <td>1.88</td>\n      <td>2.02</td>\n      <td>1.82</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>E1</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Birmingham</td>\n      <td>Brentford</td>\n      <td>1</td>\n      <td>0</td>\n      <td>H</td>\n      <td>1</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.67</td>\n      <td>0.50</td>\n      <td>1.97</td>\n      <td>1.93</td>\n      <td>1.96</td>\n      <td>1.93</td>\n      <td>1.97</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.93</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>E1</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Wycombe</td>\n      <td>Rotherham</td>\n      <td>0</td>\n      <td>1</td>\n      <td>A</td>\n      <td>0</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.86</td>\n      <td>0.25</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.95</td>\n      <td>1.93</td>\n      <td>2.04</td>\n      <td>1.98</td>\n      <td>1.93</td>\n      <td>1.92</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>E1</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Barnsley</td>\n      <td>Luton</td>\n      <td>0</td>\n      <td>1</td>\n      <td>A</td>\n      <td>0</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.83</td>\n      <td>-0.50</td>\n      <td>1.77</td>\n      <td>2.02</td>\n      <td>1.81</td>\n      <td>2.10</td>\n      <td>1.87</td>\n      <td>2.14</td>\n      <td>1.80</td>\n      <td>2.05</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>E1</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Bournemouth</td>\n      <td>Blackburn</td>\n      <td>3</td>\n      <td>2</td>\n      <td>H</td>\n      <td>1</td>\n      <td>1</td>\n      <td>...</td>\n      <td>1.89</td>\n      <td>-0.50</td>\n      <td>2.06</td>\n      <td>1.84</td>\n      <td>2.07</td>\n      <td>1.85</td>\n      <td>2.11</td>\n      <td>1.90</td>\n      <td>2.02</td>\n      <td>1.83</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 106 columns</p>\n</div>"
+     },
+     "metadata": {},
+     "execution_count": 98
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "df = pd.read_csv('https://www.football-data.co.uk/mmz4281/2021/E1.csv')\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 99,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "     Div        Date   Time     HomeTeam       AwayTeam  FTHG  FTAG FTR  HTHG  \\\n",
+       "0  Champ  11/09/2020  19:45      Watford  Middlesbrough     1     0   H     1   \n",
+       "1  Champ  12/09/2020  12:30   Birmingham      Brentford     1     0   H     1   \n",
+       "2  Champ  12/09/2020  12:30      Wycombe      Rotherham     0     1   A     0   \n",
+       "3  Champ  12/09/2020  15:00     Barnsley          Luton     0     1   A     0   \n",
+       "4  Champ  12/09/2020  15:00  Bournemouth      Blackburn     3     2   H     1   \n",
+       "\n",
+       "   HTAG  ... AvgC<2.5  AHCh  B365CAHH  B365CAHA  PCAHH  PCAHA  MaxCAHH  \\\n",
+       "0     0  ...     1.65 -0.50      2.05      1.85   2.04   1.85     2.09   \n",
+       "1     0  ...     1.67  0.50      1.97      1.93   1.96   1.93     1.97   \n",
+       "2     0  ...     1.86  0.25      1.99      1.91   1.95   1.93     2.04   \n",
+       "3     0  ...     1.83 -0.50      1.77      2.02   1.81   2.10     1.87   \n",
+       "4     1  ...     1.89 -0.50      2.06      1.84   2.07   1.85     2.11   \n",
+       "\n",
+       "   MaxCAHA  AvgCAHH  AvgCAHA  \n",
+       "0     1.88     2.02     1.82  \n",
+       "1     1.99     1.91     1.93  \n",
+       "2     1.98     1.93     1.92  \n",
+       "3     2.14     1.80     2.05  \n",
+       "4     1.90     2.02     1.83  \n",
+       "\n",
+       "[5 rows x 106 columns]"
+      ],
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Div</th>\n      <th>Date</th>\n      <th>Time</th>\n      <th>HomeTeam</th>\n      <th>AwayTeam</th>\n      <th>FTHG</th>\n      <th>FTAG</th>\n      <th>FTR</th>\n      <th>HTHG</th>\n      <th>HTAG</th>\n      <th>...</th>\n      <th>AvgC&lt;2.5</th>\n      <th>AHCh</th>\n      <th>B365CAHH</th>\n      <th>B365CAHA</th>\n      <th>PCAHH</th>\n      <th>PCAHA</th>\n      <th>MaxCAHH</th>\n      <th>MaxCAHA</th>\n      <th>AvgCAHH</th>\n      <th>AvgCAHA</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>Champ</td>\n      <td>11/09/2020</td>\n      <td>19:45</td>\n      <td>Watford</td>\n      <td>Middlesbrough</td>\n      <td>1</td>\n      <td>0</td>\n      <td>H</td>\n      <td>1</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.65</td>\n      <td>-0.50</td>\n      <td>2.05</td>\n      <td>1.85</td>\n      <td>2.04</td>\n      <td>1.85</td>\n      <td>2.09</td>\n      <td>1.88</td>\n      <td>2.02</td>\n      <td>1.82</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Birmingham</td>\n      <td>Brentford</td>\n      <td>1</td>\n      <td>0</td>\n      <td>H</td>\n      <td>1</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.67</td>\n      <td>0.50</td>\n      <td>1.97</td>\n      <td>1.93</td>\n      <td>1.96</td>\n      <td>1.93</td>\n      <td>1.97</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.93</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Wycombe</td>\n      <td>Rotherham</td>\n      <td>0</td>\n      <td>1</td>\n      <td>A</td>\n      <td>0</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.86</td>\n      <td>0.25</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.95</td>\n      <td>1.93</td>\n      <td>2.04</td>\n      <td>1.98</td>\n      <td>1.93</td>\n      <td>1.92</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Barnsley</td>\n      <td>Luton</td>\n      <td>0</td>\n      <td>1</td>\n      <td>A</td>\n      <td>0</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.83</td>\n      <td>-0.50</td>\n      <td>1.77</td>\n      <td>2.02</td>\n      <td>1.81</td>\n      <td>2.10</td>\n      <td>1.87</td>\n      <td>2.14</td>\n      <td>1.80</td>\n      <td>2.05</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Bournemouth</td>\n      <td>Blackburn</td>\n      <td>3</td>\n      <td>2</td>\n      <td>H</td>\n      <td>1</td>\n      <td>1</td>\n      <td>...</td>\n      <td>1.89</td>\n      <td>-0.50</td>\n      <td>2.06</td>\n      <td>1.84</td>\n      <td>2.07</td>\n      <td>1.85</td>\n      <td>2.11</td>\n      <td>1.90</td>\n      <td>2.02</td>\n      <td>1.83</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 106 columns</p>\n</div>"
+     },
+     "metadata": {},
+     "execution_count": 99
+    }
+   ],
+   "source": [
+    "def del_div(thisStr):\n",
+    "    if thisStr == 'E1':\n",
+    "        thisStr = 'Champ'\n",
+    "    return thisStr\n",
+    "\n",
+    "def add_amp(thisStr):\n",
+    "    thisStr += 'amp'\n",
+    "    return thisStr\n",
+    "\n",
+    "hdrs = df.columns.values.tolist()\n",
+    "#type(hdrs)\n",
+    "\n",
+    "df.iloc[:,hdrs.index('Div')] = df.iloc[:,hdrs.index('Div')].apply([del_div, add_amp])\n",
+    "# df.iloc[:,hdrs.index('Div')].apply([del_div, add_amp])\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "     Div        Date   Time     HomeTeam       AwayTeam  FTHG  FTAG FTR  HTHG  \\\n",
+       "0  Champ  11/09/2020  19:45      Watford  Middlesbrough     5     5   H     1   \n",
+       "1  Champ  12/09/2020  12:30   Birmingham      Brentford     5     5   H     1   \n",
+       "2  Champ  12/09/2020  12:30      Wycombe      Rotherham     5     5   A     0   \n",
+       "3  Champ  12/09/2020  15:00     Barnsley          Luton     5     5   A     0   \n",
+       "4  Champ  12/09/2020  15:00  Bournemouth      Blackburn     5     5   H     1   \n",
+       "\n",
+       "   HTAG  ... AvgC<2.5  AHCh  B365CAHH  B365CAHA  PCAHH  PCAHA  MaxCAHH  \\\n",
+       "0     0  ...     1.65 -0.50      2.05      1.85   2.04   1.85     2.09   \n",
+       "1     0  ...     1.67  0.50      1.97      1.93   1.96   1.93     1.97   \n",
+       "2     0  ...     1.86  0.25      1.99      1.91   1.95   1.93     2.04   \n",
+       "3     0  ...     1.83 -0.50      1.77      2.02   1.81   2.10     1.87   \n",
+       "4     1  ...     1.89 -0.50      2.06      1.84   2.07   1.85     2.11   \n",
+       "\n",
+       "   MaxCAHA  AvgCAHH  AvgCAHA  \n",
+       "0     1.88     2.02     1.82  \n",
+       "1     1.99     1.91     1.93  \n",
+       "2     1.98     1.93     1.92  \n",
+       "3     2.14     1.80     2.05  \n",
+       "4     1.90     2.02     1.83  \n",
+       "\n",
+       "[5 rows x 106 columns]"
+      ],
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Div</th>\n      <th>Date</th>\n      <th>Time</th>\n      <th>HomeTeam</th>\n      <th>AwayTeam</th>\n      <th>FTHG</th>\n      <th>FTAG</th>\n      <th>FTR</th>\n      <th>HTHG</th>\n      <th>HTAG</th>\n      <th>...</th>\n      <th>AvgC&lt;2.5</th>\n      <th>AHCh</th>\n      <th>B365CAHH</th>\n      <th>B365CAHA</th>\n      <th>PCAHH</th>\n      <th>PCAHA</th>\n      <th>MaxCAHH</th>\n      <th>MaxCAHA</th>\n      <th>AvgCAHH</th>\n      <th>AvgCAHA</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>Champ</td>\n      <td>11/09/2020</td>\n      <td>19:45</td>\n      <td>Watford</td>\n      <td>Middlesbrough</td>\n      <td>5</td>\n      <td>5</td>\n      <td>H</td>\n      <td>1</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.65</td>\n      <td>-0.50</td>\n      <td>2.05</td>\n      <td>1.85</td>\n      <td>2.04</td>\n      <td>1.85</td>\n      <td>2.09</td>\n      <td>1.88</td>\n      <td>2.02</td>\n      <td>1.82</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Birmingham</td>\n      <td>Brentford</td>\n      <td>5</td>\n      <td>5</td>\n      <td>H</td>\n      <td>1</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.67</td>\n      <td>0.50</td>\n      <td>1.97</td>\n      <td>1.93</td>\n      <td>1.96</td>\n      <td>1.93</td>\n      <td>1.97</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.93</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Wycombe</td>\n      <td>Rotherham</td>\n      <td>5</td>\n      <td>5</td>\n      <td>A</td>\n      <td>0</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.86</td>\n      <td>0.25</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.95</td>\n      <td>1.93</td>\n      <td>2.04</td>\n      <td>1.98</td>\n      <td>1.93</td>\n      <td>1.92</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Barnsley</td>\n      <td>Luton</td>\n      <td>5</td>\n      <td>5</td>\n      <td>A</td>\n      <td>0</td>\n      <td>0</td>\n      <td>...</td>\n      <td>1.83</td>\n      <td>-0.50</td>\n      <td>1.77</td>\n      <td>2.02</td>\n      <td>1.81</td>\n      <td>2.10</td>\n      <td>1.87</td>\n      <td>2.14</td>\n      <td>1.80</td>\n      <td>2.05</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Bournemouth</td>\n      <td>Blackburn</td>\n      <td>5</td>\n      <td>5</td>\n      <td>H</td>\n      <td>1</td>\n      <td>1</td>\n      <td>...</td>\n      <td>1.89</td>\n      <td>-0.50</td>\n      <td>2.06</td>\n      <td>1.84</td>\n      <td>2.07</td>\n      <td>1.85</td>\n      <td>2.11</td>\n      <td>1.90</td>\n      <td>2.02</td>\n      <td>1.83</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 106 columns</p>\n</div>"
+     },
+     "metadata": {},
+     "execution_count": 100
+    }
+   ],
+   "source": [
+    "def hgfive(x):\n",
+    "    x = 5\n",
+    "    return x\n",
+    "\n",
+    "def agsix(x):\n",
+    "    x = 6\n",
+    "    return x\n",
+    "\n",
+    "df.iloc[:,[hdrs.index('FTHG'), hdrs.index('FTAG')]] = df.iloc[:,[hdrs.index('FTHG'), hdrs.index('FTAG')]].apply(hgfive)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 101,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "     Div        Date   Time     HomeTeam       AwayTeam  FTHG  FTAG FTR  HTHG  \\\n",
+       "0  Champ  11/09/2020  19:45      Watford  Middlesbrough     5     5   H     1   \n",
+       "1  Champ  12/09/2020  12:30   Birmingham      Brentford     5     5   H     1   \n",
+       "2  Champ  12/09/2020  12:30      Wycombe      Rotherham     5     5   A     2   \n",
+       "3  Champ  12/09/2020  15:00     Barnsley          Luton     5     5   A     2   \n",
+       "4  Champ  12/09/2020  15:00  Bournemouth      Blackburn     5     5   H     1   \n",
+       "\n",
+       "   HTAG  ... AvgC<2.5  AHCh  B365CAHH  B365CAHA  PCAHH  PCAHA  MaxCAHH  \\\n",
+       "0     2  ...     1.65 -0.50      2.05      1.85   2.04   1.85     2.09   \n",
+       "1     2  ...     1.67  0.50      1.97      1.93   1.96   1.93     1.97   \n",
+       "2     2  ...     1.86  0.25      1.99      1.91   1.95   1.93     2.04   \n",
+       "3     2  ...     1.83 -0.50      1.77      2.02   1.81   2.10     1.87   \n",
+       "4     1  ...     1.89 -0.50      2.06      1.84   2.07   1.85     2.11   \n",
+       "\n",
+       "   MaxCAHA  AvgCAHH  AvgCAHA  \n",
+       "0     1.88     2.02     1.82  \n",
+       "1     1.99     1.91     1.93  \n",
+       "2     1.98     1.93     1.92  \n",
+       "3     2.14     1.80     2.05  \n",
+       "4     1.90     2.02     1.83  \n",
+       "\n",
+       "[5 rows x 106 columns]"
+      ],
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Div</th>\n      <th>Date</th>\n      <th>Time</th>\n      <th>HomeTeam</th>\n      <th>AwayTeam</th>\n      <th>FTHG</th>\n      <th>FTAG</th>\n      <th>FTR</th>\n      <th>HTHG</th>\n      <th>HTAG</th>\n      <th>...</th>\n      <th>AvgC&lt;2.5</th>\n      <th>AHCh</th>\n      <th>B365CAHH</th>\n      <th>B365CAHA</th>\n      <th>PCAHH</th>\n      <th>PCAHA</th>\n      <th>MaxCAHH</th>\n      <th>MaxCAHA</th>\n      <th>AvgCAHH</th>\n      <th>AvgCAHA</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>Champ</td>\n      <td>11/09/2020</td>\n      <td>19:45</td>\n      <td>Watford</td>\n      <td>Middlesbrough</td>\n      <td>5</td>\n      <td>5</td>\n      <td>H</td>\n      <td>1</td>\n      <td>2</td>\n      <td>...</td>\n      <td>1.65</td>\n      <td>-0.50</td>\n      <td>2.05</td>\n      <td>1.85</td>\n      <td>2.04</td>\n      <td>1.85</td>\n      <td>2.09</td>\n      <td>1.88</td>\n      <td>2.02</td>\n      <td>1.82</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Birmingham</td>\n      <td>Brentford</td>\n      <td>5</td>\n      <td>5</td>\n      <td>H</td>\n      <td>1</td>\n      <td>2</td>\n      <td>...</td>\n      <td>1.67</td>\n      <td>0.50</td>\n      <td>1.97</td>\n      <td>1.93</td>\n      <td>1.96</td>\n      <td>1.93</td>\n      <td>1.97</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.93</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>12:30</td>\n      <td>Wycombe</td>\n      <td>Rotherham</td>\n      <td>5</td>\n      <td>5</td>\n      <td>A</td>\n      <td>2</td>\n      <td>2</td>\n      <td>...</td>\n      <td>1.86</td>\n      <td>0.25</td>\n      <td>1.99</td>\n      <td>1.91</td>\n      <td>1.95</td>\n      <td>1.93</td>\n      <td>2.04</td>\n      <td>1.98</td>\n      <td>1.93</td>\n      <td>1.92</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Barnsley</td>\n      <td>Luton</td>\n      <td>5</td>\n      <td>5</td>\n      <td>A</td>\n      <td>2</td>\n      <td>2</td>\n      <td>...</td>\n      <td>1.83</td>\n      <td>-0.50</td>\n      <td>1.77</td>\n      <td>2.02</td>\n      <td>1.81</td>\n      <td>2.10</td>\n      <td>1.87</td>\n      <td>2.14</td>\n      <td>1.80</td>\n      <td>2.05</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>Champ</td>\n      <td>12/09/2020</td>\n      <td>15:00</td>\n      <td>Bournemouth</td>\n      <td>Blackburn</td>\n      <td>5</td>\n      <td>5</td>\n      <td>H</td>\n      <td>1</td>\n      <td>1</td>\n      <td>...</td>\n      <td>1.89</td>\n      <td>-0.50</td>\n      <td>2.06</td>\n      <td>1.84</td>\n      <td>2.07</td>\n      <td>1.85</td>\n      <td>2.11</td>\n      <td>1.90</td>\n      <td>2.02</td>\n      <td>1.83</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 106 columns</p>\n</div>"
+     },
+     "metadata": {},
+     "execution_count": 101
+    }
+   ],
+   "source": [
+    "df = df.replace(0,2)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "  Div      Date    HomeTeam     AwayTeam  FTHG  FTAG FTR  Unnamed: 7  \\\n",
+       "0  E3  14/08/93        Bury  Northampton   0.0   0.0   D         NaN   \n",
+       "1  E3  14/08/93    Carlisle      Wycombe   2.0   2.0   D         NaN   \n",
+       "2  E3  14/08/93     Chester    Doncaster   0.0   1.0   A         NaN   \n",
+       "3  E3  14/08/93  Colchester      Lincoln   1.0   0.0   H         NaN   \n",
+       "4  E3  14/08/93  Darlington     Rochdale   1.0   1.0   D         NaN   \n",
+       "\n",
+       "   Unnamed: 8  Unnamed: 9  ...  Unnamed: 18  Unnamed: 19  Unnamed: 20  \\\n",
+       "0         NaN         NaN  ...          NaN          NaN          NaN   \n",
+       "1         NaN         NaN  ...          NaN          NaN          NaN   \n",
+       "2         NaN         NaN  ...          NaN          NaN          NaN   \n",
+       "3         NaN         NaN  ...          NaN          NaN          NaN   \n",
+       "4         NaN         NaN  ...          NaN          NaN          NaN   \n",
+       "\n",
+       "   Unnamed: 21  Unnamed: 22  Unnamed: 23  Unnamed: 24  Unnamed: 25  \\\n",
+       "0          NaN          NaN          NaN          NaN          NaN   \n",
+       "1          NaN          NaN          NaN          NaN          NaN   \n",
+       "2          NaN          NaN          NaN          NaN          NaN   \n",
+       "3          NaN          NaN          NaN          NaN          NaN   \n",
+       "4          NaN          NaN          NaN          NaN          NaN   \n",
+       "\n",
+       "   Unnamed: 26  Unnamed: 27  \n",
+       "0          NaN          NaN  \n",
+       "1          NaN          NaN  \n",
+       "2          NaN          NaN  \n",
+       "3          NaN          NaN  \n",
+       "4          NaN          NaN  \n",
+       "\n",
+       "[5 rows x 28 columns]"
+      ],
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Div</th>\n      <th>Date</th>\n      <th>HomeTeam</th>\n      <th>AwayTeam</th>\n      <th>FTHG</th>\n      <th>FTAG</th>\n      <th>FTR</th>\n      <th>Unnamed: 7</th>\n      <th>Unnamed: 8</th>\n      <th>Unnamed: 9</th>\n      <th>...</th>\n      <th>Unnamed: 18</th>\n      <th>Unnamed: 19</th>\n      <th>Unnamed: 20</th>\n      <th>Unnamed: 21</th>\n      <th>Unnamed: 22</th>\n      <th>Unnamed: 23</th>\n      <th>Unnamed: 24</th>\n      <th>Unnamed: 25</th>\n      <th>Unnamed: 26</th>\n      <th>Unnamed: 27</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Bury</td>\n      <td>Northampton</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>D</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Carlisle</td>\n      <td>Wycombe</td>\n      <td>2.0</td>\n      <td>2.0</td>\n      <td>D</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Chester</td>\n      <td>Doncaster</td>\n      <td>0.0</td>\n      <td>1.0</td>\n      <td>A</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Colchester</td>\n      <td>Lincoln</td>\n      <td>1.0</td>\n      <td>0.0</td>\n      <td>H</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Darlington</td>\n      <td>Rochdale</td>\n      <td>1.0</td>\n      <td>1.0</td>\n      <td>D</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 28 columns</p>\n</div>"
+     },
+     "metadata": {},
+     "execution_count": 102
+    }
+   ],
+   "source": [
+    "df2 = pd.read_csv('https://www.football-data.co.uk/mmz4281/9394/E3.csv')\n",
+    "df2.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "  Div      Date    HomeTeam     AwayTeam FTHG FTAG FTR Unnamed: 7 Unnamed: 8  \\\n",
+       "0  E3  14/08/93        Bury  Northampton  0.0  0.0   D       NULL       NULL   \n",
+       "1  E3  14/08/93    Carlisle      Wycombe  2.0  2.0   D       NULL       NULL   \n",
+       "2  E3  14/08/93     Chester    Doncaster  0.0  1.0   A       NULL       NULL   \n",
+       "3  E3  14/08/93  Colchester      Lincoln  1.0  0.0   H       NULL       NULL   \n",
+       "4  E3  14/08/93  Darlington     Rochdale  1.0  1.0   D       NULL       NULL   \n",
+       "\n",
+       "  Unnamed: 9  ... Unnamed: 18 Unnamed: 19 Unnamed: 20 Unnamed: 21 Unnamed: 22  \\\n",
+       "0       NULL  ...        NULL        NULL        NULL        NULL        NULL   \n",
+       "1       NULL  ...        NULL        NULL        NULL        NULL        NULL   \n",
+       "2       NULL  ...        NULL        NULL        NULL        NULL        NULL   \n",
+       "3       NULL  ...        NULL        NULL        NULL        NULL        NULL   \n",
+       "4       NULL  ...        NULL        NULL        NULL        NULL        NULL   \n",
+       "\n",
+       "  Unnamed: 23 Unnamed: 24 Unnamed: 25 Unnamed: 26 Unnamed: 27  \n",
+       "0        NULL        NULL        NULL        NULL        NULL  \n",
+       "1        NULL        NULL        NULL        NULL        NULL  \n",
+       "2        NULL        NULL        NULL        NULL        NULL  \n",
+       "3        NULL        NULL        NULL        NULL        NULL  \n",
+       "4        NULL        NULL        NULL        NULL        NULL  \n",
+       "\n",
+       "[5 rows x 28 columns]"
+      ],
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Div</th>\n      <th>Date</th>\n      <th>HomeTeam</th>\n      <th>AwayTeam</th>\n      <th>FTHG</th>\n      <th>FTAG</th>\n      <th>FTR</th>\n      <th>Unnamed: 7</th>\n      <th>Unnamed: 8</th>\n      <th>Unnamed: 9</th>\n      <th>...</th>\n      <th>Unnamed: 18</th>\n      <th>Unnamed: 19</th>\n      <th>Unnamed: 20</th>\n      <th>Unnamed: 21</th>\n      <th>Unnamed: 22</th>\n      <th>Unnamed: 23</th>\n      <th>Unnamed: 24</th>\n      <th>Unnamed: 25</th>\n      <th>Unnamed: 26</th>\n      <th>Unnamed: 27</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Bury</td>\n      <td>Northampton</td>\n      <td>0.0</td>\n      <td>0.0</td>\n      <td>D</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>...</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Carlisle</td>\n      <td>Wycombe</td>\n      <td>2.0</td>\n      <td>2.0</td>\n      <td>D</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>...</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Chester</td>\n      <td>Doncaster</td>\n      <td>0.0</td>\n      <td>1.0</td>\n      <td>A</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>...</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Colchester</td>\n      <td>Lincoln</td>\n      <td>1.0</td>\n      <td>0.0</td>\n      <td>H</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>...</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>E3</td>\n      <td>14/08/93</td>\n      <td>Darlington</td>\n      <td>Rochdale</td>\n      <td>1.0</td>\n      <td>1.0</td>\n      <td>D</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>...</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n      <td>NULL</td>\n    </tr>\n  </tbody>\n</table>\n<p>5 rows × 28 columns</p>\n</div>"
+     },
+     "metadata": {},
+     "execution_count": 106
+    }
+   ],
+   "source": [
+    "df2 = df2.fillna('NULL')\n",
+    "df2.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ]
+}

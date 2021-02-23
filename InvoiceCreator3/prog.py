@@ -590,7 +590,10 @@ invGuiFrame.pack(pady=10, padx=10)
 # fetch previous invoice details
 invoices_df = pd.read_csv('Data/invoices.csv')
 # print(invoices_df["invoice number"])
-
+next_inv_num = 1
+for i in range(0, len(invoices_df.index)):
+    whole_inv_num = invoices_df.iloc[i, 0]
+    
 
 # fetch prefix and number details from file
 """with open("Data/prefix.txt", "r") as my_file:
