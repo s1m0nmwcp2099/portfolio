@@ -79,15 +79,14 @@ def remove_punctuation(thisStr):
     return thisStr
 
 
-conn_str = mysql.connector.connect(
-    host = 'localhost',
-    user = 'simon',
-    password = 'chainsaw',
-    database = 'football'
-)
-
-
 def download_and_write_to_mysql(this_url, is_main_euro, league, season):
+    conn_str = mysql.connector.connect(
+        host = 'localhost',
+        user = 'simon',
+        password = 'chainsaw',
+        database = 'football'
+    )
+
     # is_main_euro: True = main European leagues; False = rest of world leagues
     this_file = 'this_lg_file.csv'
     
@@ -168,7 +167,8 @@ def download_and_write_to_mysql(this_url, is_main_euro, league, season):
             # input()
             my_cursor = conn_str.cursor()
             my_cursor.execute(sql_query)
-            # conn_str.commit()
+            conn_str.commit()
+    conn_str.close()
 
 
 # corresponds to start of main(line 112) for BigFootySql/Program.cs
@@ -179,17 +179,48 @@ with open (update_date_file, 'r') as dt_file:
     last_update_date = dt_file.read().replace('\n', '')
     last_update_date = datetime.strptime(last_update_date, '%d/%m/%Y %H:%M:%S')
 
-# seasons = ['9394', '9495', '9596', '9697', '9798', '9899', '9900', '0001', '0102', '0203', '0304', '0405', '0506', '0607', '0708',
-#        '0809', '0910', '1011', '1112', '1213', '1314', '1415', '1516', '1617', '1718', '1819', '1920', '2021']
+seasons = ['9394', '9495', '9596', '9697', '9798', '9899', '9900', '0001', '0102', '0203', '0304', '0405', '0506', '0607', '0708',
+       '0809', '0910', '1011', '1112', '1213', '1314', '1415', '1516', '1617', '1718', '1819', '1920', '2021']
 # conditions for above list can be found from line 166 of BigFootySql/Program.cs
-seasons = ['1920', '2021']
+# seasons = ['1920', '2021']
 leagues = ['B1', 'D1', 'D2', 'E0', 'E1', 'E2', 'E3', 'EC', 'F1', 'F2', 'G1', 'I1', 'I2', 'N1', 'P1', 'SC0', 'SC1', 'SC2', 'SC3',
         'SP1', 'SP2', 'T1']
 extra_leagues = ['ARG', 'AUT', 'BRA', 'CHN', 'DNK', 'FIN', 'IRL', 'JPN', 'MEX', 'NOR', 'POL', 'ROU', 'RUS', 'SWE', 'SWZ', 'USA']
 
 
-is_data_main_lgs = np.ones([len(leagues), len(seasons)], dtype=bool)
+is_data_main_lgs = np.zeros([len(leagues), len(seasons)], dtype=bool)
 # this will need amending for including earlier seasons
+for j in range(0, len(seasons)):
+    if j >= (len(seasons) - 2): # this line is to save time
+        if j >= 2:  
+            is_data_main_lgs[leagues.index('B1'), j] = True
+        is_data_main_lgs[leagues.index('D1'), j] = True
+        is_data_main_lgs[leagues.index('D2'), j] = True
+        is_data_main_lgs[leagues.index('E0'), j] = True
+        is_data_main_lgs[leagues.index('E1'), j] = True
+        is_data_main_lgs[leagues.index('E2'), j] = True
+        is_data_main_lgs[leagues.index('E3'), j] = True
+        if j >= 12:
+            is_data_main_lgs[leagues.index('EC'), j] = True
+        is_data_main_lgs[leagues.index('F1'), j] = True
+        if j >= 3:
+            is_data_main_lgs[leagues.index('F2'), j] = True
+            is_data_main_lgs[leagues.index('SP2'), j] = True
+        if j >= 1:
+            is_data_main_lgs[leagues.index('G1'), j] = True
+            is_data_main_lgs[leagues.index('P1'), j] = True
+            is_data_main_lgs[leagues.index('SC0'), j] = True
+            is_data_main_lgs[leagues.index('SC1'), j] = True
+            is_data_main_lgs[leagues.index('T1'), j] = True
+        is_data_main_lgs[leagues.index('I1'), j] = True
+        if j >= 4:
+            is_data_main_lgs[leagues.index('I2'), j] = True
+            is_data_main_lgs[leagues.index('SC2'), j] = True
+            is_data_main_lgs[leagues.index('SC3'), j] = True
+        is_data_main_lgs[leagues.index('N1'), j] = True
+        is_data_main_lgs[leagues.index('SP1'), j] = True
+    
+
 
 
 need_quotes = ['ThisDiv', 'Date', 'HomeTeam', 'AwayTeam', 'FTR', 'HTR', 'Time', 'Referee', 'LB', 'HT', 'AT', 'League', 'Season']
