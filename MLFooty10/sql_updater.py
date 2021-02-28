@@ -91,7 +91,7 @@ def download_and_write_to_mysql(this_url, is_main_euro, league, season):
     this_file = 'this_lg_file.csv'
     
     if (is_main_euro == True):
-        if (season == '1920' or season == '2021'):
+        if (season == '2021'):
             proceed = True
         else:
             proceed = False
@@ -147,27 +147,28 @@ def download_and_write_to_mysql(this_url, is_main_euro, league, season):
         for rw in range (0, len(lg_df.index)):
             # filter dates after last update
             this_match_date = datetime.strptime(lg_df.iloc[rw, sql_hdrs.index('Date')], '%Y-%m-%d')
-            #if this_match_date > (last_update_date - timedelta(days=7)):
-            sql_query_start = 'REPLACE INTO football_data_complete ('
-            sql_query_end = ' VALUES ('
-            for cl in range (0, len(sql_hdrs)):
-                if cl > 0:
-                    sql_query_start += ', '
-                    sql_query_end += ', '
-                sql_query_start += str(sql_hdrs[cl])
-                if sql_hdrs[cl] in need_quotes and str(lg_df.iloc[rw, cl]) != 'NULL':
-                    sql_query_end += "'"
-                sql_query_end += str(lg_df.iloc[rw, cl])
-                if sql_hdrs[cl] in need_quotes and str(lg_df.iloc[rw, cl]) != 'NULL':
-                    sql_query_end += "'"
-            sql_query_start += ')'
-            sql_query_end += ');'
-            sql_query = sql_query_start + sql_query_end
-            print(sql_query)
-            # input()
-            my_cursor = conn_str.cursor()
-            my_cursor.execute(sql_query)
-            conn_str.commit()
+
+            if this_match_date > (last_update_date - timedelta(days=7)):
+                sql_query_start = 'REPLACE INTO football_data_complete ('
+                sql_query_end = ' VALUES ('
+                for cl in range (0, len(sql_hdrs)):
+                    if cl > 0:
+                        sql_query_start += ', '
+                        sql_query_end += ', '
+                    sql_query_start += str(sql_hdrs[cl])
+                    if sql_hdrs[cl] in need_quotes and str(lg_df.iloc[rw, cl]) != 'NULL':
+                        sql_query_end += "'"
+                    sql_query_end += str(lg_df.iloc[rw, cl])
+                    if sql_hdrs[cl] in need_quotes and str(lg_df.iloc[rw, cl]) != 'NULL':
+                        sql_query_end += "'"
+                sql_query_start += ')'
+                sql_query_end += ');'
+                sql_query = sql_query_start + sql_query_end
+                print(sql_query)
+                # input()
+                my_cursor = conn_str.cursor()
+                my_cursor.execute(sql_query)
+                conn_str.commit()
     conn_str.close()
 
 
