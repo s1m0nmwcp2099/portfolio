@@ -5,12 +5,13 @@ from datetime import timedelta
 
 
 class Form:
-    def __init__(self, ftg, ftr, htg, htr, sht_cor):
+    def __init__(self, ftg, ftr, htg, htr, sht_cor, streak):
         self.ftg = ftg    # full time goals - tuple: (average goals for, average goals against)
         self.ftr = ftr    # full time results - tuple: (win proportin, draw proportion, loss proportion)
         self.htg = htg    # half time goals - tuple
         self.htr = htr    # half time results - tuple
         self.sht_cor = sht_cor # shots and corners - tuple: (shots on target for, sot against, shots for, s against, corners for, c against)
+        self.streak = streak # tuple: (w, wx, d, dx, l, lx)
 
 
 class Team:
@@ -61,7 +62,6 @@ def team_averages_per_game_and_runs(team, opp_team, this_match_date, earliest_da
         w_run, wx_run, d_run, dx_run, l_run, lx_run = True, True, True, True, True, True
 
         for i in range (len(df_team)-1, -1, -1):
-            
             that_match_date = df_team.iloc[i]['Date'] # date of previous match
             days_gap = float((this_match_date - that_match_date).days)
             time_coeff = np.exp(-0.007 * days_gap)
@@ -152,6 +152,13 @@ conn_str.close()
 
 
 df_raw = df_raw.dropna()
+
+lg = []
+match_dt = []
+home = []
+away = []
+ft_result = []
+
 for i in range (0, len(df_raw)):
     match_date = df_raw.iloc[i]['Date']
     this_div = df_raw.iloc[i]['ThisDiv']
@@ -160,14 +167,25 @@ for i in range (0, len(df_raw)):
     if earliest_date > df_raw.iloc[0]['Date']:
         home_team, away_team = df_raw.iloc[i]['HomeTeam'], df_raw.iloc[i]['AwayTeam']
 
-        home_team_home_form = team_averages_per_game_and_runs(home_team, away_team, match_date, earliest_date, True, df_raw, min_games, this_div)
-        home_team_away_form = team_averages_per_game_and_runs(home_team, away_team, match_date, earliest_date, False, df_raw, min_games, this_div)
-
-        away_team_away_form = team_averages_per_game_and_runs(away_team, home_team, match_date, earliest_date, False, df_raw, min_games, this_div)
-        away_team_home_form = team_averages_per_game_and_runs(away_team, home_team, match_date, earliest_date, True, df_raw, min_games, this_div)
-
+        hthf = team_averages_per_game_and_runs(home_team, away_team, match_date, earliest_date, True, df_raw, min_games, this_div)
+        htaf = team_averages_per_game_and_runs(home_team, away_team, match_date, earliest_date, False, df_raw, min_games, this_div)
+        ataf = team_averages_per_game_and_runs(away_team, home_team, match_date, earliest_date, False, df_raw, min_games, this_div)
+        athf = team_averages_per_game_and_runs(away_team, home_team, match_date, earliest_date, True, df_raw, min_games, this_div)
+        
         print(f'{match_date} - {home_team} v {away_team}')
-        print(home_team_home_form)
-        print(home_team_away_form)
-        print(away_team_away_form)
-        print(away_team_home_form)
+        if hthf != None and htaf != None and ataf != None and athf != None:
+            h_home_form = Form((hthf['ftg_for'], hthf['ftg_ag']), (hthf['ftw'], hthf['ftd'], hthf['ftl']), (hthf['htg_for'], hthf['htg_ag']), (hthf['htw'], hthf['htd'], hthf['htl']), (hthf['sot_for'], hthf['sot_ag'], hthf['s_for'], hthf['s_ag'], hthf['c_for'], hthf['c_ag']), (hthf['winning_run'], hthf['winless_run'], hthf['drawing_run'], hthf['drawless_run'], hthf['losing_run'], hthf['lossless_run']))
+            h_away_form = Form((htaf['ftg_for'], htaf['ftg_ag']), (htaf['ftw'], htaf['ftd'], htaf['ftl']), (htaf['htg_for'], htaf['htg_ag']), (htaf['htw'], htaf['htd'], htaf['htl']), (htaf['sot_for'], htaf['sot_ag'], htaf['s_for'], htaf['s_ag'], htaf['c_for'], htaf['c_ag']), (htaf['winning_run'], htaf['winless_run'], htaf['drawing_run'], htaf['drawless_run'], htaf['losing_run'], htaf['lossless_run']))
+            a_away_form = Form((ataf['ftg_for'], ataf['ftg_ag']), (ataf['ftw'], ataf['ftd'], ataf['ftl']), (ataf['htg_for'], ataf['htg_ag']), (ataf['htw'], ataf['htd'], ataf['htl']), (ataf['sot_for'], ataf['sot_ag'], ataf['s_for'], ataf['s_ag'], ataf['c_for'], ataf['c_ag']), (ataf['winning_run'], ataf['winless_run'], ataf['drawing_run'], ataf['drawless_run'], ataf['losing_run'], ataf['lossless_run']))
+            a_home_form = Form((athf['ftg_for'], athf['ftg_ag']), (athf['ftw'], athf['ftd'], athf['ftl']), (athf['htg_for'], athf['htg_ag']), (athf['htw'], athf['htd'], athf['htl']), (athf['sot_for'], athf['sot_ag'], athf['s_for'], athf['s_ag'], athf['c_for'], athf['c_ag']), (athf['winning_run'], athf['winless_run'], athf['drawing_run'], athf['drawless_run'], athf['losing_run'], athf['lossless_run']))
+
+            t1 = Team(home_team, h_home_form, h_away_form)
+            t2 = Team(away_team, a_home_form, a_away_form)
+
+            lg.append(this_div)
+            match_dt.append(match_date)
+            home.append(t1)
+            away.append(t2)
+
+data_1st = {'ThisDiv': lg, 'Date': match_dt, 'HomeTeam': home, 'AwayTeam': away}
+df_1st_process = pd.DataFrame(data_1st)        
