@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import mysql.connector
 from datetime import timedelta
+import pickle
 
 
 class Form:
@@ -159,8 +160,13 @@ home = []
 away = []
 ft_result = []
 
+print('Starting to process')
+x = len(df_raw.index)
 for i in range (0, len(df_raw)):
+    if i % 50 == 0:
+        print(f'{i} / {x} processed')
     match_date = df_raw.iloc[i]['Date']
+    #print(match_date)
     this_div = df_raw.iloc[i]['ThisDiv']
     earliest_date = match_date - timedelta(days=180)
     # print(str(df_raw.iloc[i]['Date']) + ' ' + str(df_raw.iloc[i]['HomeTeam']) + ' v ' + str(df_raw.iloc[i]['AwayTeam']) + ' ' + str(df_raw.iloc[0]['FTR']))
@@ -172,7 +178,7 @@ for i in range (0, len(df_raw)):
         ataf = team_averages_per_game_and_runs(away_team, home_team, match_date, earliest_date, False, df_raw, min_games, this_div)
         athf = team_averages_per_game_and_runs(away_team, home_team, match_date, earliest_date, True, df_raw, min_games, this_div)
         
-        print(f'{match_date} - {home_team} v {away_team}')
+        # print(f'{match_date} - {home_team} v {away_team}')
         if hthf != None and htaf != None and ataf != None and athf != None:
             h_home_form = Form((hthf['ftg_for'], hthf['ftg_ag']), (hthf['ftw'], hthf['ftd'], hthf['ftl']), (hthf['htg_for'], hthf['htg_ag']), (hthf['htw'], hthf['htd'], hthf['htl']), (hthf['sot_for'], hthf['sot_ag'], hthf['s_for'], hthf['s_ag'], hthf['c_for'], hthf['c_ag']), (hthf['winning_run'], hthf['winless_run'], hthf['drawing_run'], hthf['drawless_run'], hthf['losing_run'], hthf['lossless_run']))
             h_away_form = Form((htaf['ftg_for'], htaf['ftg_ag']), (htaf['ftw'], htaf['ftd'], htaf['ftl']), (htaf['htg_for'], htaf['htg_ag']), (htaf['htw'], htaf['htd'], htaf['htl']), (htaf['sot_for'], htaf['sot_ag'], htaf['s_for'], htaf['s_ag'], htaf['c_for'], htaf['c_ag']), (htaf['winning_run'], htaf['winless_run'], htaf['drawing_run'], htaf['drawless_run'], htaf['losing_run'], htaf['lossless_run']))
@@ -186,6 +192,9 @@ for i in range (0, len(df_raw)):
             match_dt.append(match_date)
             home.append(t1)
             away.append(t2)
+            ft_result.append(df_raw.iloc[i]['FTR'])
 
-data_1st = {'ThisDiv': lg, 'Date': match_dt, 'HomeTeam': home, 'AwayTeam': away}
-df_1st_process = pd.DataFrame(data_1st)        
+data_process0 = {'ThisDiv': lg, 'Date': match_dt, 'HomeTeam': home, 'AwayTeam': away, 'FTR': ft_result}
+df_process0 = pd.DataFrame(data_process0)
+df_fnm = 'data/historic_match_data_process0.pkl'
+df_process0.to_pickle(df_fnm)

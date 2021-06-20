@@ -13,6 +13,7 @@ def remove_first_character_space(thisStr):
 
 
 def check_string_characters(thisStr):
+    thisStr = str(thisStr)
     for i in range (0, len(thisStr)):
         if ord(thisStr[i]) == 65533:
             thisStr = thisStr.replace(thisStr[i], 'o')
@@ -72,6 +73,7 @@ def sqlise_date(dt_str):
 
 
 def remove_punctuation(thisStr):
+    thisStr = str(thisStr)
     thisStr = thisStr.replace("'", "")
     thisStr = thisStr.replace(',', '')
     thisStr = thisStr.replace('.', '')
