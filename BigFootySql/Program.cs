@@ -150,7 +150,7 @@ namespace BigFootySql
             Seasons.Add("1819");
             Seasons.Add("1920");
             Seasons.Add("2021");
-            //Seasons.Add("2021"); //WHEN NEW SEASON KICKS OFF
+            Seasons.Add("2122"); //WHEN NEW SEASON KICKS OFF
 
             List<string> Leagues = new List<string>();
             Leagues.Add("B1"); Leagues.Add("D1"); Leagues.Add("D2"); Leagues.Add("E0"); Leagues.Add("E1"); Leagues.Add("E2"); 
@@ -214,7 +214,7 @@ namespace BigFootySql
                         string fName = $"Data/Previous/{Seasons[j]}-{Leagues[i]}.csv";
                         Console.WriteLine($"Downloading: {Seasons[j]}-{Leagues[i]}");
                         //if (/*Seasons[j] == "1920" || */Seasons[j] == "2021"){
-			if (j >= Seasons.IndexOf("1920")){
+			if (j > Seasons.IndexOf("1920")){
                             DownloadAndWriteData(leagueUrl, fName);
                         }
 			//DownloadAndWriteData(leagueUrl, fName); //replaces commented out above
@@ -328,8 +328,8 @@ namespace BigFootySql
             for(int q = 0; q < LeagueFileNames.Count; q++){
                 string fName = LeagueFileNames[q];
                 //if (File.Exists(LeagueFileNames[q]) && (q >= LeagueFileNames.IndexOf("Data/Previous/AUT.csv") || LeagueFileNames[q].Contains("2021"))){
-                if (File.Exists(LeagueFileNames[q]) && q >= LeagueFileNames.IndexOf("Data/Previous/0304-SC2.csv")){
-                //if (File.Exists(LeagueFileNames[q])){
+                //if (File.Exists(LeagueFileNames[q]) && q >= LeagueFileNames.IndexOf("Data/Previous/0304-SC2.csv")){
+                if (File.Exists(LeagueFileNames[q])){
                     //above line is to reduce writing for update
                     //fetch from file and write to list
                     List<string> ThisPrevCsv = new List<string>();

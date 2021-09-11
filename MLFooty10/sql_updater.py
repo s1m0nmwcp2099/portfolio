@@ -93,7 +93,7 @@ def download_and_write_to_mysql(this_url, is_main_euro, league, season):
     this_file = 'this_lg_file.csv'
     
     if (is_main_euro == True):
-        if (season == '2021'):
+        if (season == '2021' or season == '2122'):
             proceed = True
         else:
             proceed = False
@@ -183,7 +183,8 @@ with open (update_date_file, 'r') as dt_file:
     last_update_date = datetime.strptime(last_update_date, '%d/%m/%Y %H:%M:%S')
 
 seasons = ['9394', '9495', '9596', '9697', '9798', '9899', '9900', '0001', '0102', '0203', '0304', '0405', '0506', '0607', '0708',
-       '0809', '0910', '1011', '1112', '1213', '1314', '1415', '1516', '1617', '1718', '1819', '1920', '2021']
+       '0809', '0910', '1011', '1112', '1213', '1314', '1415', '1516', '1617', '1718', '1819', '1920', '2021', '2122']
+       # add 2122
 # conditions for above list can be found from line 166 of BigFootySql/Program.cs
 # seasons = ['1920', '2021']
 leagues = ['B1', 'D1', 'D2', 'E0', 'E1', 'E2', 'E3', 'EC', 'F1', 'F2', 'G1', 'I1', 'I2', 'N1', 'P1', 'SC0', 'SC1', 'SC2', 'SC3',

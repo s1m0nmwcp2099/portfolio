@@ -30,7 +30,6 @@
 /home/me/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.dll
 /home/me/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.pdb
 /home/me/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.genruntimeconfig.cache
-/home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.csprojAssemblyReference.cache
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.AssemblyInfoInputs.cache
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.AssemblyInfo.cs
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.csproj.CoreCompileInputs.cache
@@ -65,3 +64,5 @@
 /home/simon/GithubRepo/portfolio/BigFootySql/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.csproj.CopyComplete
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.genruntimeconfig.cache
+/home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.csproj.AssemblyReference.cache
+/home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.GeneratedMSBuildEditorConfig.editorconfig

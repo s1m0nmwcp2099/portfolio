@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rB49rNfM8ZfzO0JZYhcxgvIh5BBTuZ5VjZVyqSA7EAVw0uvCGHaqV9V7Cyzf0KPvnVnsC8MBLU/dzEKhtsitpg==",
+  "dgSpecHash": "DXMX3L25Q+saM2M5fAXoFNieCyCBT4m/ri32j9H/uCyJnN+ett2GpnfQAxW32OdynSbRd7feEcLW9nFOwxhu1A==",
   "success": true,
   "projectFilePath": "/home/simon/GithubRepo/portfolio/BigFootySql/BigFootySql.csproj",
   "expectedPackageFiles": [
@@ -104,8 +104,7 @@
     "/usr/share/dotnet/sdk/NuGetFallbackFolder/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/usr/share/dotnet/sdk/NuGetFallbackFolder/system.xml.xmldocument/4.0.1/system.xml.xmldocument.4.0.1.nupkg.sha512",
     "/home/simon/.nuget/packages/system.xml.xpath/4.0.1/system.xml.xpath.4.0.1.nupkg.sha512",
-    "/home/simon/.nuget/packages/system.xml.xpath.xmldocument/4.0.1/system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
-    "/home/simon/.nuget/packages/microsoft.netcore.app.host.linux-x64/3.1.14/microsoft.netcore.app.host.linux-x64.3.1.14.nupkg.sha512"
+    "/home/simon/.nuget/packages/system.xml.xpath.xmldocument/4.0.1/system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
   ],
   "logs": []
 }
