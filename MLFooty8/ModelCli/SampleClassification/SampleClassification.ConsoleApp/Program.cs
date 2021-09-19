@@ -16,6 +16,9 @@ namespace SampleClassification.ConsoleApp
             // Create single instance of sample data from first line of dataset for model input
             ModelInput sampleData = new ModelInput()
             {
+                ThisDiv = @"SC1",
+                Date = @"21/04/2001 00:00:00",
+                HomeTeam = @"Alloa",
                 Hwpg = 0.28408098F,
                 Hdpg = 0.38517413F,
                 Hlpg = 0.330745F,
@@ -25,6 +28,7 @@ namespace SampleClassification.ConsoleApp
                 Hstapg = 6.6664624F,
                 Hsfpg = 9.047229F,
                 Hsapg = 10.050814F,
+                AwayTeam = @"Raith Rvs",
                 Awpg = 0.092881F,
                 Adpg = 0.18516196F,
                 Alpg = 0.721957F,
@@ -34,12 +38,17 @@ namespace SampleClassification.ConsoleApp
                 Astapg = 5.815963F,
                 Asfpg = 8.026802F,
                 Asapg = 11.358909F,
+                RowValid = true,
+                Over = true,
             };
 
             // Make a single prediction on the sample data and print results
             var predictionResult = ConsumeModel.Predict(sampleData);
 
             Console.WriteLine("Using model to make single prediction -- Comparing actual FTR with predicted FTR from sample data...\n\n");
+            Console.WriteLine($"ThisDiv: {sampleData.ThisDiv}");
+            Console.WriteLine($"Date: {sampleData.Date}");
+            Console.WriteLine($"HomeTeam: {sampleData.HomeTeam}");
             Console.WriteLine($"Hwpg: {sampleData.Hwpg}");
             Console.WriteLine($"Hdpg: {sampleData.Hdpg}");
             Console.WriteLine($"Hlpg: {sampleData.Hlpg}");
@@ -49,6 +58,7 @@ namespace SampleClassification.ConsoleApp
             Console.WriteLine($"Hstapg: {sampleData.Hstapg}");
             Console.WriteLine($"Hsfpg: {sampleData.Hsfpg}");
             Console.WriteLine($"Hsapg: {sampleData.Hsapg}");
+            Console.WriteLine($"AwayTeam: {sampleData.AwayTeam}");
             Console.WriteLine($"Awpg: {sampleData.Awpg}");
             Console.WriteLine($"Adpg: {sampleData.Adpg}");
             Console.WriteLine($"Alpg: {sampleData.Alpg}");
@@ -58,6 +68,8 @@ namespace SampleClassification.ConsoleApp
             Console.WriteLine($"Astapg: {sampleData.Astapg}");
             Console.WriteLine($"Asfpg: {sampleData.Asfpg}");
             Console.WriteLine($"Asapg: {sampleData.Asapg}");
+            Console.WriteLine($"RowValid: {sampleData.RowValid}");
+            Console.WriteLine($"Over: {sampleData.Over}");
             Console.WriteLine($"\n\nPredicted FTR value {predictionResult.Prediction} \nPredicted FTR scores: [{String.Join(",", predictionResult.Score)}]\n\n");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();

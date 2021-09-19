@@ -17,7 +17,8 @@ namespace SampleClassification.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"/home/simon/GithubRepo/portfolio/MLFooty8/Data/processedData.csv";
+        private static string TRAIN_DATA_FILEPATH = @"/home/simon/GithubRepo/portfolio/MLFooty8/Data/trainData.csv";
+        private static string TEST_DATA_FILEPATH = @"/home/simon/GithubRepo/portfolio/MLFooty8/Data/testData.csv";
         private static string MODEL_FILE = ConsumeModel.MLNetModelPath;
 
         // Create MLContext to be shared across the model creation workflow objects 
@@ -34,6 +35,12 @@ namespace SampleClassification.ConsoleApp
                                             allowQuoting: true,
                                             allowSparse: false);
 
+            IDataView testDataView = mlContext.Data.LoadFromTextFile<ModelInput>(
+                                            path: TEST_DATA_FILEPATH,
+                                            hasHeader: true,
+                                            separatorChar: ',',
+                                            allowQuoting: true,
+                                            allowSparse: false);
             // Build training pipeline
             IEstimator<ITransformer> trainingPipeline = BuildTrainingPipeline(mlContext);
 
@@ -41,7 +48,7 @@ namespace SampleClassification.ConsoleApp
             ITransformer mlModel = TrainModel(mlContext, trainingDataView, trainingPipeline);
 
             // Evaluate quality of Model
-            Evaluate(mlContext, trainingDataView, trainingPipeline);
+            EvaluateModel(mlContext, mlModel, testDataView);
 
             // Save model
             SaveModel(mlContext, mlModel, MODEL_FILE, trainingDataView.Schema);
@@ -50,15 +57,12 @@ namespace SampleClassification.ConsoleApp
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations 
-            var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("FTR", "FTR")
-                                      .Append(mlContext.Transforms.Conversion.ConvertType(new[] { new InputOutputColumnPair("RowValid", "RowValid"), new InputOutputColumnPair("Over", "Over") }))
-                                      .Append(mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("ThisDiv", "ThisDiv"), new InputOutputColumnPair("Date", "Date") }))
-                                      .Append(mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("HomeTeam", "HomeTeam"), new InputOutputColumnPair("AwayTeam", "AwayTeam") }))
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "RowValid", "Over", "ThisDiv", "Date", "HomeTeam", "AwayTeam", "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hstfpg", "Hstapg", "Hsfpg", "Hsapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Astfpg", "Astapg", "Asfpg", "Asapg" }))
+            var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("Over", "Over")
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hgspg", "Hgcpg", "Hstfpg", "Hstapg", "Hsfpg", "Hsapg", "Agspg", "Agcpg", "Astfpg", "Astapg", "Asfpg", "Asapg" }))
                                       .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(new SdcaMaximumEntropyMulticlassTrainer.Options() { L2Regularization = 0.0001f, ConvergenceTolerance = 0.01f, MaximumNumberOfIterations = 20, Shuffle = true, BiasLearningRate = 0.1f, LabelColumnName = "FTR", FeatureColumnName = "Features" })
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.SgdCalibrated(new SgdCalibratedTrainer.Options() { L2Regularization = 1E-05f, ConvergenceTolerance = 0.01f, NumberOfIterations = 5, Shuffle = true, LabelColumnName = "Over", FeatureColumnName = "Features" }), labelColumnName: "Over")
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
@@ -76,13 +80,13 @@ namespace SampleClassification.ConsoleApp
             return model;
         }
 
-        private static void Evaluate(MLContext mlContext, IDataView trainingDataView, IEstimator<ITransformer> trainingPipeline)
+        private static void EvaluateModel(MLContext mlContext, ITransformer mlModel, IDataView testDataView)
         {
-            // Cross-Validate with single dataset (since we don't have two datasets, one for training and for evaluate)
-            // in order to evaluate and get the model's accuracy metrics
-            Console.WriteLine("=============== Cross-validating to get model's accuracy metrics ===============");
-            var crossValidationResults = mlContext.MulticlassClassification.CrossValidate(trainingDataView, trainingPipeline, numberOfFolds: 5, labelColumnName: "FTR");
-            PrintMulticlassClassificationFoldsAverageMetrics(crossValidationResults);
+            // Evaluate the model and show accuracy stats
+            Console.WriteLine("===== Evaluating Model's accuracy with Test data =====");
+            IDataView predictions = mlModel.Transform(testDataView);
+            var metrics = mlContext.MulticlassClassification.Evaluate(predictions, "Over", "Score");
+            PrintMulticlassClassificationMetrics(metrics);
         }
 
         private static void SaveModel(MLContext mlContext, ITransformer mlModel, string modelRelativePath, DataViewSchema modelInputSchema)
