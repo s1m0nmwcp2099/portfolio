@@ -288,18 +288,19 @@ namespace GenerateData
 
             //write to csv
             string fName = "../Data/processedData.csv";
-            if (File.Exists(fName)){
-                File.Delete(fName);
-            }
             string[] hdrs = new string[dfp.Columns.Count];
             for (int i = 0; i < dfp.Columns.Count; i++){
                 hdrs[i] = dfp.Columns[i].Name;
             }
+            if (File.Exists(fName)){
+                File.Delete(fName);
+            }
             string hdrLine = string.Join(",", hdrs);
-            using (StreamWriter sw = new StreamWriter(fName)){
+            using (StreamWriter sw = new StreamWriter(fName, false)){
                 sw.WriteLine(hdrLine);
                 for (int i = 0; i < dfp.Rows.Count; i++){
                     if (rowValid[i] == true){
+                        //Console.WriteLine(string.Join(",", dfp.Rows[i]));
                         sw.WriteLine(string.Join(",", dfp.Rows[i]));
                     }
                 }

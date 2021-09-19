@@ -42,7 +42,7 @@ namespace GenerateFixtureData
                     float myDeltaExp = MathF.Exp((fixtureDt - Convert.ToDateTime(df[i, 1])).Days * -0.007F); //time delay exponential
                     
                     //win draw or loss
-                    if ((string)df[i, 6] == "D"){ //check previous result draw
+             string[] whichTeam = { "HomeTeam", "AwayTeam" };       if ((string)df[i, 6] == "D"){ //check previous result draw
                         rpg[1] += myDeltaExp;
                     }else if ((string)df[i, 6] == "H"){
                         if (atHome == true){
@@ -136,6 +136,7 @@ namespace GenerateFixtureData
                         Fixtures.Add(sr.ReadLine());
                     }
                 }
+                //Console.ReadLine();
 
                 /*
                 //get last 10 matches from mysql and put into dataframe
@@ -190,7 +191,8 @@ namespace GenerateFixtureData
                 Console.WriteLine(df.Info());
                 Console.WriteLine(df.Sample(20));
                 */
-
+                
+                
                 StringDataFrameColumn thisDivFix = new StringDataFrameColumn("ThisDivFix", 0);
                 PrimitiveDataFrameColumn<DateTime> dateFix = new PrimitiveDataFrameColumn<DateTime>("DateFix", 0);
                 StringDataFrameColumn homeTeamFix = new StringDataFrameColumn("HomeTeamFix", 0);
@@ -236,105 +238,119 @@ namespace GenerateFixtureData
 
                 PrimitiveDataFrameColumn<bool> rowValid = new PrimitiveDataFrameColumn<bool>("RowValid", 0);
 
-                //StringDataFrameColumn over = new StringDataFrameColumn("Over", 0);
+                StringDataFrameColumn over = new StringDataFrameColumn("Over", 0);
+
+                for (int x=0; x<Fixtures.Count(); x++){
+                    Console.WriteLine(Fixtures[x]);
+                }
+                Console.ReadLine();
 
                 for (int gm = 1; gm < Fixtures.Count; gm++){
-                    string[] cells = Fixtures[gm].Split(',');
-                    //get last 10 matches from mysql and put into dataframe
-                    //COLUMNS FOR FIRST DATAFRAME
-                    StringDataFrameColumn thisDiv = new StringDataFrameColumn("ThisDiv", 0);
-                    PrimitiveDataFrameColumn<DateTime> date = new PrimitiveDataFrameColumn<DateTime>("Date", 0);
-                    StringDataFrameColumn homeTeam = new StringDataFrameColumn("HomeTeam", 0);
-                    StringDataFrameColumn awayTeam = new StringDataFrameColumn("AwayTeam", 0);
-                    PrimitiveDataFrameColumn<int> fthg = new PrimitiveDataFrameColumn<int>("FTHG", 0);
-                    PrimitiveDataFrameColumn<int> ftag = new PrimitiveDataFrameColumn<int>("FTAG", 0);
-                    StringDataFrameColumn ftr = new StringDataFrameColumn("FTR", 0);
-                    PrimitiveDataFrameColumn<int> hs = new PrimitiveDataFrameColumn<int>("HS", 0);
-                    PrimitiveDataFrameColumn<int> aws = new PrimitiveDataFrameColumn<int>("AwS", 0);
-                    PrimitiveDataFrameColumn<int> hst = new PrimitiveDataFrameColumn<int>("HST", 0);
-                    PrimitiveDataFrameColumn<int> awst = new PrimitiveDataFrameColumn<int>("AwST", 0);
-                    if (cells[0] != string.Empty){
-                        string[] whichTeam = { "HomeTeam", "AwayTeam" };
-                        for (int j = 0; j < 2; j++){
-                            using (MySqlConnection conn = new MySqlConnection(connStr)){
-                                conn.Open();
-                                string sql = $"SELECT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE ({whichTeam[j]} = '{cells[3 + j].Replace("'", string.Empty)}' AND FTHG > -1 AND FTAG > -1 AND HS > -1 AND AwS > -1 AND HST > -1 AND AwST > -1) ORDER BY Date DESC LIMIT 10;";
-                                Console.WriteLine(sql);
-                                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                                MySqlDataReader rdr = cmd.ExecuteReader();
-                                while (rdr.Read()){
-                                    thisDiv.Append(rdr.GetString(0));
-                                    date.Append(rdr.GetDateTime(1));
-                                    homeTeam.Append(rdr.GetString(2));
-                                    awayTeam.Append(rdr.GetString(3));
-                                    fthg.Append(rdr.GetInt32(4));
-                                    ftag.Append(rdr.GetInt32(5));
-                                    ftr.Append(rdr.GetString(6));
-                                    hs.Append(rdr.GetInt32(7));
-                                    aws.Append(rdr.GetInt32(8));
-                                    hst.Append(rdr.GetInt32(9));
-                                    awst.Append(rdr.GetInt32(10));
-                                }
-                                conn.Close();
+                    Console.WriteLine(Fixtures[gm]);
+                    try{
+                        string[] cells = Fixtures[gm].Split(',');
+                        //get last 10 matches from mysql and put into dataframe
+                        //COLUMNS FOR FIRST DATAFRAME
+                        
+                        if (cells[0] != string.Empty){
+                            StringDataFrameColumn thisDiv = new StringDataFrameColumn("ThisDiv", 0);
+                            PrimitiveDataFrameColumn<DateTime> date = new PrimitiveDataFrameColumn<DateTime>("Date", 0);
+                            StringDataFrameColumn homeTeam = new StringDataFrameColumn("HomeTeam", 0);
+                            StringDataFrameColumn awayTeam = new StringDataFrameColumn("AwayTeam", 0);
+                            PrimitiveDataFrameColumn<int> fthg = new PrimitiveDataFrameColumn<int>("FTHG", 0);
+                            PrimitiveDataFrameColumn<int> ftag = new PrimitiveDataFrameColumn<int>("FTAG", 0);
+                            StringDataFrameColumn ftr = new StringDataFrameColumn("FTR", 0);
+                            PrimitiveDataFrameColumn<int> hs = new PrimitiveDataFrameColumn<int>("HS", 0);
+                            PrimitiveDataFrameColumn<int> aws = new PrimitiveDataFrameColumn<int>("AwS", 0);
+                            PrimitiveDataFrameColumn<int> hst = new PrimitiveDataFrameColumn<int>("HST", 0);
+                            PrimitiveDataFrameColumn<int> awst = new PrimitiveDataFrameColumn<int>("AwST", 0);
+                            string[] whichTeam = { "HomeTeam", "AwayTeam" };
+                            for (int j = 0; j < 2; j++){
+                                //using (MySqlConnection conn = new MySqlConnection(connStr)){
+                                    MySqlConnection conn = new MySqlConnection(connStr);
+                                    conn.Open();
+                                    //string sql = $"SELECT DISTINCT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE ({whichTeam[j]} = '{cells[3 + j].Replace("'", string.Empty)}' AND FTHG > -1 AND FTAG > -1 AND HS > -1 AND AwS > -1 AND HST > -1 AND AwST > -1) ORDER BY Date DESC LIMIT 10;";
+                                    string sql = $"SELECT DISTINCT ThisDiv, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HS, AwS, HST, AwST FROM football_data_complete WHERE ({whichTeam[j]} = '{cells[3 + j].Replace("'", string.Empty)}' AND FTHG > -1 AND FTAG > -1 AND HS > -1 AND AwS > -1 AND HST > -1 AND AwST > -1) ORDER BY Date DESC LIMIT 10;";
+                                    Console.WriteLine(sql);
+                                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                                    MySqlDataReader rdr = cmd.ExecuteReader();
+                                    while (rdr.Read()){
+                                        thisDiv.Append(rdr.GetString(0));
+                                        date.Append(rdr.GetDateTime(1));
+                                        homeTeam.Append(rdr.GetString(2));
+                                        awayTeam.Append(rdr.GetString(3));
+                                        fthg.Append(rdr.GetInt32(4));
+                                        ftag.Append(rdr.GetInt32(5));
+                                        ftr.Append(rdr.GetString(6));
+                                        hs.Append(rdr.GetInt32(7));
+                                        aws.Append(rdr.GetInt32(8));
+                                        hst.Append(rdr.GetInt32(9));
+                                        awst.Append(rdr.GetInt32(10));
+                                    }
+                                    conn.Close();
+                                //}
+                            }
+                            DataFrame df = new DataFrame(thisDiv, date, homeTeam, awayTeam, fthg, ftag, ftr, hs, aws, hst, awst);
+                            Console.WriteLine(df.Info());
+                            Console.WriteLine(df);
+                            //string[] cells = Fixtures[gm].Split(',');
+                            thisDivFix.Append(cells[0]);
+                            DateTime newDt = Convert.ToDateTime(cells[1]);
+                            dateFix.Append(newDt);
+                            homeTeamFix.Append(cells[3].Replace("'", string.Empty));
+                            awayTeamFix.Append(cells[4].Replace("'", string.Empty));
+                            
+                            //home team stats
+                            float[] homeStats = AveragesPerGame(true, df, cells[3].Replace("'", string.Empty), newDt);
+                            hwpg.Append(homeStats[0]);
+                            hdpg.Append(homeStats[1]);
+                            hlpg.Append(homeStats[2]);
+                            hgspg.Append(homeStats[3]);
+                            hgcpg.Append(homeStats[4]);
+                            hgspst.Append(homeStats[5]);
+                            hgcpst.Append(homeStats[6]);
+                            hgsps.Append(homeStats[7]);
+                            hgcps.Append(homeStats[8]);
+                            hstfpg.Append(homeStats[9]);
+                            hstapg.Append(homeStats[10]);
+                            hstfps.Append(homeStats[11]);
+                            hstaps.Append(homeStats[12]);
+                            hsfpg.Append(homeStats[13]);
+                            hsapg.Append(homeStats[14]);
+
+                            //away team stats
+                            float[] awayStats = AveragesPerGame(false, df, cells[4].Replace("'", string.Empty), newDt);
+                            awpg.Append(awayStats[0]);
+                            adpg.Append(awayStats[1]);
+                            alpg.Append(awayStats[2]);
+                            agspg.Append(awayStats[3]);
+                            agcpg.Append(awayStats[4]);
+                            agspst.Append(awayStats[5]);
+                            agcpst.Append(awayStats[6]);
+                            agsps.Append(awayStats[7]);
+                            agcps.Append(awayStats[8]);
+                            astfpg.Append(awayStats[9]);
+                            astapg.Append(awayStats[10]);
+                            astfps.Append(awayStats[11]);
+                            astaps.Append(awayStats[12]);
+                            asfpg.Append(awayStats[13]);
+                            asapg.Append(awayStats[14]);
+
+                            //define whether each row is valid
+                            if (homeStats.Contains(-1) || awayStats.Contains(-1)){
+                                rowValid.Append(false);
+                            }else{
+                                rowValid.Append(true);
                             }
                         }
-                    }
-                    DataFrame df = new DataFrame(thisDiv, date, homeTeam, awayTeam, fthg, ftag, ftr, hs, aws, hst, awst);
-                    Console.WriteLine(df.Info());
-                    Console.WriteLine(df.Sample(20));
-                    //string[] cells = Fixtures[gm].Split(',');
-                    thisDivFix.Append(cells[0]);
-                    DateTime newDt = Convert.ToDateTime(cells[1]);
-                    dateFix.Append(newDt);
-                    homeTeamFix.Append(cells[3].Replace("'", string.Empty));
-                    awayTeamFix.Append(cells[4].Replace("'", string.Empty));
-                    
-                    //home team stats
-                    float[] homeStats = AveragesPerGame(true, df, cells[3].Replace("'", string.Empty), newDt);
-                    hwpg.Append(homeStats[0]);
-                    hdpg.Append(homeStats[1]);
-                    hlpg.Append(homeStats[2]);
-                    hgspg.Append(homeStats[3]);
-                    hgcpg.Append(homeStats[4]);
-                    hgspst.Append(homeStats[5]);
-                    hgcpst.Append(homeStats[6]);
-                    hgsps.Append(homeStats[7]);
-                    hgcps.Append(homeStats[8]);
-                    hstfpg.Append(homeStats[9]);
-                    hstapg.Append(homeStats[10]);
-                    hstfps.Append(homeStats[11]);
-                    hstaps.Append(homeStats[12]);
-                    hsfpg.Append(homeStats[13]);
-                    hsapg.Append(homeStats[14]);
-
-                    //away team stats
-                    float[] awayStats = AveragesPerGame(false, df, cells[4].Replace("'", string.Empty), newDt);
-                    awpg.Append(awayStats[0]);
-                    adpg.Append(awayStats[1]);
-                    alpg.Append(awayStats[2]);
-                    agspg.Append(awayStats[3]);
-                    agcpg.Append(awayStats[4]);
-                    agspst.Append(awayStats[5]);
-                    agcpst.Append(awayStats[6]);
-                    agsps.Append(awayStats[7]);
-                    agcps.Append(awayStats[8]);
-                    astfpg.Append(awayStats[9]);
-                    astapg.Append(awayStats[10]);
-                    astfps.Append(awayStats[11]);
-                    astaps.Append(awayStats[12]);
-                    asfpg.Append(awayStats[13]);
-                    asapg.Append(awayStats[14]);
-
-                    //define whether each row is valid
-                    if (homeStats.Contains(-1) || awayStats.Contains(-1)){
-                        rowValid.Append(false);
-                    }else{
-                        rowValid.Append(true);
+                    }catch (Exception ex){
+                        Console.WriteLine("Problem!");
                     }
                 }
 
                 //create processed dataframe
                 DataFrame dfp = new DataFrame(thisDivFix, dateFix, homeTeamFix, hwpg, hdpg, hlpg, hgspg, hgcpg, hgspst, hgcpst, hgsps, hgcps, hstfpg, hstapg, hstfps, hstaps, hsfpg, hsapg, awayTeamFix, awpg, adpg, alpg, agspg, agcpg, agspst, agcpst, agsps, agcps, astfpg, astapg, astfps, astaps, asfpg, asapg, rowValid);
+                dfp = dfp.Filter(rowValid);
                 Console.WriteLine(dfp.Info());
                 Console.WriteLine(dfp.Sample(10));
                 

@@ -1,4 +1,3 @@
-/home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.csprojAssemblyReference.cache
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.AssemblyInfoInputs.cache
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.AssemblyInfo.cs
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.csproj.CoreCompileInputs.cache
@@ -33,3 +32,5 @@
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.dll
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.pdb
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.genruntimeconfig.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.csproj.AssemblyReference.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/GenerateFixtureData/obj/Debug/netcoreapp3.1/GenerateFixtureData.GeneratedMSBuildEditorConfig.editorconfig

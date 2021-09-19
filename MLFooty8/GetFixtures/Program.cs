@@ -26,8 +26,9 @@ namespace GetFixtures
         {
             string filename="../Data/fixtures.csv";
             string url="https://www.football-data.co.uk/fixtures.csv";
-            Console.WriteLine("Do you want to download fixtures? y or n");
-            string ans=Console.ReadLine();
+            //Console.WriteLine("Do you want to download fixtures? y or n");
+            //string ans=Console.ReadLine();
+            string ans = "y";
             if ((ans=="y"||ans=="Y") && URLExists(url)==true){
                 if (File.Exists(filename)){
                     File.Delete(filename);

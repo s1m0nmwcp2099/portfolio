@@ -33,7 +33,6 @@
 /home/me/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.dll
 /home/me/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.pdb
 /home/me/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.genruntimeconfig.cache
-/home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.csprojAssemblyReference.cache
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.AssemblyInfoInputs.cache
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.AssemblyInfo.cs
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.csproj.CoreCompileInputs.cache
@@ -68,3 +67,5 @@
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.csproj.CopyComplete
 /home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.genruntimeconfig.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.csproj.AssemblyReference.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/GenerateData/obj/Debug/netcoreapp3.1/GenerateData.GeneratedMSBuildEditorConfig.editorconfig
