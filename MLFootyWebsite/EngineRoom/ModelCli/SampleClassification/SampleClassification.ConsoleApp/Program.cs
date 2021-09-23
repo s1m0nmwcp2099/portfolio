@@ -21,19 +21,19 @@ namespace SampleClassification.ConsoleApp
                 Hlpg = 0.330745F,
                 Hgspg = 1.3423195F,
                 Hgcpg = 0.9094573F,
-                Hstfpg = 6.3157806F,
-                Hstapg = 6.6664624F,
                 Hsfpg = 9.047229F,
                 Hsapg = 10.050814F,
+                Hstfpg = 6.3157806F,
+                Hstapg = 6.6664624F,
                 Awpg = 0.092881F,
                 Adpg = 0.18516196F,
                 Alpg = 0.721957F,
                 Agspg = 0.45868862F,
                 Agcpg = 1.9061095F,
-                Astfpg = 3.8654711F,
-                Astapg = 5.815963F,
                 Asfpg = 8.026802F,
                 Asapg = 11.358909F,
+                Astfpg = 3.8654711F,
+                Astapg = 5.815963F,
             };
 
             // Make a single prediction on the sample data and print results
@@ -45,19 +45,19 @@ namespace SampleClassification.ConsoleApp
             Console.WriteLine($"Hlpg: {sampleData.Hlpg}");
             Console.WriteLine($"Hgspg: {sampleData.Hgspg}");
             Console.WriteLine($"Hgcpg: {sampleData.Hgcpg}");
-            Console.WriteLine($"Hstfpg: {sampleData.Hstfpg}");
-            Console.WriteLine($"Hstapg: {sampleData.Hstapg}");
             Console.WriteLine($"Hsfpg: {sampleData.Hsfpg}");
             Console.WriteLine($"Hsapg: {sampleData.Hsapg}");
+            Console.WriteLine($"Hstfpg: {sampleData.Hstfpg}");
+            Console.WriteLine($"Hstapg: {sampleData.Hstapg}");
             Console.WriteLine($"Awpg: {sampleData.Awpg}");
             Console.WriteLine($"Adpg: {sampleData.Adpg}");
             Console.WriteLine($"Alpg: {sampleData.Alpg}");
             Console.WriteLine($"Agspg: {sampleData.Agspg}");
             Console.WriteLine($"Agcpg: {sampleData.Agcpg}");
-            Console.WriteLine($"Astfpg: {sampleData.Astfpg}");
-            Console.WriteLine($"Astapg: {sampleData.Astapg}");
             Console.WriteLine($"Asfpg: {sampleData.Asfpg}");
             Console.WriteLine($"Asapg: {sampleData.Asapg}");
+            Console.WriteLine($"Astfpg: {sampleData.Astfpg}");
+            Console.WriteLine($"Astapg: {sampleData.Astapg}");
             Console.WriteLine($"\n\nPredicted FTR value {predictionResult.Prediction} \nPredicted FTR scores: [{String.Join(",", predictionResult.Score)}]\n\n");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();

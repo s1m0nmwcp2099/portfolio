@@ -11,7 +11,6 @@ using System.Linq;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using SampleClassification.Model;
-using Microsoft.ML.Trainers;
 
 namespace SampleClassification.ConsoleApp
 {
@@ -51,11 +50,11 @@ namespace SampleClassification.ConsoleApp
         {
             // Data process configuration with pipeline data transformations 
             var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("FTR", "FTR")
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hstfpg", "Hstapg", "Hsfpg", "Hsapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Astfpg", "Astapg", "Asfpg", "Asapg" }))
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hsfpg", "Hsapg", "Hstfpg", "Hstapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Asfpg", "Asapg", "Astfpg", "Astapg" }))
                                       .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(new LbfgsMaximumEntropyMulticlassTrainer.Options() { L2Regularization = 0.3335599f, L1Regularization = 0.51777846f, OptimizationTolerance = 0.0001f, HistorySize = 5, MaximumNumberOfIterations = 1785070371, InitialWeightsDiameter = 0.5246505f, DenseOptimizer = false, LabelColumnName = "FTR", FeatureColumnName = "Features" })
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.LinearSvm(labelColumnName: "FTR", featureColumnName: "Features"), labelColumnName: "FTR")
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
