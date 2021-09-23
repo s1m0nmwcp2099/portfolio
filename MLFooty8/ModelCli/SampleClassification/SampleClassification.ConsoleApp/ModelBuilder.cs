@@ -51,14 +51,11 @@ namespace SampleClassification.ConsoleApp
         {
             // Data process configuration with pipeline data transformations 
             var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("FTR", "FTR")
-                                      .Append(mlContext.Transforms.Conversion.ConvertType(new[] { new InputOutputColumnPair("RowValid", "RowValid"), new InputOutputColumnPair("Over", "Over") }))
-                                      .Append(mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("ThisDiv", "ThisDiv"), new InputOutputColumnPair("Date", "Date") }))
-                                      .Append(mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("HomeTeam", "HomeTeam"), new InputOutputColumnPair("AwayTeam", "AwayTeam") }))
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "RowValid", "Over", "ThisDiv", "Date", "HomeTeam", "AwayTeam", "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hstfpg", "Hstapg", "Hsfpg", "Hsapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Astfpg", "Astapg", "Asfpg", "Asapg" }))
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hsfpg", "Hsapg", "Hstfpg", "Hstapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Asfpg", "Asapg", "Astfpg", "Astapg" }))
                                       .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(new SdcaMaximumEntropyMulticlassTrainer.Options() { L2Regularization = 0.0001f, ConvergenceTolerance = 0.01f, MaximumNumberOfIterations = 20, Shuffle = true, BiasLearningRate = 0.1f, LabelColumnName = "FTR", FeatureColumnName = "Features" })
+            var trainer = mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(new LbfgsMaximumEntropyMulticlassTrainer.Options() { L2Regularization = 0.92230344f, L1Regularization = 0.63461995f, OptimizationTolerance = 0.0001f, HistorySize = 20, MaximumNumberOfIterations = 1502588664, InitialWeightsDiameter = 0.948918f, DenseOptimizer = false, LabelColumnName = "FTR", FeatureColumnName = "Features" })
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);

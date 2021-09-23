@@ -42,20 +42,20 @@ namespace SampleClassification.Model
         public float Hgcpg { get; set; }
 
 
-        [ColumnName("Hstfpg"), LoadColumn(8)]
-        public float Hstfpg { get; set; }
-
-
-        [ColumnName("Hstapg"), LoadColumn(9)]
-        public float Hstapg { get; set; }
-
-
-        [ColumnName("Hsfpg"), LoadColumn(10)]
+        [ColumnName("Hsfpg"), LoadColumn(8)]
         public float Hsfpg { get; set; }
 
 
-        [ColumnName("Hsapg"), LoadColumn(11)]
+        [ColumnName("Hsapg"), LoadColumn(9)]
         public float Hsapg { get; set; }
+
+
+        [ColumnName("Hstfpg"), LoadColumn(10)]
+        public float Hstfpg { get; set; }
+
+
+        [ColumnName("Hstapg"), LoadColumn(11)]
+        public float Hstapg { get; set; }
 
 
         [ColumnName("AwayTeam"), LoadColumn(12)]
@@ -82,20 +82,20 @@ namespace SampleClassification.Model
         public float Agcpg { get; set; }
 
 
-        [ColumnName("Astfpg"), LoadColumn(18)]
-        public float Astfpg { get; set; }
-
-
-        [ColumnName("Astapg"), LoadColumn(19)]
-        public float Astapg { get; set; }
-
-
-        [ColumnName("Asfpg"), LoadColumn(20)]
+        [ColumnName("Asfpg"), LoadColumn(18)]
         public float Asfpg { get; set; }
 
 
-        [ColumnName("Asapg"), LoadColumn(21)]
+        [ColumnName("Asapg"), LoadColumn(19)]
         public float Asapg { get; set; }
+
+
+        [ColumnName("Astfpg"), LoadColumn(20)]
+        public float Astfpg { get; set; }
+
+
+        [ColumnName("Astapg"), LoadColumn(21)]
+        public float Astapg { get; set; }
 
 
         [ColumnName("RowValid"), LoadColumn(22)]

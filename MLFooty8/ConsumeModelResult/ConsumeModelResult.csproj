@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Analysis" Version="0.18.0" />
     <PackageReference Include="Microsoft.Extensions.ML" Version="1.6.0" />
     <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+    <ProjectReference Include="../ModelCli/SampleClassification/SampleClassification.Model/SampleClassification.Model.csproj" />
   </ItemGroup>
 
 </Project>

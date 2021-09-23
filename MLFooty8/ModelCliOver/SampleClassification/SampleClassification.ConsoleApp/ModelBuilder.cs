@@ -50,13 +50,11 @@ namespace SampleClassification.ConsoleApp
         {
             // Data process configuration with pipeline data transformations 
             var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("Over", "Over")
-                                      .Append(mlContext.Transforms.Conversion.ConvertType(new[] { new InputOutputColumnPair("RowValid", "RowValid") }))
-                                      .Append(mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("ThisDiv", "ThisDiv"), new InputOutputColumnPair("Date", "Date"), new InputOutputColumnPair("FTR", "FTR") }))
-                                      .Append(mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("HomeTeam", "HomeTeam"), new InputOutputColumnPair("AwayTeam", "AwayTeam") }))
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "RowValid", "ThisDiv", "Date", "FTR", "HomeTeam", "AwayTeam", "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hstfpg", "Hstapg", "Hsfpg", "Hsapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Astfpg", "Astapg", "Asfpg", "Asapg" }))
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Hwpg", "Hdpg", "Hlpg", "Hgspg", "Hgcpg", "Hsfpg", "Hsapg", "Hstfpg", "Hstapg", "Awpg", "Adpg", "Alpg", "Agspg", "Agcpg", "Asfpg", "Asapg", "Astfpg", "Astapg" }))
+                                      .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.FastForest(labelColumnName: "Over", featureColumnName: "Features"), labelColumnName: "Over")
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(labelColumnName: "Over", featureColumnName: "Features"), labelColumnName: "Over")
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);

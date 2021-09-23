@@ -1,0 +1,11 @@
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/bin/Debug/netstandard2.0/MLModel.zip
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/bin/Debug/netstandard2.0/SampleClassification.Model.deps.json
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/bin/Debug/netstandard2.0/SampleClassification.Model.dll
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/bin/Debug/netstandard2.0/SampleClassification.Model.pdb
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.csproj.AssemblyReference.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.GeneratedMSBuildEditorConfig.editorconfig
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.AssemblyInfoInputs.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.AssemblyInfo.cs
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.csproj.CoreCompileInputs.cache
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.dll
+/home/simon/GithubRepo/portfolio/MLFooty8/ModelCliOver/SampleClassification/SampleClassification.Model/obj/Debug/netstandard2.0/SampleClassification.Model.pdb
