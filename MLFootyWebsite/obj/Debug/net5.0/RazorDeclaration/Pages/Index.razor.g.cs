@@ -82,6 +82,13 @@ using MLFootyWebsite.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "/home/simon/GithubRepo/portfolio/MLFootyWebsite/Pages/Index.razor"
+using MLFootyWebsite.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -90,6 +97,22 @@ using MLFootyWebsite.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 42 "/home/simon/GithubRepo/portfolio/MLFootyWebsite/Pages/Index.razor"
+      
+    public List<Fixture> matchFixtures = new List<Fixture>();
+    private List<Fixture> ReadCsvFx(){
+        matchFixtures = FixtureService.GetPredFixtures();
+        return matchFixtures;
+    }
+    protected override void OnInitialized(){
+        ReadCsvFx();
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FixtureService FixtureService { get; set; }
     }
 }
 #pragma warning restore 1591

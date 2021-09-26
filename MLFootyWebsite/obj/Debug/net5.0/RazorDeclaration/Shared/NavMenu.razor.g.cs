@@ -90,7 +90,7 @@ using MLFootyWebsite.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "/home/simon/GithubRepo/portfolio/MLFootyWebsite/Shared/NavMenu.razor"
+#line 28 "/home/simon/GithubRepo/portfolio/MLFootyWebsite/Shared/NavMenu.razor"
        
     private bool collapseNavMenu = true;
 
