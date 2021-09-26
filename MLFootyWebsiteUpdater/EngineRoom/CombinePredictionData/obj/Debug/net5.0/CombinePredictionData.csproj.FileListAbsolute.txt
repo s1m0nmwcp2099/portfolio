@@ -1,0 +1,16 @@
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.csproj.AssemblyReference.cache
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.GeneratedMSBuildEditorConfig.editorconfig
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.AssemblyInfoInputs.cache
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.AssemblyInfo.cs
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.csproj.CoreCompileInputs.cache
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/CombinePredictionData
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/CombinePredictionData.deps.json
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/CombinePredictionData.runtimeconfig.json
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/CombinePredictionData.runtimeconfig.dev.json
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/CombinePredictionData.dll
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/ref/CombinePredictionData.dll
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/bin/Debug/net5.0/CombinePredictionData.pdb
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.dll
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/ref/CombinePredictionData.dll
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.pdb
+/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/CombinePredictionData/obj/Debug/net5.0/CombinePredictionData.genruntimeconfig.cache

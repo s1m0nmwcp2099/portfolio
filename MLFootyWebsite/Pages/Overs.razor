@@ -1,0 +1,49 @@
+@page "/overs"
+@using MLFootyWebsite.Data
+@inject FixtureService FixtureService
+
+<h1>Over and under 2.5 total goals probabilities</h1>
+
+@if (matchFixtures == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>League</th>
+                <th>Date</th>
+                <th>Home team</th>
+                <th>Away team</th>
+                <th>Over 2.5 prob</th>
+                <th>Under 2.5 prob</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fx in matchFixtures)
+            {
+                <tr>
+                    <td>@fx.FxLeague</td>
+                    <td>@fx.FxDate.ToString("ddd, dd-MM-yyyy")</td>
+                    <td>@fx.FxHomeTeam</td>
+                    <td>@fx.FxAwayTeam</td>
+                    <td>@fx.FxOverProb</td>
+                    <td>@fx.FxUnderProb</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code{
+    public List<Fixture> matchFixtures = new List<Fixture>();
+    private List<Fixture> ReadCsvFx(){
+        matchFixtures = FixtureService.GetPredFixtures();
+        return matchFixtures;
+    }
+    protected override void OnInitialized(){
+        ReadCsvFx();
+    }
+}
