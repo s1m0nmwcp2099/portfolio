@@ -11,6 +11,7 @@
 /home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/wwwroot/css/open-iconic/ICON-LICENSE
 /home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/wwwroot/css/open-iconic/README.md
 /home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/wwwroot/css/site.css
+/home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/wwwroot/EngineRoom/Data/CombinedPredictions.csv
 /home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/wwwroot/favicon.ico
 /home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/appsettings.Development.json
 /home/simon/GithubRepo/portfolio/MLFootyWebsite/bin/Release/net5.0/publish/appsettings.json
