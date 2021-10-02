@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = GenerateData
-build_property.ProjectDir = /home/simon/GithubRepo/portfolio/MLFootyWebsite/EngineRoom/GenerateData/
+build_property.ProjectDir = /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/GenerateData/

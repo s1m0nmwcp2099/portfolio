@@ -1218,11 +1218,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/simon/GithubRepo/portfolio/MLFootyWebsite/EngineRoom/GenerateData/GenerateData.csproj",
+      "projectUniqueName": "/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/GenerateData/GenerateData.csproj",
       "projectName": "GenerateData",
-      "projectPath": "/home/simon/GithubRepo/portfolio/MLFootyWebsite/EngineRoom/GenerateData/GenerateData.csproj",
+      "projectPath": "/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/GenerateData/GenerateData.csproj",
       "packagesPath": "/home/simon/.nuget/packages/",
-      "outputPath": "/home/simon/GithubRepo/portfolio/MLFootyWebsite/EngineRoom/GenerateData/obj/",
+      "outputPath": "/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/GenerateData/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"

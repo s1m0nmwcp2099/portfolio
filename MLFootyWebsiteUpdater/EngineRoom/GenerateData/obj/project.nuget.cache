@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ffjBNx86hCjWrieVZAMgEebR2WLop0ytrr5wmeiW+I6VRtq5aeDwd4ZjJArt7XNpOMoD3te1An3TEhrHzjfTsQ==",
+  "dgSpecHash": "Tgft3QgcotPaLamTMBqlI4rv54ra2aA51tEtZrWDHbWfJNUJdcjS6cO/hM9IDJPN8Tne4xWDfN09xUFN9ZjjZg==",
   "success": true,
-  "projectFilePath": "/home/simon/GithubRepo/portfolio/MLFootyWebsite/EngineRoom/GenerateData/GenerateData.csproj",
+  "projectFilePath": "/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/GenerateData/GenerateData.csproj",
   "expectedPackageFiles": [
     "/home/simon/.nuget/packages/apache.arrow/2.0.0/apache.arrow.2.0.0.nupkg.sha512",
     "/home/simon/.nuget/packages/bouncycastle.netcore/1.8.5/bouncycastle.netcore.1.8.5.nupkg.sha512",

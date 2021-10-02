@@ -134,8 +134,10 @@ namespace GenerateFixtureData
                 List<string> Fixtures = new List<string>();
                 using (StreamReader sr = new StreamReader(fName)){
                     while (sr.Peek() > 0){
-                        Console.WriteLine(sr.ReadLine());
-                        Fixtures.Add(sr.ReadLine());
+                        string thisFx = sr.ReadLine();
+                        Fixtures.Add(thisFx);
+                        Console.WriteLine(thisFx);
+                        //Console.ReadLine();
                     }
                 }
                 
@@ -188,6 +190,7 @@ namespace GenerateFixtureData
 
                 for (int x=0; x<Fixtures.Count(); x++){
                     Console.WriteLine(Fixtures[x]);
+                    //Console.ReadLine();
                 }
                 //Console.ReadLine();
 
@@ -198,7 +201,7 @@ namespace GenerateFixtureData
                         //get last 10 matches from mysql and put into dataframe
                         //COLUMNS FOR FIRST DATAFRAME
                         
-                        if (cells[0] != string.Empty){
+                        if (cells[0] != /*string.Empty*/ null){
                             StringDataFrameColumn thisDiv = new StringDataFrameColumn("ThisDiv", 0);
                             PrimitiveDataFrameColumn<DateTime> date = new PrimitiveDataFrameColumn<DateTime>("Date", 0);
                             StringDataFrameColumn homeTeam = new StringDataFrameColumn("HomeTeam", 0);
@@ -289,6 +292,7 @@ namespace GenerateFixtureData
                             }else{
                                 rowValid.Append(true);
                             }
+                            //rowValid.Append(true);
                         }
                     }catch (Exception ex){
                         Console.WriteLine("Problem!");
