@@ -304,7 +304,7 @@ namespace GenerateFixtureData
                 DataFrame dfp = new DataFrame(thisDivFix, dateFix, homeTeamFix, hwpg, hdpg, hlpg, hgspg, hgcpg, hsfpg, hsapg, hstfpg, hstapg, awayTeamFix, awpg, adpg, alpg, agspg, agcpg, asfpg, asapg, astfpg, astapg, rowValid);
                 dfp = dfp.Filter(rowValid);
                 Console.WriteLine(dfp.Info());
-                Console.WriteLine(dfp.Sample(10));
+                //Console.WriteLine(dfp.Sample(10));
                 
                 //write dataframe to csv
                 fName = "../Data/processedFixtures.csv";

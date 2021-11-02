@@ -62,7 +62,6 @@
 /home/simon/GithubRepo/portfolio/BigFootySql/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
 /home/simon/GithubRepo/portfolio/BigFootySql/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
 /home/simon/GithubRepo/portfolio/BigFootySql/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
-/home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.csproj.CopyComplete
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.genruntimeconfig.cache
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.csproj.AssemblyReference.cache
 /home/simon/GithubRepo/portfolio/BigFootySql/obj/Debug/netcoreapp3.1/BigFootySql.GeneratedMSBuildEditorConfig.editorconfig

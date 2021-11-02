@@ -93,7 +93,6 @@
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ConsumeModelOver.AssemblyInfoInputs.cache
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ConsumeModelOver.AssemblyInfo.cs
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ConsumeModelOver.csproj.CoreCompileInputs.cache
-/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ConsumeModelOver.csproj.CopyComplete
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ConsumeModelOver.dll
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ref/ConsumeModelOver.dll
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelOver/obj/Debug/net5.0/ConsumeModelOver.pdb

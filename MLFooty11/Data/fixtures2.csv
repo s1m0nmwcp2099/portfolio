@@ -1,0 +1,128 @@
+Country,League,Date,Time,Home,Away,PH,PD,PA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA
+Argentina,Liga Profesional,15/10/2021,18:30,Godoy Cruz,Central Cordoba,1.78,3.94,4.52,1.82,3.94,4.52,1.77,3.74,4.22
+Argentina,Liga Profesional,15/10/2021,20:45,Rosario Central,Patronato,2.42,3.34,3.12,2.49,3.48,3.12,2.37,3.22,2.98
+Argentina,Liga Profesional,15/10/2021,23:00,Racing Club,Platense,1.95,3.32,4.52,2.02,3.34,4.63,1.94,3.16,4.18
+Argentina,Liga Profesional,16/10/2021,01:15,Defensa y Justicia,Estudiantes L.P.,2.58,3.06,3.14,2.62,3.2,3.14,2.5,3.02,2.95
+Argentina,Liga Profesional,16/10/2021,01:15,Velez Sarsfield,Arsenal Sarandi,1.41,4.6,8.77,1.46,4.7,8.77,1.42,4.39,7.46
+Argentina,Liga Profesional,16/10/2021,17:30,Sarmiento Junin,Union de Santa Fe,2.47,3.23,3.03,2.6,3.23,3.16,2.47,3.08,2.91
+Argentina,Liga Profesional,16/10/2021,19:45,Gimnasia L.P.,Newells Old Boys,2.35,3.19,3.27,2.39,3.4,3.27,2.29,3.16,3.13
+Argentina,Liga Profesional,16/10/2021,22:00,Lanus,Banfield,2.35,3.5,3,2.42,3.5,3.05,2.34,3.33,2.9
+Argentina,Liga Profesional,17/10/2021,00:15,Huracan,Boca Juniors,3.83,3.26,2.09,4,3.28,2.11,3.73,3.17,2.04
+Argentina,Liga Profesional,17/10/2021,19:45,Atl. Tucuman,Argentinos Jrs,3.15,3.11,2.47,3.15,3.24,2.53,3.01,3.06,2.41
+Argentina,Liga Profesional,17/10/2021,19:45,Colon Santa FE,Talleres Cordoba,2.86,3.07,2.72,2.9,3.22,2.72,2.73,3.04,2.64
+Argentina,Liga Profesional,17/10/2021,22:00,Aldosivi,Independiente,4.06,3.51,1.94,4.1,3.59,1.99,3.83,3.38,1.93
+Argentina,Liga Profesional,18/10/2021,00:15,River Plate,San Lorenzo,1.45,4.48,7.23,1.6,4.5,7.5,1.47,4.22,6.52
+Austria,Bundesliga,16/10/2021,16:00,A. Klagenfurt,Rapid Vienna,3.85,3.84,1.97,3.88,3.85,2,3.68,3.65,1.93
+Austria,Bundesliga,16/10/2021,16:00,Altach,Salzburg,11.78,6.86,1.24,17,7,1.24,12.66,6.7,1.2
+Austria,Bundesliga,16/10/2021,16:00,Austria Vienna,Admira,1.94,3.86,3.91,1.95,3.86,4.1,1.89,3.69,3.77
+Austria,Bundesliga,17/10/2021,13:30,LASK,Wolfsberger AC,1.83,3.9,4.31,1.83,3.92,4.5,1.79,3.72,4.17
+Austria,Bundesliga,17/10/2021,13:30,Tirol,Hartberg,2.55,3.6,2.79,2.55,3.77,2.87,2.42,3.5,2.72
+Austria,Bundesliga,17/10/2021,16:00,Sturm Graz,Ried,1.32,5.76,9.31,1.33,5.76,10,1.3,5.36,8.86
+Brazil,Serie A,16/10/2021,23:00,Chapecoense-SC,Fortaleza,4.38,3.53,1.91,4.38,3.54,2,4.07,3.4,1.9
+Brazil,Serie A,17/10/2021,01:00,America MG,Bahia,2.04,3.51,3.87,2.05,3.6,3.94,2,3.41,3.66
+Brazil,Serie A,17/10/2021,20:00,Athletico-PR,Fluminense,2.54,2.96,3.31,2.6,3.12,3.31,2.5,2.94,3.06
+Brazil,Serie A,17/10/2021,20:00,Palmeiras,Internacional,1.99,3.64,3.9,2.06,3.64,4.1,2,3.43,3.71
+Brazil,Serie A,17/10/2021,22:15,Atletico GO,Atletico-MG,6.24,3.81,1.63,6.45,4,1.64,5.8,3.77,1.59
+Brazil,Serie A,17/10/2021,22:15,Ceara,Bragantino,2.75,3.09,2.9,2.8,3.29,2.93,2.64,3.06,2.77
+Brazil,Serie A,17/10/2021,22:15,Gremio,Juventude,1.65,3.69,6.25,1.7,3.8,6.25,1.64,3.55,5.81
+Brazil,Serie A,18/10/2021,00:30,Flamengo RJ,Cuiaba,1.26,6.11,12.3,1.29,6.11,13,1.26,5.51,11.7
+Brazil,Serie A,18/10/2021,00:30,Sport Recife,Santos,3.01,3.16,2.6,3.05,3.2,2.63,2.9,3.07,2.53
+Brazil,Serie A,19/10/2021,00:00,Sao Paulo,Corinthians,2.63,3.05,3.02,2.76,3.13,3.13,2.58,2.96,2.96
+Denmark,Superliga,15/10/2021,18:00,Viborg,Silkeborg,2.29,3.63,3.18,2.33,3.83,3.25,2.23,3.57,3.01
+Denmark,Superliga,17/10/2021,12:00,Nordsjaelland,Midtjylland,5.45,4.09,1.63,5.85,4.33,1.67,5.23,4.01,1.62
+Denmark,Superliga,17/10/2021,13:00,Odense,Randers FC,2.51,3.39,2.89,2.51,3.53,3.1,2.42,3.35,2.84
+Denmark,Superliga,17/10/2021,15:00,Brondby,Vejle,1.46,4.79,6.59,1.5,4.79,7,1.46,4.49,6.35
+Denmark,Superliga,17/10/2021,17:00,Sonderjyske,FC Copenhagen,6.68,3.97,1.56,6.68,4.5,1.6,6.09,4.13,1.53
+Denmark,Superliga,18/10/2021,18:00,Aarhus,Aalborg,2.55,3.3,2.9,2.56,3.5,3,2.46,3.27,2.83
+Finland,Veikkausliiga,16/10/2021,13:00,Ilves,HJK,6.22,3.9,1.63,6.5,4,1.65,5.88,3.82,1.58
+Finland,Veikkausliiga,16/10/2021,15:00,AC Oulu,Mariehamn,2.58,3.44,2.86,2.58,3.44,2.88,2.5,3.3,2.75
+Finland,Veikkausliiga,16/10/2021,15:00,Haka,Lahti,2.15,3.26,3.89,2.17,3.4,3.92,2.09,3.23,3.62
+Finland,Veikkausliiga,16/10/2021,15:00,HIFK,SJK,3.12,3.28,2.48,3.15,3.39,2.5,2.97,3.18,2.41
+Finland,Veikkausliiga,16/10/2021,15:00,Inter Turku,KuPS,2.58,3.35,2.93,2.6,3.42,3,2.49,3.24,2.81
+Finland,Veikkausliiga,16/10/2021,15:00,KTP,Honka,6.2,4.23,1.58,6.2,4.3,1.6,5.71,4.04,1.56
+Ireland,Premier Division,15/10/2021,19:45,Bohemians,Dundalk,1.99,3.78,3.81,2,3.9,3.9,1.92,3.64,3.66
+Ireland,Premier Division,15/10/2021,19:45,Derry City,St. Patricks,2.76,3.28,2.78,2.9,3.34,2.83,2.71,3.13,2.63
+Ireland,Premier Division,15/10/2021,19:45,Drogheda,Longford,1.47,4.67,7.41,1.48,4.7,7.5,1.44,4.45,6.75
+Ireland,Premier Division,15/10/2021,19:45,Waterford,Finn Harps,2.55,3.42,2.92,2.63,3.42,2.95,2.49,3.23,2.8
+Ireland,Premier Division,15/10/2021,20:00,Shamrock Rovers,Sligo Rovers,1.57,4.13,6.48,1.62,4.13,6.5,1.57,3.84,5.9
+Japan,J1 League,16/10/2021,06:00,Sagan Tosu,Shonan Bellmare,2.12,3.26,4,2.15,3.39,4.1,2.06,3.19,3.77
+Japan,J1 League,16/10/2021,07:00,Shimizu S-Pulse,Kashiwa Reysol,2.59,3.4,2.87,2.61,3.4,2.91,2.5,3.23,2.8
+Japan,J1 League,16/10/2021,07:00,Urawa Reds,Gamba Osaka,1.76,3.99,4.74,1.78,3.99,5,1.73,3.7,4.62
+Japan,J1 League,16/10/2021,08:00,Vissel Kobe,Avispa Fukuoka,1.84,3.78,4.51,1.86,3.88,4.64,1.8,3.56,4.38
+Japan,J1 League,16/10/2021,08:00,Yokohama FC,Tokushima,2.8,3.35,2.7,2.83,3.35,2.71,2.74,3.16,2.6
+Japan,J1 League,16/10/2021,11:00,Yokohama F. Marinos,Hokkaido Consadole Sapporo,1.67,4.63,4.61,1.74,4.63,5,1.65,4.31,4.41
+Japan,J1 League,17/10/2021,06:00,Oita Trinita,Vegalta Sendai,2.44,3.35,3.14,2.46,3.4,3.14,2.37,3.21,2.99
+Mexico,Liga MX,16/10/2021,01:00,Necaxa,Puebla,2.2,3.19,3.85,2.2,3.36,3.85,2.14,3.14,3.55
+Mexico,Liga MX,16/10/2021,03:00,Mazatlan FC,Atlas,3.69,3.35,2.18,3.9,3.37,2.2,3.48,3.21,2.13
+Mexico,Liga MX,16/10/2021,23:00,Monterrey,Club Leon,2.51,3.27,3.1,2.52,3.47,3.12,2.41,3.18,2.92
+Mexico,Liga MX,17/10/2021,01:00,Atl. San Luis,Club America,3.33,3.26,2.38,3.33,3.44,2.39,3.13,3.15,2.31
+Mexico,Liga MX,17/10/2021,01:05,Pachuca,Santos Laguna,2.24,3.17,3.75,2.24,3.45,3.75,2.15,3.18,3.43
+Mexico,Liga MX,17/10/2021,03:00,Cruz Azul,U.A.N.L.- Tigres,2.36,3.09,3.57,2.39,3.36,3.61,2.27,3.07,3.3
+Mexico,Liga MX,17/10/2021,18:00,U.N.A.M.- Pumas,Juarez,2.39,3.13,3.4,2.4,3.3,3.4,2.32,3.07,3.17
+Mexico,Liga MX,17/10/2021,23:00,Guadalajara Chivas,Toluca,2.31,3.12,3.57,2.31,3.38,3.57,2.22,3.13,3.34
+Norway,Eliteserien,16/10/2021,17:00,Lillestrom,Kristiansund,1.97,3.71,3.97,2.05,3.97,4,1.93,3.65,3.73
+Norway,Eliteserien,16/10/2021,17:00,Molde,Tromso,1.37,5.62,7.96,1.4,5.75,10,1.34,5.46,7.76
+Norway,Eliteserien,17/10/2021,16:00,Bodo/Glimt,Sarpsborg 08,1.28,6.38,9.62,1.3,6.5,12,1.26,6.18,9.72
+Norway,Eliteserien,17/10/2021,16:00,Brann,Stabaek,1.56,4.5,5.97,1.6,4.5,6,1.55,4.3,5.57
+Norway,Eliteserien,17/10/2021,16:00,Haugesund,Mjondalen,1.6,4.27,5.82,1.61,4.33,6,1.58,4.1,5.46
+Norway,Eliteserien,17/10/2021,16:00,Sandefjord,Odd,2.26,3.65,3.2,2.26,3.75,3.22,2.21,3.54,3.08
+Norway,Eliteserien,17/10/2021,16:00,Stromsgodset,Viking,2.47,3.83,2.76,2.65,4.08,2.87,2.42,3.7,2.66
+Norway,Eliteserien,17/10/2021,18:00,Rosenborg,Valerenga,1.84,3.89,4.36,1.87,4.05,4.36,1.83,3.76,4.06
+Poland,Ekstraklasa,16/10/2021,11:30,Leczna,Piast Gliwice,3.99,3.28,2.06,4.1,3.44,2.1,3.73,3.2,2.04
+Poland,Ekstraklasa,16/10/2021,14:00,Termalica B-B.,Lechia Gdansk,3.74,3.11,2.22,3.74,3.4,2.22,3.49,3.17,2.13
+Poland,Ekstraklasa,16/10/2021,16:30,Gornik Z.,Wisla,2.26,3.22,3.32,2.3,3.45,3.32,2.22,3.24,3.2
+Poland,Ekstraklasa,16/10/2021,19:00,Slask Wroclaw,Rakow,3.35,3.49,2.2,3.43,3.52,2.3,3.22,3.36,2.16
+Poland,Ekstraklasa,17/10/2021,11:30,Wisla Plock,Pogon Szczecin,3.56,3.1,2.3,3.75,3.16,2.3,3.38,3.06,2.23
+Poland,Ekstraklasa,17/10/2021,14:00,Cracovia,Warta Poznan,1.91,3.36,4.58,1.95,3.5,4.58,1.88,3.29,4.23
+Poland,Ekstraklasa,17/10/2021,16:30,Legia,Lech Poznan,2.49,3.47,2.74,2.5,3.47,2.95,2.42,3.29,2.79
+Poland,Ekstraklasa,18/10/2021,17:00,Stal Mielec,Zaglebie,2.79,3.38,2.6,2.84,3.55,2.65,2.68,3.29,2.53
+Poland,Ekstraklasa,18/10/2021,19:30,Jagiellonia,Radomiak Radom,2.47,3.2,3.11,2.5,3.4,3.11,2.41,3.14,2.95
+Romania,Liga 1,15/10/2021,18:30,Gaz Metan Medias,Din. Bucuresti,2.13,3.27,3.86,2.18,3.35,3.9,2.06,3.19,3.58
+Romania,Liga 1,16/10/2021,15:30,Sepsi Sf. Gheorghe,FC Voluntari,1.72,3.35,5.85,1.75,3.48,6,1.7,3.31,5.21
+Romania,Liga 1,16/10/2021,18:30,FC Steaua Bucuresti,Mioveni,1.49,4.35,6.66,1.5,4.35,7,1.47,4.07,6.45
+Romania,Liga 1,17/10/2021,13:00,FC Arges,Farul Constanta,3.55,2.87,2.42,3.55,3.05,2.42,3.29,2.89,2.33
+Romania,Liga 1,17/10/2021,15:30,UTA Arad,U Craiova 1948,1.93,3.08,4.54,2,3.15,4.54,1.92,3.02,4.27
+Romania,Liga 1,17/10/2021,18:30,FC Rapid Bucuresti,CFR Cluj,5.25,3.05,1.89,5.25,3.34,1.95,4.48,3.09,1.88
+Romania,Liga 1,18/10/2021,15:30,FC Botosani,Chindia Targoviste,2.17,3.08,3.86,2.18,3.15,3.88,2.11,3.03,3.61
+Romania,Liga 1,18/10/2021,18:30,Univ. Craiova,Academica Clinceni,1.43,4.35,8.09,1.48,4.5,8.13,1.44,4.04,7.29
+Russia,Premier League,16/10/2021,12:00,Arsenal Tula,Zenit,9.24,5.34,1.36,11.25,5.5,1.37,8.73,5.06,1.33
+Russia,Premier League,16/10/2021,14:30,Rubin Kazan,Lokomotiv Moscow,2.75,3.27,2.79,2.75,3.45,2.93,2.62,3.16,2.75
+Russia,Premier League,16/10/2021,17:00,Sochi,FK Rostov,1.78,3.83,4.87,1.84,3.83,4.96,1.76,3.58,4.59
+Russia,Premier League,16/10/2021,17:00,Spartak Moscow,Dynamo Moscow,2.56,3.37,2.93,2.65,3.45,3.04,2.49,3.27,2.82
+Russia,Premier League,17/10/2021,12:00,Ural,CSKA Moscow,6.16,3.92,1.63,6.16,4.01,1.7,5.7,3.81,1.6
+Russia,Premier League,17/10/2021,14:30,FK Krylya Sovetov Samara,Nizhny Novgorod,1.83,3.77,4.55,1.88,3.77,4.84,1.8,3.57,4.35
+Russia,Premier League,17/10/2021,14:30,Khimki,Akhmat Grozny,2.59,3.34,2.88,2.7,3.4,2.95,2.54,3.23,2.76
+Russia,Premier League,17/10/2021,17:00,Krasnodar,Ufa,1.41,5.21,7.18,1.47,5.21,7.42,1.41,4.82,6.83
+Sweden,Allsvenskan,16/10/2021,14:00,Degerfors,Halmstad,3.08,3.25,2.53,3.12,3.42,2.55,2.96,3.19,2.43
+Sweden,Allsvenskan,16/10/2021,14:00,Ostersunds,Malmo FF,9.73,5.68,1.32,11,6,1.36,9.43,5.54,1.29
+Sweden,Allsvenskan,16/10/2021,16:30,Sirius,Varbergs,2.41,3.35,3.18,2.45,3.5,3.2,2.36,3.25,3.03
+Sweden,Allsvenskan,17/10/2021,14:00,Hammarby,AIK,2.64,3.49,2.76,2.67,3.6,2.78,2.54,3.38,2.68
+Sweden,Allsvenskan,17/10/2021,14:00,Mjallby,Kalmar,2.89,3.08,2.8,2.89,3.19,2.8,2.75,3.03,2.7
+Sweden,Allsvenskan,17/10/2021,16:30,Goteborg,Orebro,1.75,3.74,5.23,1.75,3.9,5.25,1.72,3.68,4.89
+Sweden,Allsvenskan,18/10/2021,18:00,Djurgarden,Elfsborg,1.94,3.81,3.89,1.98,3.88,3.92,1.9,3.69,3.75
+Sweden,Allsvenskan,18/10/2021,18:00,Hacken,Norrkoping,2.66,3.55,2.66,2.71,3.74,2.75,2.56,3.45,2.61
+Switzerland,Super League,16/10/2021,17:00,Young Boys,Luzern,1.28,5.81,9.56,1.3,6.5,10.5,1.26,5.95,9.43
+Switzerland,Super League,16/10/2021,19:30,Zurich,Lugano,2.07,3.64,3.47,2.15,3.85,3.6,2.02,3.57,3.4
+Switzerland,Super League,17/10/2021,13:15,Lausanne,Grasshoppers,2.66,3.48,2.63,2.7,3.65,2.65,2.63,3.38,2.55
+Switzerland,Super League,17/10/2021,15:30,Sion,Basel,4.31,4.33,1.71,4.5,4.35,1.8,4.14,4.11,1.72
+Switzerland,Super League,17/10/2021,15:30,St. Gallen,Servette,2.18,3.84,3.07,2.4,4.14,3.1,2.19,3.73,2.93
+USA,MLS,16/10/2021,18:00,Club de Foot Montreal,Philadelphia Union,2.2,3.44,3.54,2.21,3.57,3.54,2.16,3.38,3.29
+USA,MLS,16/10/2021,20:30,Los Angeles FC,San Jose Earthquakes,1.59,4.25,6.04,1.6,4.4,6.04,1.55,4.14,5.65
+USA,MLS,16/10/2021,23:00,Columbus Crew,Inter Miami,1.83,3.8,4.58,1.83,3.87,4.75,1.79,3.67,4.32
+USA,MLS,17/10/2021,00:00,New England Revolution,Chicago Fire,1.46,4.97,6.92,1.46,5.25,7,1.43,4.77,6.54
+USA,MLS,17/10/2021,00:30,DC United,Nashville SC,2.13,3.51,3.65,2.13,3.7,3.7,2.05,3.45,3.52
+USA,MLS,17/10/2021,00:30,FC Cincinnati,Orlando City,3.02,3.51,2.43,3.02,3.64,2.43,2.85,3.43,2.38
+USA,MLS,17/10/2021,00:30,Toronto FC,Atlanta Utd,2.31,3.7,3.08,2.31,3.75,3.1,2.24,3.58,2.98
+USA,MLS,17/10/2021,01:30,Houston Dynamo,Seattle Sounders,2.46,3.49,2.98,2.5,3.49,2.98,2.42,3.35,2.86
+USA,MLS,17/10/2021,02:00,Austin FC,Minnesota United,2.44,3.72,2.86,2.45,3.77,2.86,2.41,3.54,2.74
+USA,MLS,17/10/2021,02:30,Real Salt Lake,Colorado Rapids,2.66,3.5,2.74,2.66,3.66,2.75,2.52,3.43,2.66
+USA,MLS,17/10/2021,03:30,Los Angeles Galaxy,Portland Timbers,1.91,4,3.82,1.91,4.05,4,1.88,3.87,3.64
+USA,MLS,17/10/2021,18:00,New York Red Bulls,New York City,2.74,3.27,2.8,2.74,3.49,2.83,2.61,3.22,2.71
+USA,MLS,18/10/2021,03:00,Vancouver Whitecaps,Sporting Kansas City,2.67,3.46,2.71,2.67,3.67,2.72,2.57,3.41,2.62
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,

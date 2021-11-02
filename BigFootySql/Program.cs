@@ -214,7 +214,7 @@ namespace BigFootySql
                         string fName = $"Data/Previous/{Seasons[j]}-{Leagues[i]}.csv";
                         Console.WriteLine($"Downloading: {Seasons[j]}-{Leagues[i]}");
                         //if (/*Seasons[j] == "1920" || */Seasons[j] == "2021"){
-			if (j > Seasons.IndexOf("1920")){
+			            if (j > Seasons.IndexOf("1920")){
                             DownloadAndWriteData(leagueUrl, fName);
                         }
 			//DownloadAndWriteData(leagueUrl, fName); //replaces commented out above
@@ -385,7 +385,7 @@ namespace BigFootySql
                                 //break down again
                                 parts = thisCsvLine.Split(',');
                             }
-                            if (String.IsNullOrEmpty(parts[0]) == false && Convert.ToDateTime(parts[Array.IndexOf(hdrs, "Date")]) > lastUpdateDate.AddDays(-14)){
+                            if (String.IsNullOrEmpty(parts[0]) == false && (Convert.ToDateTime(parts[Array.IndexOf(hdrs, "Date")]) > lastUpdateDate.AddDays(-30))){
                                 //start sql string
                                 string sqlReplaceStart = "REPLACE INTO football_data_complete (";
                                 string sqlReplaceEnd = " VALUES (";

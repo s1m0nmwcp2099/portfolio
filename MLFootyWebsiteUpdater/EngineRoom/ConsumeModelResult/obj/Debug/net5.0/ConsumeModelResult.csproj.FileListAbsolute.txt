@@ -93,7 +93,6 @@
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ConsumeModelResult.AssemblyInfoInputs.cache
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ConsumeModelResult.AssemblyInfo.cs
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ConsumeModelResult.csproj.CoreCompileInputs.cache
-/home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ConsumeModelResult.csproj.CopyComplete
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ConsumeModelResult.dll
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ref/ConsumeModelResult.dll
 /home/simon/GithubRepo/portfolio/MLFootyWebsiteUpdater/EngineRoom/ConsumeModelResult/obj/Debug/net5.0/ConsumeModelResult.pdb
